@@ -63,4 +63,16 @@ final class Loader
             throw new \Exception('Invalid namespace: ' . $namespace);
         }
     }
+
+    public static function registerNamespaces($namespaces)
+    {
+        if (is_array($namespaces)) {
+            foreach ($namespaces as $namespace => $path) {
+                self::registerNamespace($namespace, $path);
+            }
+        } else {
+            throw new \Exception('Invalid namespaces!');
+        }
+
+    }
 }
