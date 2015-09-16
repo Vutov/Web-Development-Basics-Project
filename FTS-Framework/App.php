@@ -46,7 +46,7 @@ class App{
         }
 
         $this->_frontController = FrontController::getInstance();
-        
+
         $this->_frontController->dispatch();
     }
 }

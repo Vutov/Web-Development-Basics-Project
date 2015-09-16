@@ -3,6 +3,8 @@
 namespace FTS;
 
 
+use FTS\Routers\DefaultRouter;
+
 class FrontController {
     private  static  $_instance = null;
 
@@ -22,6 +24,8 @@ class FrontController {
      * Takes needed router
      */
     public function dispatch(){
-
+        $router = new DefaultRouter();
+        $router->parse();
+        var_dump($router->getController());
     }
 }

@@ -11,4 +11,3 @@ $app = App::getInstance();
 $app->run();
 
 $config = $app->getConfig();
-echo $config->app['test1'];
