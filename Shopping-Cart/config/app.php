@@ -1,5 +1,5 @@
 <?php
-$cnf['test1'] = 'ok1';
-$cnf['test2'] = 'ok2';
+$cnf['default_controller'] = 'Index';
+$cnf['default_method'] = 'index';
 
 return $cnf;

@@ -3,7 +3,8 @@
 namespace FTS\Routers;
 
 
-class DefaultRouter {
+class DefaultRouter
+{
 
     private $_controller = null;
     private $_method = null;
@@ -29,15 +30,18 @@ class DefaultRouter {
         }
     }
 
-    public function getController(){
+    public function getController()
+    {
         return $this->_controller;
     }
 
-    public function getMethod(){
+    public function getMethod()
+    {
         return $this->_method;
     }
 
-    public function getGetParams(){
+    public function getGetParams()
+    {
         return $this->_params;
     }
 }

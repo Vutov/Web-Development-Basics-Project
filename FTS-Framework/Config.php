@@ -5,17 +5,20 @@
 namespace FTS;
 
 
-class Config {
+class Config
+{
 
     private static $_instance = null;
     private $_configFolder = null;
     private $_configArray = array();
 
-    private function __construct(){
+    private function __construct()
+    {
 
     }
 
-    public function setConfigFolder($configFolder){
+    public function setConfigFolder($configFolder)
+    {
         if (!$configFolder) {
             throw new \Exception('Empty config folder path.');
         }
@@ -30,12 +33,13 @@ class Config {
             if (is_array($namespaces)) {
                 Loader::registerNamespaces($namespaces);
             }
-        }else{
+        } else {
             throw new \Exception('Config directory read error: ' . $configFolder);
         }
     }
 
-    public static function getInstance(){
+    public static function getInstance()
+    {
         if (self::$_instance == null) {
             self::$_instance = new Config();
         }
@@ -43,11 +47,13 @@ class Config {
         return self::$_instance;
     }
 
-    public function getConfigFolder(){
+    public function getConfigFolder()
+    {
         return $this->_configFolder;
     }
 
-    public function includeConfigFile($path){
+    public function includeConfigFile($path)
+    {
         if (!$path) {
             throw new \Exception('Empty config path');
         }
@@ -56,12 +62,13 @@ class Config {
         if ($file != false && is_file($file) && is_readable($file)) {
             $baseName = explode('.php', basename($file))[0];
             $this->_configArray[$baseName] = include $file;
-        }else{
+        } else {
             throw new \Exception('Config file read error: ' . $path);
         }
     }
 
-    public function __get($name){
+    public function __get($name)
+    {
         if (!$this->_configArray[$name]) {
             $this->includeConfigFile($this->_configFolder . $name . '.php');
         }
