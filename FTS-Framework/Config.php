@@ -28,8 +28,8 @@ class Config
             $this->_configArray = array();
             $this->_configFolder = $realPath . DIRECTORY_SEPARATOR;
 
-            //TODO Register namespaces
             $namespaces = $this->app['namespaces'];
+
             if (is_array($namespaces)) {
                 Loader::registerNamespaces($namespaces);
             }

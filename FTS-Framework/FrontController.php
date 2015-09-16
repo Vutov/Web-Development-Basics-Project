@@ -2,8 +2,7 @@
 
 namespace FTS;
 
-
-use FTS\Routers\DefaultRouter;
+use FTS\Routers\IRouter;
 
 class FrontController
 {
@@ -15,6 +14,7 @@ class FrontController
     private $_controller = null;
     private $_method = null;
     private $_params = array();
+    private $_router = null;
 
     private function __construct()
     {
@@ -30,10 +30,41 @@ class FrontController
         return self::$_instance;
     }
 
+    public function getRouter(){
+        return $this->_router;
+    }
+
+    public function setRouter(IRouter $router){
+        $this->_router = $router;
+    }
+
+    private function getDefaultController()
+    {
+        $controller = App::getInstance()->getConfig()->app['default_controller'];
+        if ($controller) {
+            return strtolower($controller);
+        }
+
+        return self::DEFAULT_CONTROLLER;
+    }
+
+    private function getDefaultMethod()
+    {
+        $method = App::getInstance()->getConfig()->app['default_method'];
+        if ($method) {
+            return strtolower($method);
+        }
+
+        return self::DEFAULT_METHOD;
+    }
+
     public function dispatch()
     {
-        $router = new DefaultRouter();
-        $uri = $router->getURI();
+        if ($this->_router == null) {
+            throw new \Exception('Invalid router!', 500);
+        }
+
+        $uri = $this->_router->getURI();
         $routes = App::getInstance()->getConfig()->routes;
         $routeData = null;
         if (is_array($routes) && count($routes) > 0) {
@@ -96,25 +127,5 @@ class FrontController
         $file = ucfirst($this->_namespace) . '\\' . ucfirst($this->_controller);
         $calledController = new $file();
         $calledController->{strtolower($this->_method)}();
-    }
-
-    private function getDefaultController()
-    {
-        $controller = App::getInstance()->getConfig()->app['default_controller'];
-        if ($controller) {
-            return strtolower($controller);
-        }
-
-        return self::DEFAULT_CONTROLLER;
-    }
-
-    private function getDefaultMethod()
-    {
-        $method = App::getInstance()->getConfig()->app['default_method'];
-        if ($method) {
-            return strtolower($method);
-        }
-
-        return self::DEFAULT_METHOD;
     }
 }
