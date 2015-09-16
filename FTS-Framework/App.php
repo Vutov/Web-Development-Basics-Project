@@ -1,11 +1,18 @@
 <?php
 
 namespace FTS;
+include_once 'Loader.php';
+
 class App{
     private static $_instance = null;
 
+    private function __construct(){
+        Loader::registerNamespace('FTS', dirname(__FILE__).DIRECTORY_SEPARATOR);
+        Loader::registerAutoLoad();
+    }
+
     public function run(){
-        echo 'running!';
+        echo 'Framework running! </br>';
     }
 
     /**
