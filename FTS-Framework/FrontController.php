@@ -82,14 +82,15 @@ class FrontController
         }
 
         if (is_array($routeData) &&
-            $routeData['controllers'] &&
-            $routeData['controllers'][$this->_controller]['goesTo']
+            $routeData['controllers']
         ) {
             if ($routeData['controllers'][$this->_controller]['methods'][$this->_method]) {
-                $this->_method = $routeData['controllers'][$this->_controller]['methods'][$this->_method];
+                $this->_method = strtolower($routeData['controllers'][$this->_controller]['methods'][$this->_method]);
             }
 
-            $this->_controller = $routeData['controllers'][$this->_controller]['goesTo'];
+            if (isset($routeData['controllers'][$this->_controller]['goesTo'])) {
+                $this->_controller = strtolower($routeData['controllers'][$this->_controller]['goesTo']);
+            }
         }
 
         $file = ucfirst($this->_namespace) . '\\' . ucfirst($this->_controller);
@@ -101,7 +102,7 @@ class FrontController
     {
         $controller = App::getInstance()->getConfig()->app['default_controller'];
         if ($controller) {
-            return $controller;
+            return strtolower($controller);
         }
 
         return self::DEFAULT_CONTROLLER;
@@ -111,7 +112,7 @@ class FrontController
     {
         $method = App::getInstance()->getConfig()->app['default_method'];
         if ($method) {
-            return $method;
+            return strtolower($method);
         }
 
         return self::DEFAULT_METHOD;
