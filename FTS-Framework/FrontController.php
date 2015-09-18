@@ -76,7 +76,6 @@ class FrontController
                 ) {
                     $this->_namespace = $data['namespace'];
                     $routeData = $data;
-                    var_dump($this->_namespace);
                     // package found, remove it from uri - example Admin/index/edit/3
                     $uri = substr($uri, strlen($route) + 1);
                     break;

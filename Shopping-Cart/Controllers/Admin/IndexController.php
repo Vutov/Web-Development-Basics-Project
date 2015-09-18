@@ -9,8 +9,10 @@ class IndexController
     public function index()
     {
         $view = View::getInstance();
-        $view->display('Admin.index', array(1, 2, 3));
-
+        $view->appendToLayout('body', 'Admin.index');
+        $view->appendToLayout('header', 'header');
+        $view->appendToLayout('footer', 'footer');
+        $view->display('Layouts.Admin.home', array('a', 'b', 'c'));
     }
 
     public function create()

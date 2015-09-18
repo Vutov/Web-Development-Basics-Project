@@ -10,6 +10,8 @@ class View
     private $_viewPath = null;
     private $_viewDir = null;
     private $_viewBag = array();
+    private $_layoutParts = array();
+    private $_layoutData = array();
     private $_extension = '.php';
 
     private function __construct()
@@ -55,10 +57,27 @@ class View
         }
     }
 
+    /**
+     * Packages must be with starting big letter, views with starting small letters and separated by dot.
+     * @param $name
+     * @param array $data
+     * @param bool $returnAsString
+     * @return string
+     * @throws \Exception
+     */
     public function display($name, $data = array(), $returnAsString = false)
     {
         if (is_array($data)) {
             $this->_viewBag = array_merge($this->_viewBag, $data);
+        }
+
+        if (count($this->_layoutParts) > 0) {
+            foreach ($this->_layoutParts as $key => $template) {
+                $layout = $this->includeFile($template);
+                if ($layout) {
+                    $this->_layoutData[$key] = $layout;
+                }
+            }
         }
 
         if ($returnAsString) {
@@ -68,13 +87,21 @@ class View
         }
     }
 
-    /**
-     * Packages must be with starting big letter, views with starting small letters and separated by dot.
-     * @param $file string
-     * @return string view
-     * @throws \Exception when file cannot be found
-     */
-    public function includeFile($file)
+    public function  appendToLayout($key, $template)
+    {
+        if ($key && $template) {
+            $this->_layoutParts[$key] = $template;
+        } else {
+            throw new \Exception('Layouts require valid key and template!', 500);
+        }
+    }
+
+    public function getLayoutData($name)
+    {
+        return $this->_layoutData[$name];
+    }
+
+    private function includeFile($file)
     {
         if ($this->_viewDir == null) {
             $this->setViewDirectory($this->_viewPath);
@@ -86,12 +113,17 @@ class View
 
             // adds to different buffer
             ob_start();
-            include $fullPath;
+            $this->includeView($fullPath);
 
             // returns the buffer as string
             return ob_get_clean();
         } else {
             throw new \Exception('View ' . $file . ' cannot be included', 500);
         }
+    }
+
+    private function includeView($path)
+    {
+        include $path;
     }
 }

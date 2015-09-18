@@ -1,0 +1,3 @@
+<header>
+    <h1 style="color: blue">Header</h1>
+</header>
