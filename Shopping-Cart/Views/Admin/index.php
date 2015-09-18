@@ -2,4 +2,5 @@
 <h2>Index page</h2>
 <?php foreach ($this->_viewBag as $item): ?>
     <div><?= $item ?></div>
-<?php endforeach; ?>
+<?php endforeach;?>
+<div>Model is <?= $this->_viewBag['model'] ?></div>
