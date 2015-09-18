@@ -93,11 +93,13 @@ class App
     /**
      * @return ISession
      */
-    public function getSession(){
+    public function getSession()
+    {
         return $this->_session;
     }
 
-    public function setSession(ISession $session){
+    public function setSession(ISession $session)
+    {
         $this->_session = $session;
     }
 
@@ -110,32 +112,25 @@ class App
         $this->_frontController = FrontController::getInstance();
         if ($this->_router instanceof IRouter) {
             $this->_frontController->setRouter($this->_router);
-        } else {
-            switch ($this->_router) {
-                case 'JsonRPCRouter':
-                    //TODO implement JsonRPCRouter
-                    $this->_frontController->setRouter(new DefaultRouter());
-                    break;
-                case 'RPCRouter':
-                    //TODO implement RPCRouter
-                    $this->_frontController->setRouter(new DefaultRouter());
-                    break;
-                default:
-                    $this->_frontController->setRouter(new DefaultRouter());
-                    break;
-            }
         }
 
-        $sessionInfo = $this->_config->app['session'];
-        if ($sessionInfo['auto_start']) {
-            if ($sessionInfo['type'] == 'native') {
-                $this->_session = new NativeSession(
-                    $sessionInfo['name'],
-                    $sessionInfo['lifetime'],
-                    $sessionInfo['path'],
-                    $sessionInfo['domain'],
-                    $sessionInfo['secure']
-                );
+        if ($this->_router == null) {
+            // Can add here more routers
+            $this->_frontController->setRouter(new DefaultRouter());
+        }
+
+        if ($this->_session == null) {
+            $sessionInfo = $this->_config->app['session'];
+            if ($sessionInfo['auto_start']) {
+                if ($sessionInfo['type'] == 'native') {
+                    $this->_session = new NativeSession(
+                        $sessionInfo['name'],
+                        $sessionInfo['lifetime'],
+                        $sessionInfo['path'],
+                        $sessionInfo['domain'],
+                        $sessionInfo['secure']
+                    );
+                }
             }
         }
 
