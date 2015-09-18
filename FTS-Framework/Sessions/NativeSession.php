@@ -5,7 +5,7 @@ namespace FTS\Sessions;
 
 class NativeSession implements ISession
 {
-    public function __construct($name, $lifetime = 36000, $path = null, $domain = null, $secure = false)
+    public function __construct($name, $lifetime = 3600, $path = null, $domain = null, $secure = false)
     {
         if (strlen($name) < 1) {
             $name = 'session';

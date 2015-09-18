@@ -4,6 +4,8 @@ namespace FTS;
 
 use FTS\Routers\DefaultRouter;
 use FTS\Routers\IRouter;
+use FTS\Sessions\ISession;
+use FTS\Sessions\NativeSession;
 
 include_once 'Loader.php';
 
@@ -14,6 +16,7 @@ class App
     private $_frontController = null;
     private $_router = null;
     private $_dbConnections = array();
+    private $_session = null;
 
     private function __construct()
     {
@@ -87,6 +90,17 @@ class App
         return $database;
     }
 
+    /**
+     * @return ISession
+     */
+    public function getSession(){
+        return $this->_session;
+    }
+
+    public function setSession(ISession $session){
+        $this->_session = $session;
+    }
+
     public function run()
     {
         if ($this->_config->getConfigFolder() == null) {
@@ -109,6 +123,19 @@ class App
                 default:
                     $this->_frontController->setRouter(new DefaultRouter());
                     break;
+            }
+        }
+
+        $sessionInfo = $this->_config->app['session'];
+        if ($sessionInfo['auto_start']) {
+            if ($sessionInfo['type'] == 'native') {
+                $this->_session = new NativeSession(
+                    $sessionInfo['name'],
+                    $sessionInfo['lifetime'],
+                    $sessionInfo['path'],
+                    $sessionInfo['domain'],
+                    $sessionInfo['secure']
+                );
             }
         }
 
