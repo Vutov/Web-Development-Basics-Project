@@ -13,6 +13,7 @@ class App
     private $_config = null;
     private $_frontController = null;
     private $_router = null;
+    private $_dbConnections = array();
 
     private function __construct()
     {
@@ -59,6 +60,31 @@ class App
     public function getConfig()
     {
         return $this->_config;
+    }
+
+    public function getDbConnection($connection = 'default')
+    {
+        if (!$connection) {
+            throw new \Exception('No connection string provided', 500);
+        }
+
+        if ($this->_dbConnections[$connection]) {
+            return $this->_dbConnections[$connection];
+        }
+
+        $dbConfig = $this->getConfig()->database;
+        if (!$dbConfig[$connection]) {
+            throw new \Exception('No valid connection string found in config file', 500);
+        }
+
+        $database = new \PDO(
+            $dbConfig[$connection]['connection_url'],
+            $dbConfig[$connection]['username'],
+            $dbConfig[$connection]['password'],
+            $dbConfig[$connection]['pdo_options']
+        );
+        $this->_dbConnections[$connection] = $database;
+        return $database;
     }
 
     public function run()
