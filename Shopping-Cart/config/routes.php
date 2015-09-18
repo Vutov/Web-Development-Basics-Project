@@ -16,8 +16,8 @@ $cnf['*'][NS] = 'Controllers';
 $cnf['Admin/users'][NS] = 'Controllers\something';
 
 $cnf['Admin'][NS] = 'Controllers\Admin';
-$cnf['Admin'][CONTROLLERS]['index2'][GOES_TO] = 'index';
-$cnf['Admin'][CONTROLLERS]['index2'][METHODS]['new'] = 'create';
+$cnf['Admin'][CONTROLLERS]['index'][GOES_TO] = 'index';
+$cnf['Admin'][CONTROLLERS]['index'][METHODS]['new'] = 'create';
 $cnf['Admin'][CONTROLLERS]['user'][GOES_TO] = 'some_dude';
 $cnf['Admin'][CONTROLLERS]['user'][METHODS]['create'] = 'some_create';
 

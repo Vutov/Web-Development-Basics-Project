@@ -69,13 +69,14 @@ class FrontController
         $routeData = null;
         if (is_array($routes) && count($routes) > 0) {
             foreach ($routes as $route => $data) {
+                $route = strtolower($route);
                 if (stripos($uri, $route) === 0 &&
                     ($uri == $route || stripos($uri, $route . '/') === 0) &&
                     $data['namespace']
                 ) {
                     $this->_namespace = $data['namespace'];
                     $routeData = $data;
-
+                    var_dump($this->_namespace);
                     // package found, remove it from uri - example Admin/index/edit/3
                     $uri = substr($uri, strlen($route) + 1);
                     break;
@@ -124,7 +125,7 @@ class FrontController
             }
         }
 
-        $file = ucfirst($this->_namespace) . '\\' . ucfirst($this->_controller);
+        $file = ucfirst($this->_namespace) . '\\' . ucfirst($this->_controller) . 'Controller';
         $calledController = new $file();
         $calledController->{strtolower($this->_method)}();
     }

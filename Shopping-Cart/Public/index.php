@@ -18,5 +18,5 @@ $app->run();
 //$a = $db->prepare('SELECT * FROM translations WHERE id = ?', array(1))->execute()->fetchAllAssoc();
 //var_dump($a);
 
-$app->getSession()->counter+=1;
-echo $app->getSession()->counter;
+//$app->getSession()->counter+=1;
+//echo $app->getSession()->counter;

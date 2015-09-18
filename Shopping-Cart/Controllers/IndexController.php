@@ -2,7 +2,7 @@
 
 namespace Controllers;
 
-class Index
+class IndexController
 {
     public function index()
     {
