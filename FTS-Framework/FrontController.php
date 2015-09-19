@@ -14,6 +14,9 @@ class FrontController
     private $_controller = null;
     private $_method = null;
     private $_params = array();
+    /**
+     * @var IRouter
+     */
     private $_router = null;
 
     private function __construct()
@@ -30,11 +33,13 @@ class FrontController
         return self::$_instance;
     }
 
-    public function getRouter(){
+    public function getRouter()
+    {
         return $this->_router;
     }
 
-    public function setRouter(IRouter $router){
+    public function setRouter(IRouter $router)
+    {
         $this->_router = $router;
     }
 
@@ -92,6 +97,7 @@ class FrontController
             throw new \Exception('Default route missing', 500);
         }
 
+        $input = InputData::getInstance();
         $params = explode('/', strtolower($uri));
 
         // No params means no controller and method as well.
@@ -100,10 +106,7 @@ class FrontController
             if ($params[1]) {
                 $this->_method = trim($params[1]);
                 unset($params[0], $params[1]);
-                foreach ($params as $param) {
-                    $param = trim($param);
-                    $this->_params[] = $param;
-                }
+                $input->setGet(array_values($params));
             } else {
                 $this->_method = $this->getDefaultMethod();
             }
@@ -123,6 +126,8 @@ class FrontController
                 $this->_controller = strtolower($routeData['controllers'][$this->_controller]['goesTo']);
             }
         }
+
+        $input->setPost($this->_router->GetPost());
 
         $file = ucfirst($this->_namespace) . '\\' . ucfirst($this->_controller) . 'Controller';
         $calledController = new $file();

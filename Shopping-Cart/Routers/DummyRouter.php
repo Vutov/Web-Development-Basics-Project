@@ -22,4 +22,9 @@ class DummyRouter implements IRouter{
         // TODO: fix dummy router
         return 'admin/index2/new';
     }
+
+    public function getPost()
+    {
+        return array('Dummy' => 'Router');
+    }
 }
