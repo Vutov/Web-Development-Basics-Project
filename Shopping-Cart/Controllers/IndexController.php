@@ -2,9 +2,9 @@
 
 namespace Controllers;
 
-use FTS\InputData;
+use FTS\BaseController;
 
-class IndexController
+class IndexController extends BaseController
 {
     public function index()
     {
@@ -13,7 +13,7 @@ class IndexController
 
     public function create()
     {
-        var_dump(InputData::getInstance()->get(0));
+        var_dump($this->input->get(0));
         echo 'Create in Index file';
     }
 }
