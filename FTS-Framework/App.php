@@ -12,14 +12,21 @@ include_once 'Loader.php';
 class App
 {
     private static $_instance = null;
+    /**
+     * @var Config
+     */
     private $_config = null;
     private $_frontController = null;
     private $_router = null;
     private $_dbConnections = array();
+    /**
+     * @var ISession
+     */
     private $_session = null;
 
     private function __construct()
     {
+        set_exception_handler(array($this, '_exceptionHandler'));
         Loader::registerNamespace('FTS', dirname(__FILE__) . DIRECTORY_SEPARATOR);
         Loader::registerAutoLoad();
         $this->_config = Config::getInstance();
@@ -135,5 +142,34 @@ class App
         }
 
         $this->_frontController->dispatch();
+    }
+
+    //TODO go and add proper exceptions - custom and code types!
+    public function _exceptionHandler(\Exception $ex){
+        if ($this->_config && $this->_config->app['displayExceptions'] == true) {
+            echo '<pre>' . print_r($ex, true) . '</pre>';
+        } else {
+            $this->displayError($ex->getCode());
+        }
+    }
+
+    public function displayError($error){
+        try{
+            $view = View::getInstance();
+            $view->display('errors' . $error);
+            // TODO proper catch!
+        } catch (\Exception $ex){
+            //TODO header status
+            echo '<h1>' . $error . '</h1>';
+            exit;
+        }
+    }
+
+    public function __destruct()
+    {
+        if ($this->_session != null) {
+            $this->_session->saveSession();
+        }
+
     }
 }

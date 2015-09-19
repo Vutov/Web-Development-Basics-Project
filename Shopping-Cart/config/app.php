@@ -5,6 +5,8 @@ $cnf['default_method'] = 'index';
 $cnf['namespaces']['Controllers'] = '../Controllers/';
 $cnf['namespaces']['Routers'] = '../Routers/';
 
+$cnf['displayExceptions'] = true;
+
 $cnf['session']['auto_start'] = true;
 $cnf['session']['type'] = 'native';
 $cnf['session']['name'] = 'app_session';

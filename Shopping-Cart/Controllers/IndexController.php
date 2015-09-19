@@ -8,12 +8,12 @@ class IndexController
 {
     public function index()
     {
-        var_dump(InputData::getInstance()->get(0));
         echo 'Index file';
     }
 
     public function create()
     {
+        var_dump(InputData::getInstance()->get(0));
         echo 'Create in Index file';
     }
 }

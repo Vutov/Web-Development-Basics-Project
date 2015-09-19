@@ -35,7 +35,7 @@ final class Loader
                 if ($realPath && is_readable($realPath)) {
                     include $realPath;
                 } else {
-                    throw new \Exception('File cannot be included: ' . $filePath);
+                    throw new \Exception('File cannot be included: ' . $filePath, 404);
                 }
 
                 break;
