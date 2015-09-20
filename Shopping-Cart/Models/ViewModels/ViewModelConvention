@@ -1,0 +1,14 @@
+File names should follow:
+
+Controller area(optional)
+    Controller name
+        Area(optional)Method_nameViewModel
+
+Example:
+Admin
+    IndexController
+        AdminCreateViewModel
+
+Example without Area:
+SomeController
+    OtherViewModel

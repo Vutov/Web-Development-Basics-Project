@@ -1,0 +1,11 @@
+File names should follow:
+
+Area(optional)
+    NameController
+
+Example:
+Admin
+    IndexController
+
+Example without Area
+SomeController

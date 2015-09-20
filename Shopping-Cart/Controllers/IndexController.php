@@ -3,7 +3,7 @@
 namespace Controllers;
 
 use FTS\BaseController;
-use Models\ViewModels\IndexViewModel;
+use Models\ViewModels\IndexController\IndexViewModel;
 
 class IndexController extends BaseController
 {

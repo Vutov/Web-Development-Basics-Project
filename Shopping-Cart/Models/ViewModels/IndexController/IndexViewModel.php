@@ -1,19 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: root
- * Date: 9/20/15
- * Time: 11:24 PM
- */
 
-namespace Models\ViewModels\Admin;
+namespace Models\ViewModels\IndexController;
 
 
-class AdminCreateViewModel {
+class IndexViewModel {
     private $someShit;
 
-    function __construct($someShit)
-    {
+    public function __construct($someShit){
         $this->someShit = $someShit;
     }
 
@@ -24,6 +17,4 @@ class AdminCreateViewModel {
     {
         return $this->someShit;
     }
-
-
 }

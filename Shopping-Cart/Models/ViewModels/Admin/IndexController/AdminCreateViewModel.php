@@ -3,16 +3,17 @@
  * Created by PhpStorm.
  * User: root
  * Date: 9/20/15
- * Time: 10:32 PM
+ * Time: 11:24 PM
  */
 
-namespace Models\ViewModels;
+namespace Models\ViewModels\Admin\IndexController;
 
 
-class IndexViewModel {
+class AdminCreateViewModel {
     private $someShit;
 
-    public function __construct($someShit){
+    function __construct($someShit)
+    {
         $this->someShit = $someShit;
     }
 
@@ -23,4 +24,6 @@ class IndexViewModel {
     {
         return $this->someShit;
     }
+
+
 }

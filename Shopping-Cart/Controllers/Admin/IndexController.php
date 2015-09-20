@@ -3,8 +3,8 @@
 namespace Controllers\Admin;
 
 use FTS\BaseController;
-use Models\ViewModels\Admin\AdminCreateViewModel;
-use Models\ViewModels\Admin\AdminIndexViewModel;
+use Models\ViewModels\Admin\IndexController\AdminCreateViewModel;
+use Models\ViewModels\Admin\IndexController\AdminIndexViewModel;
 use Models\ViewModels\IndexViewModel;
 
 

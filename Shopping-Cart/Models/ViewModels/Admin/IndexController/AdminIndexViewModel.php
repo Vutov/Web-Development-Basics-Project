@@ -1,6 +1,6 @@
 <?php
 
-namespace Models\ViewModels\Admin;
+namespace Models\ViewModels\Admin\IndexController;
 
 
 class AdminIndexViewModel {
