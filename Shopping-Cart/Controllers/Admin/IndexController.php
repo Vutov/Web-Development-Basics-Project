@@ -3,8 +3,10 @@
 namespace Controllers\Admin;
 
 use FTS\BaseController;
-use FTS\Validator;
-use FTS\View;
+use Models\ViewModels\Admin\AdminCreateViewModel;
+use Models\ViewModels\Admin\AdminIndexViewModel;
+use Models\ViewModels\IndexViewModel;
+
 
 class IndexController extends BaseController
 {
@@ -16,14 +18,19 @@ class IndexController extends BaseController
             $model = $this->validator->getErrors()[0];
         }
 
-        $this->view->appendToLayout('body', 'Admin.index');
+        //$this->view->appendToLayout('body', new IndexViewModel('some shit'));
+        $this->view->appendToLayout('body', new AdminIndexViewModel('TestAdmin', $model, 'no'));
         $this->view->appendToLayout('header', 'header');
         $this->view->appendToLayout('footer', 'footer');
-        $this->view->display('Layouts.Admin.home', array('model' => $model, 0 => 1, 'Admin' => "no"));
+        $this->view->displayLayout('Layouts.Admin.home');
     }
 
     public function create()
     {
-        echo 'Admin create in Index file';
+        //$this->view->appendToLayout('body', new AdminIndexViewModel('TestAdmin', '1', 'no'));
+        $this->view->appendToLayout('body', new AdminCreateViewModel('TestAdmin'));
+        $this->view->appendToLayout('header', 'header');
+        $this->view->appendToLayout('footer', 'footer');
+        $this->view->displayLayout('Layouts.Admin.home');
     }
 }

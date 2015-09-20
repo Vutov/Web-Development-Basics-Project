@@ -4,6 +4,7 @@ $cnf['default_method'] = 'index';
 
 $cnf['namespaces']['Controllers'] = '../Controllers/';
 $cnf['namespaces']['Routers'] = '../Routers/';
+$cnf['namespaces']['Models'] = '../Models/';
 
 $cnf['displayExceptions'] = true;
 

@@ -3,12 +3,13 @@
 namespace Controllers;
 
 use FTS\BaseController;
+use Models\ViewModels\IndexViewModel;
 
 class IndexController extends BaseController
 {
     public function index()
     {
-        echo 'Index file';
+        $this->view->display(new IndexViewModel('some shit'));
     }
 
     public function create()
