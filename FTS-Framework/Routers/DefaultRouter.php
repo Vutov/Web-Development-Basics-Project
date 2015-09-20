@@ -8,7 +8,8 @@ class DefaultRouter implements IRouter
 
     public function getURI()
     {
-        return strtolower(substr($_SERVER['PHP_SELF'], strlen($_SERVER['SCRIPT_NAME']) + 1));
+        //var_dump(substr($_SERVER['PHP_SELF'], strlen($_SERVER['SCRIPT_NAME']) + 1));
+        return strtolower(ltrim ($_SERVER['REQUEST_URI'], '/'));
     }
 
     public function getPost()
