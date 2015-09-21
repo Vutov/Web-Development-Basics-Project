@@ -6,3 +6,7 @@
 ?>
 <div>Password: <?= $this->_viewBag['body']->getPassword() ?> </div>
 <div>Is Admin: <?= $this->_viewBag['body']->getAdmin() ?> </div>
+<?php
+\FTS\FormViewHelper::init()->initForm('/custom/as/create')->initTextBox()->setValue("test")->create()
+    ->initSubmit()->setValue('Submit')->setName('some')->create()->render();
+?>

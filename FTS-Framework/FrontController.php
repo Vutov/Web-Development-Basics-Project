@@ -70,12 +70,20 @@ class FrontController
             throw new \Exception('Invalid router!', 500);
         }
 
+        $requestMethod = strtolower($this->_router->getRequestMethod());
+        if ($requestMethod != 'get') {
+            $token = $this->_router->getPost()['_token'];
+            if (!Token::validates($token)) {
+                //TODO Redirect
+                throw new \Exception('Invalid token!', 500);
+            }
+        }
+
         $uri = $this->_router->getURI();
 
         $this->checkSimpleCustomRoutes($uri);
         $this->checkCustomParamsRoutes($uri);
         $this->checkForConfigRoute($uri);
-
     }
 
     private function scanCustomRoutes()

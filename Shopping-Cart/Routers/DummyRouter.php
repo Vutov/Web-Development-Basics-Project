@@ -27,4 +27,9 @@ class DummyRouter implements IRouter{
     {
         return array('Dummy' => 'Router');
     }
+
+    public function getRequestMethod()
+    {
+        return 'get';
+    }
 }
