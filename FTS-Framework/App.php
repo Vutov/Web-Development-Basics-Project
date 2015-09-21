@@ -170,6 +170,5 @@ class App
         if ($this->_session != null) {
             $this->_session->saveSession();
         }
-
     }
 }

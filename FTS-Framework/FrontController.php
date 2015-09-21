@@ -14,6 +14,8 @@ class FrontController
     private $_controller = null;
     private $_method = null;
     private $_params = null;
+    private $_requestMethod = null;
+    private $_configRequestMethod = 'get';
     private $_scannedControllers = array();
     private $_customRoutes = array();
     /**
@@ -71,8 +73,8 @@ class FrontController
             throw new \Exception('Invalid router!', 500);
         }
 
-        $requestMethod = strtolower($this->_router->getRequestMethod());
-        if ($requestMethod != 'get') {
+        $this->_requestMethod = strtolower($this->_router->getRequestMethod());
+        if ($this->_requestMethod != 'get') {
             $token = $this->_router->getPost()['_token'];
             if (!Token::validates($token)) {
                 //TODO Redirect
@@ -180,7 +182,7 @@ class FrontController
 
         // No params means no controller and method as well.
         if ($params[0]) {
-            $this->_controller = trim($params[0]) .'Controller';
+            $this->_controller = trim($params[0]) . 'Controller';
             if ($params[1]) {
                 $this->_method = trim($params[1]);
                 unset($params[0], $params[1]);
@@ -189,19 +191,32 @@ class FrontController
                 $this->_method = $this->getDefaultMethod();
             }
         } else {
-            $this->_controller = $this->getDefaultController() .'Controller';
+            $this->_controller = $this->getDefaultController() . 'Controller';
             $this->_method = $this->getDefaultMethod();
         }
 
         if (is_array($routeData) &&
             $routeData['controllers']
         ) {
-            if ($routeData['controllers'][$this->_controller]['methods'][$this->_method]) {
-                $this->_method = strtolower($routeData['controllers'][$this->_controller]['methods'][$this->_method]);
+            $controller = str_replace('Controller', '', $this->_controller);
+            if (isset($routeData['controllers'][$controller]['requestMethod'][$this->_method])) {
+                $this->_configRequestMethod = $routeData['controllers'][$controller]['requestMethod'][$this->_method];
             }
 
-            if (isset($routeData['controllers'][$this->_controller]['goesTo'])) {
-                $this->_controller = strtolower($routeData['controllers'][$this->_controller]['goesTo']) .'Controller';
+            if ($routeData['controllers'][$controller]['methods'][$this->_method]) {
+                $this->_method = strtolower($routeData['controllers'][$controller]['methods'][$this->_method]);
+            } else {
+                if ($this->_method != self::DEFAULT_METHOD) {
+                    throw new \Exception("No method set for '" . $this->_method . "'!", 404);
+                }
+            }
+
+            if (isset($routeData['controllers'][$controller]['goesTo'])) {
+                $this->_controller = strtolower($routeData['controllers'][$controller]['goesTo']) . 'Controller';
+            }
+
+            if (isset($routeData['controllers'][$controller]['requestMethod'][$this->_method])) {
+                $this->_configRequestMethod = $routeData['controllers'][$controller]['requestMethod'][$this->_method];
             }
         }
 
@@ -221,13 +236,55 @@ class FrontController
         if (file_exists($realPath) && is_readable($realPath)) {
             $calledController = new $file();
             if (method_exists($calledController, $this->_method)) {
-                $calledController->{strtolower($this->_method)}();
-                exit;
+                if ($this->isValidRequestMethod($calledController, $this->_method)) {
+                    $calledController->{strtolower($this->_method)}();
+                    exit;
+                } else {
+                    throw new \Exception("Method does not allow '" . ucfirst($this->_requestMethod) . "' requests!", 500);
+                }
             } else {
                 throw new \Exception("'" . $this->_method . "' not found in '" . $file . '.php', 404);
             }
         } else {
             throw new \Exception("File '" . $file . '.php' . "' not found!", 404);
         }
+    }
+
+    private function isValidRequestMethod($controller, $method)
+    {
+        $reflectionMethod = new \ReflectionMethod($controller, $method);
+        $foundRequestAnnotations = array();
+        $comment = strtolower($reflectionMethod->getDocComment());
+        if (preg_match('/@get/', $comment)) {
+            $foundRequestAnnotations[] = 'get';
+        }
+        if (preg_match('/@post/', $comment)) {
+            $foundRequestAnnotations[] = 'post';
+        }
+        if (preg_match('/@put/', $comment)) {
+            $foundRequestAnnotations[] = 'put';
+        }
+        if (preg_match('/@delete/', $comment)) {
+            $foundRequestAnnotations[] = 'delete';
+        }
+
+        if (count($foundRequestAnnotations) != 0) {
+            if (count($foundRequestAnnotations) > 1) {
+                throw new \Exception('Method cannot have more than 1 request method annotation', 500);
+            }
+
+            $request = $foundRequestAnnotations[0];
+            if (strtolower($request) != $this->_requestMethod) {
+                return false;
+            }
+
+            return true;
+        }
+
+        if ($this->_requestMethod != $this->_configRequestMethod) {
+            return false;
+        }
+
+        return true;
     }
 }
