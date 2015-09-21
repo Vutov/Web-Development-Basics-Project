@@ -29,7 +29,8 @@ class IndexController extends BaseController
         $this->view->displayLayout('Layouts.Admin.home');
     }
 
-    /*
+    /**
+     * @Post
      * @Route("Custom/{name:string}/Create")
      * @throws \Exception
      */
