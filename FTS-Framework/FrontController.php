@@ -13,7 +13,8 @@ class FrontController
     private $_namespace = null;
     private $_controller = null;
     private $_method = null;
-    private $_params = array();
+    private $_scannedControllers = array();
+    private $_customRoutes = array();
     /**
      * @var IRouter
      */
@@ -21,7 +22,7 @@ class FrontController
 
     private function __construct()
     {
-
+        $this->ScanCustomRoutes();
     }
 
     public static function getInstance()
@@ -70,6 +71,54 @@ class FrontController
         }
 
         $uri = $this->_router->getURI();
+
+        // Check for custom routes in annotations
+        if (array_key_exists($uri, $this->_customRoutes)) {
+            $input = InputData::getInstance();
+            $input->setGet($uri);
+            $input->setPost($this->_router->GetPost());
+            $file = $this->_customRoutes[$uri]['Controller'];
+            $calledController = new $file();
+            $calledController->{strtolower($this->_customRoutes[$uri]['Method'])}();
+        } else {
+            // Check for config routes
+            $this->checkForConfigRoute($uri);
+        }
+    }
+
+    private function ScanCustomRoutes()
+    {
+        if (count($this->_scannedControllers) == 0) {
+            $controllersFolder = App::getInstance()->getConfig()->app['namespaces']['Controllers'];
+            $allFiles = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($controllersFolder));
+            $phpFiles = new \RegexIterator($allFiles, '/\.php$/');
+            foreach ($phpFiles as $file) {
+                $controllerPath = str_replace('../', '', $file->getPathName());
+                $controllerPath = str_replace('.php', '', $controllerPath);
+                $normalizedPath = str_replace('/', '\\', $controllerPath);
+                if (!array_key_exists($normalizedPath, $this->_scannedControllers)) {
+                    $this->_scannedControllers[] = $normalizedPath;
+                    $reflectionController = new \ReflectionClass(new $normalizedPath);
+                    $methods = $reflectionController->getMethods();
+                    foreach ($methods as $method) {
+                        preg_match_all('/@Route\("(.*)"\)/', $method->getDocComment(), $matches);
+                        $routes = $matches[1];
+                        foreach ($routes as $route) {
+                            if (array_key_exists(strtolower($route), $this->_customRoutes)) {
+                                throw new \Exception("Route '" . $route . "' already defined in '" .
+                                    $this->_customRoutes[$route] . "'", 500);
+                            }
+
+                            $this->_customRoutes[strtolower($route)] = array('Controller' => $normalizedPath, 'Method' => $method->getName());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private function checkForConfigRoute($uri)
+    {
         $routes = App::getInstance()->getConfig()->routes;
         $routeData = null;
         if (is_array($routes) && count($routes) > 0) {
@@ -130,7 +179,17 @@ class FrontController
         $input->setPost($this->_router->GetPost());
 
         $file = ucfirst($this->_namespace) . '\\' . ucfirst($this->_controller) . 'Controller';
-        $calledController = new $file();
-        $calledController->{strtolower($this->_method)}();
+        $realPath = str_replace('\\', DIRECTORY_SEPARATOR, '../' . $file . '.php');
+        $realPath = realpath($realPath);
+        if (file_exists($realPath) && is_readable($realPath)) {
+            $calledController = new $file();
+            if (method_exists($calledController, $this->_method)) {
+                $calledController->{strtolower($this->_method)}();
+            } else {
+                throw new \Exception("'" . $this->_method . "' not found in '" . $file . '.php', 404);
+            }
+        } else {
+            throw new \Exception("File '" . $file . '.php' . "' not found!", 404);
+        }
     }
 }

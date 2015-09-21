@@ -156,7 +156,7 @@ class App
     public function displayError($error){
         try{
             $view = View::getInstance();
-            $view->display('errors' . $error);
+            $view->displayLayout('errors' . $error);
             // TODO proper catch!
         } catch (\Exception $ex){
             //TODO header status

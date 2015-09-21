@@ -5,11 +5,15 @@ namespace Controllers\Admin;
 use FTS\BaseController;
 use Models\ViewModels\Admin\IndexController\AdminCreateViewModel;
 use Models\ViewModels\Admin\IndexController\AdminIndexViewModel;
-use Models\ViewModels\IndexViewModel;
+use Models\ViewModels\IndexController\IndexViewModel;
 
 
 class IndexController extends BaseController
 {
+    /**
+     * @Route("custom/index")
+     * @throws \Exception
+     */
     public function index()
     {
         $model = 'some shit';
@@ -25,6 +29,10 @@ class IndexController extends BaseController
         $this->view->displayLayout('Layouts.Admin.home');
     }
 
+    /**
+     * @Route("Custom/Create")
+     * @throws \Exception
+     */
     public function create()
     {
         //$this->view->appendToLayout('body', new AdminIndexViewModel('TestAdmin', '1', 'no'));
