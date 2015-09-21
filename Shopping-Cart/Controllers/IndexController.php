@@ -12,6 +12,9 @@ class IndexController extends BaseController
         $this->view->display(new IndexViewModel('some shit'));
     }
 
+    /**
+     * @Route("test")
+     */
     public function create()
     {
         var_dump($this->input->get(0));

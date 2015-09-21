@@ -13,6 +13,7 @@ class FrontController
     private $_namespace = null;
     private $_controller = null;
     private $_method = null;
+    private $_params = null;
     private $_scannedControllers = array();
     private $_customRoutes = array();
     /**
@@ -121,13 +122,10 @@ class FrontController
     private function checkSimpleCustomRoutes($uri)
     {
         if (array_key_exists($uri, $this->_customRoutes)) {
-            $input = InputData::getInstance();
-            $input->setGet($uri);
-            $input->setPost($this->_router->GetPost());
-            $file = $this->_customRoutes[$uri]['Controller'];
-            $calledController = new $file();
-            $calledController->{strtolower($this->_customRoutes[$uri]['Method'])}();
-            exit;
+            $this->_controller = $this->_customRoutes[$uri]['Controller'];
+            $this->_method = strtolower($this->_customRoutes[$uri]['Method']);
+            $this->_params = $uri;
+            $this->processController();
         }
     }
 
@@ -140,13 +138,10 @@ class FrontController
                 $pattern = str_replace('/', '\/', $pattern);
                 $pattern = '/' . $pattern . '/';
                 if (preg_match($pattern, $uri)) {
-                    $input = InputData::getInstance();
-                    $input->setGet($uri);
-                    $input->setPost($this->_router->GetPost());
-                    $file = $this->_customRoutes[$route]['Controller'];
-                    $calledController = new $file();
-                    $calledController->{strtolower($this->_customRoutes[$route]['Method'])}();
-                    exit;
+                    $this->_controller = $this->_customRoutes[$route]['Controller'];
+                    $this->_method = strtolower($this->_customRoutes[$route]['Method']);
+                    $this->_params = $uri;
+                    $this->processController();
                 }
             }
         }
@@ -181,21 +176,20 @@ class FrontController
             throw new \Exception('Default route missing', 500);
         }
 
-        $input = InputData::getInstance();
         $params = explode('/', strtolower($uri));
 
         // No params means no controller and method as well.
         if ($params[0]) {
-            $this->_controller = trim($params[0]);
+            $this->_controller = trim($params[0]) .'Controller';
             if ($params[1]) {
                 $this->_method = trim($params[1]);
                 unset($params[0], $params[1]);
-                $input->setGet(array_values($params));
+                $this->_params = array_values($params);
             } else {
                 $this->_method = $this->getDefaultMethod();
             }
         } else {
-            $this->_controller = $this->getDefaultController();
+            $this->_controller = $this->getDefaultController() .'Controller';
             $this->_method = $this->getDefaultMethod();
         }
 
@@ -207,13 +201,21 @@ class FrontController
             }
 
             if (isset($routeData['controllers'][$this->_controller]['goesTo'])) {
-                $this->_controller = strtolower($routeData['controllers'][$this->_controller]['goesTo']);
+                $this->_controller = strtolower($routeData['controllers'][$this->_controller]['goesTo']) .'Controller';
             }
         }
 
+        $this->processController();
+    }
+
+    private function processController()
+    {
+        $input = InputData::getInstance();
+        $input->setGet($this->_params);
         $input->setPost($this->_router->GetPost());
 
-        $file = ucfirst($this->_namespace) . '\\' . ucfirst($this->_controller) . 'Controller';
+        $file = ucfirst($this->_namespace) . '\\' . ucfirst($this->_controller);
+        $this->_controller = $file;
         $realPath = str_replace('\\', DIRECTORY_SEPARATOR, '../' . $file . '.php');
         $realPath = realpath($realPath);
         if (file_exists($realPath) && is_readable($realPath)) {

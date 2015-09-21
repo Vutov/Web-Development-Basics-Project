@@ -30,6 +30,7 @@ class IndexController extends BaseController
     }
 
     /**
+     * @Get
      * @Route("Custom/{name:string}/Create")
      * @throws \Exception
      */
