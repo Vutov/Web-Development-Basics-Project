@@ -11,7 +11,7 @@ use Models\ViewModels\IndexController\IndexViewModel;
 class IndexController extends BaseController
 {
     /**
-     * @Route("custom/index")
+     * @Route("custom/{id:int}/index")
      * @throws \Exception
      */
     public function index()
@@ -30,7 +30,7 @@ class IndexController extends BaseController
     }
 
     /**
-     * @Route("Custom/Create")
+     * @Route("Custom/{name:string}/Create")
      * @throws \Exception
      */
     public function create()

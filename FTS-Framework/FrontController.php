@@ -22,7 +22,7 @@ class FrontController
 
     private function __construct()
     {
-        $this->ScanCustomRoutes();
+        $this->scanCustomRoutes();
     }
 
     public static function getInstance()
@@ -72,21 +72,13 @@ class FrontController
 
         $uri = $this->_router->getURI();
 
-        // Check for custom routes in annotations
-        if (array_key_exists($uri, $this->_customRoutes)) {
-            $input = InputData::getInstance();
-            $input->setGet($uri);
-            $input->setPost($this->_router->GetPost());
-            $file = $this->_customRoutes[$uri]['Controller'];
-            $calledController = new $file();
-            $calledController->{strtolower($this->_customRoutes[$uri]['Method'])}();
-        } else {
-            // Check for config routes
-            $this->checkForConfigRoute($uri);
-        }
+        $this->checkSimpleCustomRoutes($uri);
+        $this->checkCustomParamsRoutes($uri);
+        $this->checkForConfigRoute($uri);
+
     }
 
-    private function ScanCustomRoutes()
+    private function scanCustomRoutes()
     {
         if (count($this->_scannedControllers) == 0) {
             $controllersFolder = App::getInstance()->getConfig()->app['namespaces']['Controllers'];
@@ -109,9 +101,44 @@ class FrontController
                                     $this->_customRoutes[$route] . "'", 500);
                             }
 
-                            $this->_customRoutes[strtolower($route)] = array('Controller' => $normalizedPath, 'Method' => $method->getName());
+                            $this->_customRoutes[strtolower($route)] =
+                                array('Controller' => $normalizedPath, 'Method' => $method->getName());
                         }
                     }
+                }
+            }
+        }
+    }
+
+    private function checkSimpleCustomRoutes($uri)
+    {
+        if (array_key_exists($uri, $this->_customRoutes)) {
+            $input = InputData::getInstance();
+            $input->setGet($uri);
+            $input->setPost($this->_router->GetPost());
+            $file = $this->_customRoutes[$uri]['Controller'];
+            $calledController = new $file();
+            $calledController->{strtolower($this->_customRoutes[$uri]['Method'])}();
+            exit;
+        }
+    }
+
+    private function checkCustomParamsRoutes($uri)
+    {
+        foreach ($this->_customRoutes as $route => $value) {
+            if (preg_match('/[\s\S]*{.+}[\s\S]*/', $route)) {
+                $pattern = preg_replace('/{.+:int}/', '\d+', $route);
+                $pattern = preg_replace('/{.+:string}/', '\w+', $pattern);
+                $pattern = str_replace('/', '\/', $pattern);
+                $pattern = '/' . $pattern . '/';
+                if (preg_match($pattern, $uri)) {
+                    $input = InputData::getInstance();
+                    $input->setGet($uri);
+                    $input->setPost($this->_router->GetPost());
+                    $file = $this->_customRoutes[$route]['Controller'];
+                    $calledController = new $file();
+                    $calledController->{strtolower($this->_customRoutes[$route]['Method'])}();
+                    exit;
                 }
             }
         }
@@ -185,6 +212,7 @@ class FrontController
             $calledController = new $file();
             if (method_exists($calledController, $this->_method)) {
                 $calledController->{strtolower($this->_method)}();
+                exit;
             } else {
                 throw new \Exception("'" . $this->_method . "' not found in '" . $file . '.php', 404);
             }
