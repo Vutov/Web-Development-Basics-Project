@@ -22,7 +22,16 @@ class Normalizer
             return htmlentities($data);
         }
 
+        if (strpos($types, '|') === false) {
+            $types .= "|";
+        }
+
         $types = array_filter(explode('|', $types));
+
+        if (!in_array('noescape', $types)) {
+            $data = htmlentities($data);
+        }
+
         if (is_array($types)) {
             foreach ($types as $type) {
                 switch ($type) {
@@ -51,10 +60,6 @@ class Normalizer
                         break;
                 }
             }
-        }
-
-        if (!in_array('noescape', $types)) {
-            $data = htmlentities($data);
         }
 
         return $data;

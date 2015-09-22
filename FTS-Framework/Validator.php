@@ -3,6 +3,8 @@
 namespace FTS;
 
 
+use FTS\DB\SimpleDB;
+
 class Validator
 {
     private $_rules = array();

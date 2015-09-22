@@ -11,6 +11,7 @@ use Models\ViewModels\IndexController\IndexViewModel;
 class IndexController extends BaseController
 {
     /**
+     * @Admin
      * @Route("custom/{id:int}/index")
      * @throws \Exception
      */

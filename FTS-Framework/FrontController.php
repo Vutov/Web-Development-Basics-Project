@@ -2,6 +2,7 @@
 
 namespace FTS;
 
+use FTS\DB\SimpleDB;
 use FTS\Routers\IRouter;
 
 class FrontController
@@ -325,5 +326,26 @@ class FrontController
 
     private function ValidateAuthorization($doc)
     {
+        $doc = strtolower($doc);
+        $authorizeRegex = '/@authorize(?:\s+error:\("(.+)"\))?/';
+        preg_match($authorizeRegex, $doc, $matches);
+        if ($matches) {
+            $error = 'Unauthorized!';
+            if ($matches[1]) {
+                $error = ucfirst($matches[1]);
+            };
+
+            if (!App::getInstance()->getSession()->_login) {
+                throw new \Exception($error, 401);
+            }
+        }
+
+        $adminRegex = '/@admin/';
+        preg_match($adminRegex, $doc, $matches);
+        if ($matches) {
+            if (!SimpleDB::isAdmin()) {
+                throw new \Exception("Admin access only!", 401);
+            }
+        }
     }
 }

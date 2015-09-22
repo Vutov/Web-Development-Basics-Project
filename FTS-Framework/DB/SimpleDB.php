@@ -4,6 +4,7 @@ namespace FTS\DB;
 
 
 use FTS\App;
+use FTS\Normalizer;
 
 class SimpleDB
 {
@@ -93,5 +94,20 @@ class SimpleDB
     public function getStatement()
     {
         return $this->_statement;
+    }
+
+    public static function isAdmin()
+    {
+        $db = new SimpleDB();
+        $db->prepare("SELECT isAdmin
+                      FROM users
+                      WHERE username = ? AND id = ?",
+            array(App::getInstance()->getSession()->_username, App::getInstance()->getSession()->_login));
+        $response = $db->execute()->fetchRowAssoc();
+        if ($response) {
+            return Normalizer::normalize($response['isAdmin'], 'bool');
+        }
+
+        return false;
     }
 }

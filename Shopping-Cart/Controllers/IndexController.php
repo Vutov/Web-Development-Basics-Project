@@ -6,7 +6,6 @@ use FTS\BaseController;
 use Models\BindingModels\LoginBindingModel;
 use Models\BindingModels\RegisterBindingModel;
 use Models\ViewModels\IndexController\CreateViewModel;
-use Models\ViewModels\IndexController\IndexCreateModel;
 use Models\ViewModels\IndexController\IndexViewModel;
 
 class IndexController extends BaseController
@@ -54,7 +53,7 @@ class IndexController extends BaseController
     }
 
     /**
-     * @Authorize error:("You are not logged in")
+     * @Authorize error:("You are not logged in!")
      * @throws \Exception
      */
     public function logout()

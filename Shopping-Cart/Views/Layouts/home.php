@@ -5,7 +5,6 @@
 </head>
 <body>
 <?= $this->getLayoutData('header'); ?>
-<?= $this->getLayoutData('login'); ?>
 <hr style="color: aqua"/>
 <?= $this->getLayoutData('footer'); ?>
 <?php
