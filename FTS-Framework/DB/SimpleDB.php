@@ -10,6 +10,10 @@ class SimpleDB
 {
     protected $_connection = 'default';
     private $_db = null;
+    private static $database = null;
+    /**
+     * @var \PDOStatement
+     */
     private $_statement = null;
     private $_params = array();
     private $_sql;
@@ -18,11 +22,14 @@ class SimpleDB
     {
         if ($connection instanceof \PDO) {
             $this->_db = $connection;
+            self::$database = $connection;
         } else if ($connection != null) {
             $this->_db = App::getInstance()->getDbConnection($connection);
+            self::$database = App::getInstance()->getDbConnection($connection);
             $this->_connection = $connection;
         } else {
             $this->_db = App::getInstance()->getDbConnection($this->_connection);
+            self::$database = App::getInstance()->getDbConnection($this->_connection);
         }
     }
 
@@ -51,7 +58,7 @@ class SimpleDB
         if ($data == false) {
             return false;
         }
-        
+
         if ($escape) {
             $escaped = array();
             foreach ($data as $key => $value) {
@@ -98,14 +105,40 @@ class SimpleDB
 
     public static function isAdmin()
     {
-        $db = new SimpleDB();
-        $db->prepare("SELECT isAdmin
+        $statement = self::$database->prepare("SELECT isAdmin
                       FROM users
-                      WHERE username = ? AND id = ?",
-            array(App::getInstance()->getSession()->_username, App::getInstance()->getSession()->_login));
-        $response = $db->execute()->fetchRowAssoc();
+                      WHERE username = ? AND id = ?");
+        $statement->bindParam(1, App::getInstance()->getSession()->_username);
+        $statement->bindParam(2, App::getInstance()->getSession()->_login);
+        $statement->execute();
+        $response = $statement->fetch(\PDO::FETCH_ASSOC);
         if ($response) {
             return Normalizer::normalize($response['isAdmin'], 'bool');
+        }
+
+        return false;
+    }
+
+    public static function hasRole($role)
+    {
+        $col = 'is' . ucfirst($role);
+        try {
+            $statement = self::$database->prepare("SELECT {$col}
+                      FROM users
+                      WHERE username = ? AND id = ?");
+            $statement->bindColumn(1, $col);
+            $statement->bindParam(1, App::getInstance()->getSession()->_username);
+            $statement->bindParam(2, App::getInstance()->getSession()->_login);
+
+            $statement->execute();
+            $response = $statement->fetch(\PDO::FETCH_ASSOC);
+            $response = $response['is' . ucfirst($role)];
+        } catch (\PDOException $ex) {
+            throw new \Exception("Check your db, missing role '$col'");
+        }
+
+        if ($response) {
+            return Normalizer::normalize($response, 'bool');
         }
 
         return false;

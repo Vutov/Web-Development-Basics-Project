@@ -31,8 +31,9 @@ class IndexController extends BaseController
     }
 
     /**
-     * @Post
+     * @Get
      * @Route("Custom/{name:string}/Create")
+     * @Role("Editor")
      * @throws \Exception
      */
     public function create()
