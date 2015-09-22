@@ -2,11 +2,11 @@
 
 namespace Controllers;
 
+use FTS\App;
 use FTS\BaseController;
 use Models\BindingModels\LoginBindingModel;
 use Models\BindingModels\RegisterBindingModel;
 use Models\ViewModels\IndexController\CreateViewModel;
-use Models\ViewModels\IndexController\IndexViewModel;
 
 class IndexController extends BaseController
 {
@@ -29,7 +29,8 @@ class IndexController extends BaseController
      * @Route("test/delete")
      * @Delete
      */
-    public function delete(){
+    public function delete()
+    {
         echo "delete";
     }
 
@@ -72,9 +73,14 @@ class IndexController extends BaseController
 
         $this->db->prepare("INSERT
                             INTO users
-                            (username, password)
-                            VALUES (?, ?)",
-            array($model->getUsername(), $model->getPassword()))->execute();
+                            (username, password, cash)
+                            VALUES (?, ?, ?)",
+            array(
+                $model->getUsername(),
+                $model->getPassword(),
+                App::getInstance()->getConfig()->cart['initialCash']
+            )
+        )->execute();
 
         $loginBindingModel = new LoginBindingModel(array('username' => $model->getUsername(), 'password' => $model->getPassword()));
         // Work around to avoid double crypting passwords.
