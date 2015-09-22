@@ -167,33 +167,24 @@ class View
         $callerMethod = $trace[2]['function'];
         $callerTokens = explode('\\', $callerClass);
         unset($callerTokens[0]);
-        unset($callerTokens[count($callerTokens)]);
         $expected = implode($callerTokens) . ucfirst($callerMethod) . 'ViewModel';
         $tokens = explode('\\', get_class($template));
-        $given = $tokens[count($tokens) - 1];
-
+        unset($tokens[0]);
+        unset($tokens[1]);
+        $given = implode($tokens);;
         if ($expected != $given) {
             throw new \Exception("Controller '" . $callerClass . "' with method '" . $callerMethod .
                 "' cannot call ViewModel '" . $given . "' witch is not belonging to him!", 500);
         }
     }
 
-    /**
-     * @param $file
-     * @return string
-     */
     private function GetViewModelPath($file)
     {
         $tokens = explode('\\', get_class($file));
-        $viewModel = $tokens[count($tokens) - 1];
-        $viewModel = str_replace('ViewModel', '', $viewModel);
-
-        // Split at Upper Case
-        $viewPath = preg_split('/(?=[A-Z])/', $viewModel, -1, PREG_SPLIT_NO_EMPTY);
-
-        // Last is the view
-        $viewPath[count($viewPath) - 1] = strtolower($viewPath[count($viewPath) - 1]);
-        $file = implode('/', $viewPath);
+        $tokens[count($tokens) - 1] = strtolower(str_replace('ViewModel', '', $tokens[count($tokens) - 1]));
+        unset($tokens[0]);
+        unset($tokens[1]);
+        $file = implode(DIRECTORY_SEPARATOR, $tokens);
         return $file;
     }
 }

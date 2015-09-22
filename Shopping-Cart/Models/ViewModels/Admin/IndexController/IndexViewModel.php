@@ -3,7 +3,7 @@
 namespace Models\ViewModels\Admin\IndexController;
 
 
-class AdminIndexViewModel {
+class IndexViewModel {
     private $name;
     private $password;
     private $admin;

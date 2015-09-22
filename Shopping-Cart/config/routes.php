@@ -27,12 +27,17 @@ $cnf['*'][CONTROLLERS]['home'][REQUEST_METHOD]['register'] = 'post';
 // Logout
 $cnf['*'][CONTROLLERS]['home'][METHODS]['logout'] = 'logout';
 
+// Api
+$cnf['*'][CONTROLLERS]['api'][GOES_TO] = 'api';
+$cnf['*'][CONTROLLERS]['api'][METHODS]['index'] = 'index';
+
 
 // Administration panel
 $cnf['Admin/users'][NS] = 'Controllers\something';
 
 $cnf['Admin'][NS] = 'Controllers\Admin';
 $cnf['Admin'][CONTROLLERS]['index'][GOES_TO] = 'index';
+$cnf['Admin'][CONTROLLERS]['index'][METHODS]['index'] = 'index';
 $cnf['Admin'][CONTROLLERS]['index'][METHODS]['new'] = 'create';
 $cnf['Admin'][CONTROLLERS]['index'][REQUEST_METHOD]['new'] = 'post';
 

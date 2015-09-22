@@ -21,4 +21,4 @@ All method should have documentation example:
 */
 
 @Authorize, @Admin, @param (for binding models) are required. @Post and @Route
-are optional and can be set by config.
+are optional and can be set by config. For more info check Annotations.

@@ -1,5 +1,0 @@
-Default Routing is 'package/controller/method/param[0]/param[1]'
-
-It can be override with annotations.
-
-Example: @Route("Custom/{id:int}/Route") - where in '{ ValueName : Type (int, string) }' can be placed param.

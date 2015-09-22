@@ -9,7 +9,7 @@
 namespace Models\ViewModels\Admin\IndexController;
 
 
-class AdminCreateViewModel {
+class CreateViewModel {
     private $someShit;
 
     function __construct($someShit)

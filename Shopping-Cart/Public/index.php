@@ -10,6 +10,5 @@ include '../../FTS-Framework/App.php';
 include '../Routers/DummyRouter.php';
 
 $app = App::getInstance();
-//$app->setRouter(new DummyRouter());
 
 $app->run();
