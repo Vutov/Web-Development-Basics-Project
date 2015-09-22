@@ -50,44 +50,16 @@ class SimpleDB
         return $this;
     }
 
-    //TODO test escaping!
     public function fetchAllAssoc($escape = true)
     {
         $data = $this->_statement->fetchAll(\PDO::FETCH_ASSOC);
-
-        if ($data == false) {
-            return false;
-        }
-
-        if ($escape) {
-            $escaped = array();
-            foreach ($data as $key => $value) {
-                $escaped[$key] = $value;
-            }
-
-            return $escaped;
-        }
-
-        return $data;
+        return $this->processData($data, $escape);
     }
 
     public function fetchRowAssoc($escape = true)
     {
         $data = $this->_statement->fetch(\PDO::FETCH_ASSOC);
-        if ($data == false) {
-            return false;
-        }
-
-        if ($escape) {
-            $escaped = array();
-            foreach ($data as $key => $value) {
-                $escaped[$key] = $value;
-            }
-
-            return $escaped;
-        }
-
-        return $data;
+        return $this->processData($data, $escape);
     }
 
     public function getLastInsertedId()
@@ -142,5 +114,23 @@ class SimpleDB
         }
 
         return false;
+    }
+
+    private function processData($data, $escape)
+    {
+        if ($data === false) {
+            return false;
+        }
+
+        if ($escape) {
+            $escaped = array();
+            foreach ($data as $key => $value) {
+                $escaped[$key] = htmlentities($value);
+            }
+
+            return $escaped;
+        }
+
+        return $data;
     }
 }
