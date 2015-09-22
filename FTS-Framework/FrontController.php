@@ -80,6 +80,9 @@ class FrontController
                 //TODO Redirect
                 throw new \Exception('Invalid token!', 500);
             }
+            if ($this->_router->getPost()['_method']) {
+                $this->_requestMethod = strtolower($this->_router->getPost()['_method']);
+            }
         }
 
         $uri = $this->_router->getURI();
@@ -237,11 +240,14 @@ class FrontController
             $calledController = new $file();
             if (method_exists($calledController, $this->_method)) {
                 if ($this->isValidRequestMethod($calledController, $this->_method)) {
-
                     // Create binding model
                     $refMethod = new \ReflectionMethod($calledController, $this->_method);
                     $doc = $refMethod->getDocComment();
-                    if (preg_match('/@param\s+\\\?([\s\S]+BindingModel)\s+\$/' , $doc, $match)) {
+
+                    // Validate accessibility
+                    $this->ValidateAuthorization($doc);
+
+                    if (preg_match('/@param\s+\\\?([\s\S]+BindingModel)\s+\$/', $doc, $match)) {
                         $bindingModelName = $match[1];
                         $bindingModelsNamespace = App::getInstance()->getConfig()->app['namespaces']['Models'] . 'BindingModels/';
                         $bindingModelsNamespace = str_replace('../', '', $bindingModelsNamespace);
@@ -283,6 +289,7 @@ class FrontController
         $reflectionMethod = new \ReflectionMethod($controller, $method);
         $foundRequestAnnotations = array();
         $comment = strtolower($reflectionMethod->getDocComment());
+
         if (preg_match('/@get/', $comment)) {
             $foundRequestAnnotations[] = 'get';
         }
@@ -302,7 +309,7 @@ class FrontController
             }
 
             $request = $foundRequestAnnotations[0];
-            if (strtolower($request) != $this->_requestMethod) {
+            if (strtolower($request) != strtolower($this->_requestMethod)) {
                 return false;
             }
 
@@ -314,5 +321,9 @@ class FrontController
         }
 
         return true;
+    }
+
+    private function ValidateAuthorization($doc)
+    {
     }
 }

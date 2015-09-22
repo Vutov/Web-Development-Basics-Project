@@ -23,5 +23,13 @@
     ->initBoostrapDropDown('drop down')->setDropDownLi('#', '1')->setDropDownLi('#', '2')->create()
     ->render();
 ?>
+<hr/>
+<?php
+\FTS\FormViewHelper::init()
+    ->initForm('/test/delete', 'delete')
+    ->initTextBox()->setAttribute('class', 'some')->setName('username')->setAttribute('value', 'pesho')->setAttribute('class1', 'some2')->create()
+    ->initSubmit()->setAttribute('value', 'Submit')->create()
+    ->render();
+?>
 </body>
 </html>

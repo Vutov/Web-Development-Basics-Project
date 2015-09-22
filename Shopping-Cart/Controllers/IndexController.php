@@ -5,6 +5,9 @@ namespace Controllers;
 use FTS\BaseController;
 use Models\BindingModels\LoginBindingModel;
 use Models\BindingModels\RegisterBindingModel;
+use Models\ViewModels\IndexController\CreateViewModel;
+use Models\ViewModels\IndexController\IndexCreateModel;
+use Models\ViewModels\IndexController\IndexViewModel;
 
 class IndexController extends BaseController
 {
@@ -20,8 +23,15 @@ class IndexController extends BaseController
      */
     public function create()
     {
-        var_dump($this->input->get(0));
-        echo 'Create in Index file';
+        $this->view->display(new CreateViewModel('asd'));
+    }
+
+    /**
+     * @Route("test/delete")
+     * @Delete
+     */
+    public function delete(){
+        echo "delete";
     }
 
     /**

@@ -10,6 +10,7 @@ class FormViewHelper
     private $_assembledElements = array();
     private $_currentElementId = 0;
     private $_isInForm = false;
+    protected $_additionalTokens = array();
 
     private function  __construct()
     {
@@ -42,6 +43,11 @@ class FormViewHelper
         $this->_elements['form']['action'] = $action;
         $this->_elements['form']['method'] = $method;
         $this->_isInForm = true;
+        if (strtolower($method) != 'post' && strtolower($method) != 'get') {
+            $this->_additionalTokens[$method] = '<input type="hidden" name="_method" value="' . $method . '">';
+            $this->_elements['form']['method'] = "post";
+        }
+
         return $this;
     }
 
@@ -101,7 +107,8 @@ class FormViewHelper
         return $this;
     }
 
-    public function initLink(){
+    public function initLink()
+    {
         $this->_elements[$this->_currentElementId]['opening tag'] = '<a';
         $this->_elements[$this->_currentElementId]['closing tag'] = '</a>';
 
@@ -198,6 +205,12 @@ class FormViewHelper
 
         if ($this->_isInForm) {
             Token::init()->render($samePageToken);
+            if (count($this->_additionalTokens) != 0) {
+                foreach ($this->_additionalTokens as $token) {
+                    echo $token;
+                }
+
+            }
             echo '</form>';
         }
 
