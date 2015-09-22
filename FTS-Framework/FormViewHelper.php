@@ -184,7 +184,7 @@ class FormViewHelper
         return $this;
     }
 
-    public function render()
+    public function render($samePageToken = false)
     {
         if ($this->_isInForm) {
             $action = $this->_elements['form']['action'];
@@ -197,7 +197,7 @@ class FormViewHelper
         }
 
         if ($this->_isInForm) {
-            Token::init()->render();
+            Token::init()->render($samePageToken);
             echo '</form>';
         }
 

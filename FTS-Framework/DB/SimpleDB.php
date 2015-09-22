@@ -46,6 +46,11 @@ class SimpleDB
     public function fetchAllAssoc($escape = true)
     {
         $data = $this->_statement->fetchAll(\PDO::FETCH_ASSOC);
+
+        if ($data == false) {
+            return false;
+        }
+        
         if ($escape) {
             $escaped = array();
             foreach ($data as $key => $value) {
@@ -61,6 +66,10 @@ class SimpleDB
     public function fetchRowAssoc($escape = true)
     {
         $data = $this->_statement->fetch(\PDO::FETCH_ASSOC);
+        if ($data == false) {
+            return false;
+        }
+
         if ($escape) {
             $escaped = array();
             foreach ($data as $key => $value) {

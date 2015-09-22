@@ -21,6 +21,10 @@ $cnf['*'][CONTROLLERS]['home'][REQUEST_METHOD]['new'] = 'post';
 // Login
 $cnf['*'][CONTROLLERS]['home'][METHODS]['login'] = 'login';
 $cnf['*'][CONTROLLERS]['home'][REQUEST_METHOD]['login'] = 'post';
+// Register
+$cnf['*'][CONTROLLERS]['home'][METHODS]['register'] = 'register';
+$cnf['*'][CONTROLLERS]['home'][REQUEST_METHOD]['register'] = 'post';
+// Logout
 $cnf['*'][CONTROLLERS]['home'][METHODS]['logout'] = 'logout';
 
 

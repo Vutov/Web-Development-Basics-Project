@@ -24,9 +24,11 @@ class Token
         return self::$_instance;
     }
 
-    public static function render()
+    public static function render($samePage = false)
     {
-        self::generateToken();
+        if (!$samePage) {
+            self::generateToken();
+        }
 
         $html = '<input type="hidden" name="_token" value="' . App::getInstance()->getSession()->_token . '">';
         echo $html;

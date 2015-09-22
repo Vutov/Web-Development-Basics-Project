@@ -4,6 +4,7 @@ namespace Controllers;
 
 use FTS\BaseController;
 use Models\BindingModels\LoginBindingModel;
+use Models\BindingModels\RegisterBindingModel;
 
 class IndexController extends BaseController
 {
@@ -29,22 +30,17 @@ class IndexController extends BaseController
      */
     public function login(LoginBindingModel $model)
     {
-        var_dump($model->getUsername());
-        var_dump($model->getPassword());
-        var_dump($this->session->_login);
-        if ($this->session->_login) {
-            throw new \Exception("Already logged in!", 400);
-        }
+        $this->checkForLogged();
 
         $this->db->prepare("SELECT id
                                 FROM users
-                                WHERE username = ? AND password = ?", array($model->getUsername(), $model->getPassword()));
+                                WHERE username = ? AND password = ?",
+            array($model->getUsername(), $model->getPassword()));
         $response = $this->db->execute()->fetchRowAssoc();
         $id = $response['id'];
         $this->session->_login = $id;
-
-
-        var_dump($this->session->_login == 4);
+        $this->session->_username = $model->getUsername();
+        $this->redirect('/');
     }
 
     /**
@@ -57,16 +53,23 @@ class IndexController extends BaseController
         $this->redirect('/');
     }
 
-    public function register()
+    /**
+     * TODO check for existing user id DB
+     * @param RegisterBindingModel $model
+     */
+    public function register(RegisterBindingModel $model)
     {
-//        $this->db->prepare(" INSERT INTO users (
-//                                id ,
-//                                username ,
-//                                password ,
-//                                isAdmin
-//                                )
-//                                VALUES (
-//                                '4', ?, ?, '0'
-//                                )", array($model->getUsername(), $model->getPassword()))->execute();
+        $this->checkForLogged();
+
+        $this->db->prepare("INSERT
+                            INTO users
+                            (username, password)
+                            VALUES (?, ?)",
+            array($model->getUsername(), $model->getPassword()))->execute();
+
+        $loginBindingModel = new LoginBindingModel(array('username' => $model->getUsername(), 'password' => $model->getPassword()));
+        // Work around to avoid double crypting passwords.
+        $loginBindingModel->afterRegisterPasswordPass($model->getPassword());
+        $this->login($loginBindingModel);
     }
 }

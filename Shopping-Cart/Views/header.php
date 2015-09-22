@@ -8,8 +8,16 @@
             ->initTextBox()->setName('username')->setAttribute('id', 'username')->create()
             ->initLabel()->setValue("Password")->setAttribute('for', 'password')->create()
             ->initPasswordBox()->setName('password')->setAttribute('id', 'password')->create()
-            ->initSubmit()->setAttribute('value', 'Submit')->create()
+            ->initSubmit()->setAttribute('value', 'Login')->create()
             ->render();
+        \FTS\FormViewHelper::init()
+            ->initForm('/home/register')
+            ->initLabel()->setValue("Username")->setAttribute('for', 'username')->create()
+            ->initTextBox()->setName('username')->setAttribute('id', 'username')->create()
+            ->initLabel()->setValue("Password")->setAttribute('for', 'password')->create()
+            ->initPasswordBox()->setName('password')->setAttribute('id', 'password')->create()
+            ->initSubmit()->setAttribute('value', 'Register')->create()
+            ->render(true);
     } else {
         \FTS\FormViewHelper::init()
             ->initLink()->setAttribute('href', '/home/logout')->setValue('Logout')->create()
