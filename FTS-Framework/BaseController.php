@@ -3,6 +3,9 @@
 namespace FTS;
 
 
+use FTS\DB\SimpleDB;
+use FTS\Sessions\ISession;
+
 class BaseController
 {
 
@@ -31,6 +34,17 @@ class BaseController
      */
     protected $validator;
 
+    /**
+     * Default Db connection used
+     * @var SimpleDB
+     */
+    protected $db;
+
+    /**
+     * @var ISession
+     */
+    protected $session;
+
     public function __construct()
     {
         $this->app = App::getInstance();
@@ -38,5 +52,7 @@ class BaseController
         $this->config = $this->app->getConfig();
         $this->input = InputData::getInstance();
         $this->validator = new Validator();
+        $this->db = new SimpleDB();
+        $this->session = $this->app->getSession();
     }
 }

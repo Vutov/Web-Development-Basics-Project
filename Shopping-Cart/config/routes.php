@@ -18,6 +18,9 @@ $cnf['*'][NS] = 'Controllers';
 $cnf['*'][CONTROLLERS]['home'][GOES_TO] = 'index';
 $cnf['*'][CONTROLLERS]['home'][METHODS]['new'] = 'index';
 $cnf['*'][CONTROLLERS]['home'][REQUEST_METHOD]['new'] = 'post';
+// Login
+$cnf['*'][CONTROLLERS]['home'][METHODS]['login'] = 'login';
+$cnf['*'][CONTROLLERS]['home'][REQUEST_METHOD]['login'] = 'post';
 
 // Administration panel
 $cnf['Admin/users'][NS] = 'Controllers\something';

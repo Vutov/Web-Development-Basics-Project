@@ -237,7 +237,35 @@ class FrontController
             $calledController = new $file();
             if (method_exists($calledController, $this->_method)) {
                 if ($this->isValidRequestMethod($calledController, $this->_method)) {
-                    $calledController->{strtolower($this->_method)}();
+
+                    // Create binding model
+                    $refMethod = new \ReflectionMethod($calledController, $this->_method);
+                    $doc = $refMethod->getDocComment();
+                    if (preg_match('/@param\s+\\\?([\s\S]+BindingModel)\s+\$/' , $doc, $match)) {
+                        $bindingModelName = $match[1];
+                        $bindingModelsNamespace = App::getInstance()->getConfig()->app['namespaces']['Models'] . 'BindingModels/';
+                        $bindingModelsNamespace = str_replace('../', '', $bindingModelsNamespace);
+                        $bindingModelPath = str_replace('/', '\\', $bindingModelsNamespace . $bindingModelName);
+                        $bindingReflection = new \ReflectionClass($bindingModelPath);
+                        $properties = $bindingReflection->getProperties();
+                        $params = array();
+                        foreach ($properties as $property) {
+                            $name = $property->getName();
+                            $value = $input->postForDb($name);
+                            if ($value === null) {
+                                throw new \Exception("Invalid binding model! Property '$name' not found", 400);
+                            } else {
+                                $params[$name] = $value;
+                            }
+                        }
+
+                        $bindingModel = new $bindingModelPath($params);
+                        $calledController->{strtolower($this->_method)}($bindingModel);
+
+                    } else {
+                        $calledController->{strtolower($this->_method)}();
+                    }
+
                     exit;
                 } else {
                     throw new \Exception("Method does not allow '" . ucfirst($this->_requestMethod) . "' requests!", 500);
