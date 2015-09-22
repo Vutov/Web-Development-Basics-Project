@@ -21,6 +21,8 @@ $cnf['*'][CONTROLLERS]['home'][REQUEST_METHOD]['new'] = 'post';
 // Login
 $cnf['*'][CONTROLLERS]['home'][METHODS]['login'] = 'login';
 $cnf['*'][CONTROLLERS]['home'][REQUEST_METHOD]['login'] = 'post';
+$cnf['*'][CONTROLLERS]['home'][METHODS]['logout'] = 'logout';
+
 
 // Administration panel
 $cnf['Admin/users'][NS] = 'Controllers\something';

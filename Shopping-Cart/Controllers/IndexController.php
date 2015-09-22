@@ -10,7 +10,6 @@ class IndexController extends BaseController
     public function index()
     {
         $this->view->appendToLayout('header', 'header');
-        $this->view->appendToLayout('login', 'login');
         $this->view->appendToLayout('footer', 'footer');
         $this->view->displayLayout('Layouts.home');
     }
@@ -30,20 +29,44 @@ class IndexController extends BaseController
      */
     public function login(LoginBindingModel $model)
     {
-        var_dump($model);
-        die;
-        if (isset($this->session->_login)) {
+        var_dump($model->getUsername());
+        var_dump($model->getPassword());
+        var_dump($this->session->_login);
+        if ($this->session->_login) {
             throw new \Exception("Already logged in!", 400);
-        } else {
-            $this->db->prepare("
-        SELECT id
-        FROM users
-        WHERE username = ? AND password = ?");
-            $this->db->prepare(array($model->getUsername(), $model->getPassword()));
-            $id = $this->db->execute()->fetchAllAssoc();
-            $this->session->_login = $id;
         }
 
-        var_dump($this->session->login);
+        $this->db->prepare("SELECT id
+                                FROM users
+                                WHERE username = ? AND password = ?", array($model->getUsername(), $model->getPassword()));
+        $response = $this->db->execute()->fetchRowAssoc();
+        $id = $response['id'];
+        $this->session->_login = $id;
+
+
+        var_dump($this->session->_login == 4);
+    }
+
+    /**
+     * @Authorize error:("You are not logged in")
+     * @throws \Exception
+     */
+    public function logout()
+    {
+        $this->session->destroySession();
+        $this->redirect('/');
+    }
+
+    public function register()
+    {
+//        $this->db->prepare(" INSERT INTO users (
+//                                id ,
+//                                username ,
+//                                password ,
+//                                isAdmin
+//                                )
+//                                VALUES (
+//                                '4', ?, ?, '0'
+//                                )", array($model->getUsername(), $model->getPassword()))->execute();
     }
 }

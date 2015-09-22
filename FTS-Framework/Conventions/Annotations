@@ -1,0 +1,4 @@
+@Authorize - check if the current user is logged in. If not Access is declines with 401.
+Custom message can be given.
+Example:
+@Authorize error:("Error message")

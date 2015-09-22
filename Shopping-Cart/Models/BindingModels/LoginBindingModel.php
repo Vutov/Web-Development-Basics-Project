@@ -10,8 +10,8 @@ class LoginBindingModel
 
     function __construct(array $params)
     {
-        $this->password = $params['password'];
-        $this->username = $params['username'];
+        $this->setPassword($params['password']);
+        $this->setUsername($params['username']);
     }
 
     /**
@@ -43,6 +43,7 @@ class LoginBindingModel
      */
     public function setPassword($password)
     {
-        $this->password = password_hash($password, PASSWORD_DEFAULT);
+        //TODO find better hashing function.
+        $this->password = crypt($password, PASSWORD_DEFAULT);
     }
 }

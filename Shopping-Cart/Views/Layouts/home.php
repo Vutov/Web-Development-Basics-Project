@@ -8,5 +8,7 @@
 <?= $this->getLayoutData('login'); ?>
 <hr style="color: aqua"/>
 <?= $this->getLayoutData('footer'); ?>
+<?php
+?>
 </body>
 </html>

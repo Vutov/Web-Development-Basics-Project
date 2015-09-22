@@ -55,4 +55,8 @@ class BaseController
         $this->db = new SimpleDB();
         $this->session = $this->app->getSession();
     }
+
+    protected function redirect($uri){
+        header("Location: $uri");
+    }
 }
