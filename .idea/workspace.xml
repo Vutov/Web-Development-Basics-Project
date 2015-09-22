@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c50f8de0-f4e1-42b0-847c-dd3427fb428a" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FTS-Framework/BaseController.php" afterPath="$PROJECT_DIR$/FTS-Framework/BaseController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shopping-Cart/Controllers/IndexController.php" afterPath="$PROJECT_DIR$/Shopping-Cart/Controllers/IndexController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Web-Development-Basics-Project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,13 +38,24 @@
       <file leaf-file-name="IndexController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Shopping-Cart/Controllers/IndexController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.72170687" vertical-offset="796" max-vertical-offset="1425">
-              <caret line="79" column="38" selection-start-line="79" selection-start-column="38" selection-end-line="79" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.72170687" vertical-offset="691" max-vertical-offset="1590">
+              <caret line="72" column="55" selection-start-line="72" selection-start-column="55" selection-end-line="72" selection-end-column="55" />
               <folding>
                 <element signature="e#31#43#0#PHP" expanded="true" />
-                <marker date="1442953792258" expanded="true" signature="933:1053" placeholder="SELECT id FR..users..." />
-                <marker date="1442953792258" expanded="true" signature="1779:1924" placeholder="INSERT INTO ..." />
+                <marker date="1442954413754" expanded="true" signature="936:1056" placeholder="SELECT id FR..users..." />
+                <marker date="1442954413754" expanded="true" signature="1802:1905" placeholder="SELECT id FR..users..." />
+                <marker date="1442954413754" expanded="true" signature="2233:2378" placeholder="INSERT INTO ..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FTS-Framework/BaseController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-16.583334" vertical-offset="517" max-vertical-offset="1080">
+              <caret line="62" column="40" selection-start-line="62" selection-start-column="23" selection-end-line="62" selection-end-column="40" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -96,7 +109,6 @@
         <option value="$PROJECT_DIR$/Shopping-Cart/config/database.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Public/index.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Models/BindingModels/RegisterBindingModel.php" />
-        <option value="$PROJECT_DIR$/FTS-Framework/BaseController.php" />
         <option value="$PROJECT_DIR$/FTS-Framework/Token.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Models/BindingModels/LoginBindingModel.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Views/index.php" />
@@ -115,6 +127,7 @@
         <option value="$PROJECT_DIR$/FTS-Framework/FrontController.php" />
         <option value="$PROJECT_DIR$/FTS-Framework/DB/SimpleDB.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/config/cart.php" />
+        <option value="$PROJECT_DIR$/FTS-Framework/BaseController.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Controllers/IndexController.php" />
       </list>
     </option>
@@ -912,14 +925,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FTS-Framework/BaseController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.583333" vertical-offset="541" max-vertical-offset="1080">
-          <caret line="62" column="37" selection-start-line="62" selection-start-column="23" selection-end-line="62" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Shopping-Cart/Models/BindingModels/RegisterBindingModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-17.5" vertical-offset="0" max-vertical-offset="825">
@@ -1055,7 +1060,7 @@
         <state vertical-scroll-proportion="-16.208334" vertical-offset="4936" max-vertical-offset="5490">
           <caret line="355" column="39" selection-start-line="355" selection-start-column="39" selection-end-line="355" selection-end-column="39" />
           <folding>
-            <element signature="e#23#43#0#PHP" expanded="true" />
+            <element signature="e#23#43#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1104,14 +1109,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/FTS-Framework/BaseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.583334" vertical-offset="517" max-vertical-offset="1080">
+          <caret line="62" column="40" selection-start-line="62" selection-start-column="23" selection-end-line="62" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Shopping-Cart/Controllers/IndexController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72170687" vertical-offset="796" max-vertical-offset="1425">
-          <caret line="79" column="38" selection-start-line="79" selection-start-column="38" selection-end-line="79" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.72170687" vertical-offset="691" max-vertical-offset="1590">
+          <caret line="72" column="55" selection-start-line="72" selection-start-column="55" selection-end-line="72" selection-end-column="55" />
           <folding>
             <element signature="e#31#43#0#PHP" expanded="true" />
-            <marker date="1442953792258" expanded="true" signature="933:1053" placeholder="SELECT id FR..users..." />
-            <marker date="1442953792258" expanded="true" signature="1779:1924" placeholder="INSERT INTO ..." />
+            <marker date="1442954413754" expanded="true" signature="936:1056" placeholder="SELECT id FR..users..." />
+            <marker date="1442954413754" expanded="true" signature="1802:1905" placeholder="SELECT id FR..users..." />
+            <marker date="1442954413754" expanded="true" signature="2233:2378" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>

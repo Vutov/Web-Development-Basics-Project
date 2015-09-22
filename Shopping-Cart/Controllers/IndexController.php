@@ -40,7 +40,7 @@ class IndexController extends BaseController
      */
     public function login(LoginBindingModel $model)
     {
-        $this->checkForLogged();
+        $this->checkForNotLogged();
 
         $this->db->prepare("SELECT id
                                 FROM users
@@ -64,12 +64,23 @@ class IndexController extends BaseController
     }
 
     /**
-     * TODO check for existing user id DB
      * @param RegisterBindingModel $model
      */
     public function register(RegisterBindingModel $model)
     {
-        $this->checkForLogged();
+        $this->checkForNotLogged();
+
+        // Check for already registered with the same name
+        $this->db->prepare("SELECT id
+                                FROM users
+                                WHERE username = ?",
+            array($model->getUsername()));
+        $response = $this->db->execute()->fetchRowAssoc();
+        $id = $response['id'];
+        if ($id !== null) {
+            $username = $model->getUsername();
+            throw new \Exception("Username '$username' already taken!", 400);
+        }
 
         $this->db->prepare("INSERT
                             INTO users

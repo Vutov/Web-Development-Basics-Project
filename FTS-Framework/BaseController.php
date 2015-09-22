@@ -60,7 +60,7 @@ class BaseController
         header("Location: $uri");
     }
 
-    protected function checkForLogged(){
+    protected function checkForNotLogged(){
         if ($this->session->_login) {
             throw new \Exception("Already logged in!", 400);
         }
