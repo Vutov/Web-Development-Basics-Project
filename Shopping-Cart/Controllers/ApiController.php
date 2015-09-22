@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: root
- * Date: 9/22/15
- * Time: 11:53 PM
- */
 
 namespace Controllers;
-
 
 use FTS\App;
 use FTS\BaseController;
@@ -25,7 +18,6 @@ class ApiController extends BaseController
             if ($namespace['controllers']) {
                 foreach ($namespace['controllers'] as $controller => $methods) {
                     foreach ($methods['methods'] as $newFunctionRoute => $originalFunction) {
-                        // Get binding models
                         $file = App::getInstance()->getConfig()->app['namespaces']['Controllers'];
                         $file = $file . ucfirst($methods['goesTo']) . 'Controller';
                         $file = str_replace('../', '', $file);
@@ -33,7 +25,6 @@ class ApiController extends BaseController
                         $reflection = new \ReflectionMethod($file, $originalFunction);
                         $doc = $reflection->getDocComment();
                         $params = $this->findBindingModels($doc);
-
 
                         $requestMethod = null;
                         if ($methods['requestMethod'][$newFunctionRoute]) {

@@ -115,6 +115,13 @@ class FormViewHelper
         return $this;
     }
 
+    public function initDiv(){
+        $this->_elements[$this->_currentElementId]['opening tag'] = '<div';
+        $this->_elements[$this->_currentElementId]['closing tag'] = '</div>';
+
+        return $this;
+    }
+
     public function initBoostrapDropDown($value)
     {
         $this->_elements[$this->_currentElementId]['opening tag'] = '<div class="dropdown">
