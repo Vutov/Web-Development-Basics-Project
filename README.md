@@ -11,10 +11,10 @@ Form ViewHelper Done <br />
 Out of the box escaping the html chars unless stated otherwise Done <br />
 Data annotations Done <br />
 Overriding default route config with annotations Done <br />
-Dependency injection configuration (config file or annotation) 0% <br />
+Dependency injection configuration (config file or annotation) Done <br />
 User roles and config/annotation for them Done <br />
 Upload files ViewHelper Done <br />
-Help page that scans all routes  90% <br />
+Help page that scans all routes  Done <br />
 Required functionalities:
 User registration / login and user profiles. 70% <br />
 User roles (user, administrator todo – give others powers, editor) Done <br />

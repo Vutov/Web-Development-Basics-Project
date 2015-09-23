@@ -267,9 +267,12 @@ class FrontController
                         }
 
                         $bindingModel = new $bindingModelPath($params);
+                        Injector::getInstance()->loadDependencies($calledController);
                         $calledController->{strtolower($this->_method)}($bindingModel);
 
                     } else {
+
+                        Injector::getInstance()->loadDependencies($calledController);
                         $calledController->{strtolower($this->_method)}();
                     }
 
