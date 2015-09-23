@@ -13,4 +13,5 @@ foreach ($routes as $route => $bindingModel) {
                 ->initDiv()->setValue("*$param")->create()->render();
         }
     }
+    echo "<hr>";
 }

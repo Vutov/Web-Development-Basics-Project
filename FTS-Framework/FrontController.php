@@ -327,6 +327,14 @@ class FrontController
     private function ValidateAuthorization($doc)
     {
         $doc = strtolower($doc);
+        $notLoggedRegex = '/@notlogged/';
+        preg_match($notLoggedRegex, $doc, $matches);
+        if ($matches) {
+            if (App::getInstance()->getSession()->_login) {
+                throw new \Exception("Already logged in!", 400);
+            }
+        }
+
         $authorizeRegex = '/@authorize(?:\s+error:\("(.+)"\))?/';
         preg_match($authorizeRegex, $doc, $matches);
         if ($matches) {

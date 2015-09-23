@@ -35,13 +35,12 @@ class IndexController extends BaseController
     }
 
     /**
+     * @NotLogged
      * @param LoginBindingModel $model
      * @throws \Exception
      */
     public function login(LoginBindingModel $model)
     {
-        $this->checkForNotLogged();
-
         $this->db->prepare("SELECT id
                                 FROM users
                                 WHERE username = ? AND password = ?",
@@ -64,12 +63,11 @@ class IndexController extends BaseController
     }
 
     /**
+     * @NotLogged
      * @param RegisterBindingModel $model
      */
     public function register(RegisterBindingModel $model)
     {
-        $this->checkForNotLogged();
-
         // Check for already registered with the same name
         $this->db->prepare("SELECT id
                                 FROM users

@@ -40,9 +40,11 @@ class ApiController extends BaseController
                             }
                         }
                         if ($area === '*') {
-                            $route = '@' . strtoupper($requestMethod) . ' ' . $controller . '/' . $newFunctionRoute;
+                            $route = '@' . strtoupper($requestMethod) . ' ' .
+                                strtolower($controller . '/' . $newFunctionRoute);
                         } else {
-                            $route = '@' . strtoupper($requestMethod) . ' ' . $area . '/' . $controller . '/' . $newFunctionRoute;
+                            $route = '@' . strtoupper($requestMethod) . ' ' .
+                                strtolower($area . '/' . $controller . '/' . $newFunctionRoute);
                         }
 
                         $foundRoutes[$route] = $params;
@@ -51,7 +53,7 @@ class ApiController extends BaseController
             }
         }
 
-        // Custom routes
+        // Custom routes and not listed ones
         $controllersFolder = App::getInstance()->getConfig()->app['namespaces']['Controllers'];
         $allFiles = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($controllersFolder));
         $phpFiles = new \RegexIterator($allFiles, '/\.php$/');
@@ -74,7 +76,7 @@ class ApiController extends BaseController
                 }
 
                 if ($route) {
-                    $fullRoute = '@' . strtoupper($requestMethod) . ' ' . $route;
+                    $fullRoute = '@' . strtoupper($requestMethod) . ' ' . strtolower($route);
                     $foundRoutes[$fullRoute] = $params;
                 }
             }

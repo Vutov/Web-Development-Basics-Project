@@ -59,10 +59,4 @@ class BaseController
     protected function redirect($uri){
         header("Location: $uri");
     }
-
-    protected function checkForNotLogged(){
-        if ($this->session->_login) {
-            throw new \Exception("Already logged in!", 400);
-        }
-    }
 }

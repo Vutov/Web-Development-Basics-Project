@@ -48,7 +48,7 @@ class LoginBindingModel
     }
 
     /**
-     * Work around to avoid double crypting passwords.
+     * Work around to avoid double crypting passwords when login in after registration.
      */
     public function afterRegisterPasswordPass($password){
         $this->password = $password;
