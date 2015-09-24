@@ -1,12 +1,13 @@
 # Web-Development-Basics-Project
-FTS Framework <br />
+<h2>FTS Framework DONE<br /><h2>
+<p>
 Progress: <br />
 Default routing system Done <br />
 Custom routing system Done <br />
 Areas Done <br />
 Strongly typed views Done <br />
 POST request actions using Binding Models Done <br />
-ViewHelpers for Forms, Ajax submitted Forms, CSRF Token 70% <br />
+ViewHelpers for Forms, Ajax submitted Forms, CSRF Token Done <br />
 Form ViewHelper Done <br />
 Out of the box escaping the html chars unless stated otherwise Done <br />
 Data annotations Done <br />
@@ -15,6 +16,8 @@ Dependency injection configuration (config file or annotation) Done <br />
 User roles and config/annotation for them Done <br />
 Upload files ViewHelper Done <br />
 Help page that scans all routes  Done <br />
+</p>
+<h2>Project: <br /></h2>
 Required functionalities:
 User registration / login and user profiles. 70% <br />
 User roles (user, administrator todo – give others powers, editor) Done <br />

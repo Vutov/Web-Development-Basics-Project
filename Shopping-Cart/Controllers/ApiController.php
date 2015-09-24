@@ -10,6 +10,47 @@ class ApiController extends BaseController
 {
     public function index()
     {
+        $foundRoutes = $this->findAllRoutesInApp();
+
+        $this->view->display(new IndexViewModel($foundRoutes));
+    }
+
+    /**
+     * @Put
+     * @Route("api/jsonRoutes")
+     * @return array
+     */
+    public function jsonRoutes(){
+        $foundRoutes = $this->findAllRoutesInApp();
+
+        echo json_encode($foundRoutes);
+    }
+
+    private function findBindingModels($doc)
+    {
+        $params = array();
+        if (preg_match('/@param\s+\\\?([\s\S]+BindingModel)\s+\$/', $doc, $match)) {
+            $bindingModelName = $match[1];
+            $bindingModelsNamespace = App::getInstance()->getConfig()->app['namespaces']['Models'] . 'BindingModels/';
+            $bindingModelsNamespace = str_replace('../', '', $bindingModelsNamespace);
+            $bindingModelPath = str_replace('/', '\\', $bindingModelsNamespace . $bindingModelName);
+            $bindingReflection = new \ReflectionClass($bindingModelPath);
+            $properties = $bindingReflection->getProperties();
+            foreach ($properties as $property) {
+                $name = $property->getName();
+                $params[$name] = $name;
+            }
+            return $params;
+        }
+
+        return $params;
+    }
+
+    /**
+     * @return array Found routes
+     */
+    private function findAllRoutesInApp()
+    {
         $foundRoutes = array();
 
         // Config routes
@@ -81,28 +122,6 @@ class ApiController extends BaseController
                 }
             }
         }
-
-        $this->view->display(new IndexViewModel($foundRoutes));
-    }
-
-
-    private function findBindingModels($doc)
-    {
-        $params = array();
-        if (preg_match('/@param\s+\\\?([\s\S]+BindingModel)\s+\$/', $doc, $match)) {
-            $bindingModelName = $match[1];
-            $bindingModelsNamespace = App::getInstance()->getConfig()->app['namespaces']['Models'] . 'BindingModels/';
-            $bindingModelsNamespace = str_replace('../', '', $bindingModelsNamespace);
-            $bindingModelPath = str_replace('/', '\\', $bindingModelsNamespace . $bindingModelName);
-            $bindingReflection = new \ReflectionClass($bindingModelPath);
-            $properties = $bindingReflection->getProperties();
-            foreach ($properties as $property) {
-                $name = $property->getName();
-                $params[$name] = $name;
-            }
-            return $params;
-        }
-
-        return $params;
+        return $foundRoutes;
     }
 }

@@ -10,6 +10,9 @@ class SimpleDB
 {
     protected $_connection = 'default';
     private $_db = null;
+    /**
+     * @var \PDO
+     */
     private static $database = null;
     /**
      * @var \PDOStatement

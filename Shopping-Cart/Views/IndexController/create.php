@@ -12,24 +12,43 @@
 
 <div><?= $this->_viewBag->getSomeShit() ?></div>
 <?php
-\FTS\FormViewHelper::init()
-    ->initTextBox()->setAttribute('class', 'some')->setName('username')->setAttribute('value', 'pesho')->setAttribute('class1', 'some2')->create()
-    ->initTextArea()->create()
-    ->initUploadFile()->create()
-    ->initRadioBox()->setChecked()->create()
-    ->initRadioBox()->create()
-    ->initUploadFile()->create()
-    ->initCheckBox()->setChecked()->create()
-    ->initBoostrapDropDown('drop down')->setDropDownLi('#', '1')->setDropDownLi('#', '2')->create()
-    ->render();
+//\FTS\FormViewHelper::init()
+//    ->initTextBox()->setAttribute('class', 'some')->setName('username')->setAttribute('value', 'pesho')->setAttribute('class1', 'some2')->create()
+//    ->initTextArea()->create()
+//    ->initUploadFile()->create()
+//    ->initRadioBox()->setChecked()->create()
+//    ->initRadioBox()->create()
+//    ->initUploadFile()->create()
+//    ->initCheckBox()->setChecked()->create()
+//    ->initBoostrapDropDown('drop down')->setDropDownLi('#', '1')->setDropDownLi('#', '2')->create()
+//    ->render();
 ?>
 <hr/>
 <?php
-\FTS\FormViewHelper::init()
-    ->initForm('/test/delete', 'delete')
-    ->initTextBox()->setAttribute('class', 'some')->setName('username')->setAttribute('value', 'pesho')->setAttribute('class1', 'some2')->create()
-    ->initSubmit()->setAttribute('value', 'Submit')->create()
-    ->render();
+//\FTS\FormViewHelper::init()
+//    ->initForm('/test/delete', 'delete')
+//    ->initTextBox()->setAttribute('class', 'some')->setName('username')->setAttribute('value', 'pesho')->setAttribute('class1', 'some2')->create()
+//    ->initSubmit()->setAttribute('value', 'Submit')->create()
+//    ->render();
+?>
+
+<!---->
+<!--<script>-->
+<!--    $.ajax({-->
+<!--        method: "POST",-->
+<!--        url: "/api/jsonRoutes",-->
+<!--        data: { name: "John", location: "Boston" }-->
+<!--    })-->
+<!--        .done(function( msg ) {-->
+<!--            alert( "Data Saved: " + msg );-->
+<!--        });-->
+<!--</script>-->
+
+<?php
+    \FTS\AjaxViewHelper::init()->initForm("api/jsonroutes", "put")->initCallback("function( msg ) {
+            console.log( \"Data Saved: \" + msg );
+        }")->render(true);
+
 ?>
 </body>
 </html>

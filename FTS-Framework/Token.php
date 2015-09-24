@@ -41,6 +41,15 @@ class Token
         return $isValid;
     }
 
+    public static function getToken($samePageToken = false)
+    {
+        if (!$samePageToken) {
+            self::generateToken();
+        }
+
+        return App::getInstance()->getSession()->_token;
+    }
+
     private static function generateToken()
     {
         App::getInstance()->getSession()->_token = base64_encode(openssl_random_pseudo_bytes(64));

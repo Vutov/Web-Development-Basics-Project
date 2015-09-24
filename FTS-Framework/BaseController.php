@@ -38,7 +38,6 @@ class BaseController
     /**
      * Default Db connection used
      * @var SimpleDB
-     * @Inject SimpleDB
      */
     protected $db;
 
@@ -54,6 +53,7 @@ class BaseController
         $this->config = $this->app->getConfig();
         $this->input = InputData::getInstance();
         $this->session = $this->app->getSession();
+        $this->db = new SimpleDB();
     }
 
     protected function redirect($uri)
