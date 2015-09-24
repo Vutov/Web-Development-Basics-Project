@@ -56,13 +56,42 @@ class SimpleDB
     public function fetchAllAssoc($escape = true)
     {
         $data = $this->_statement->fetchAll(\PDO::FETCH_ASSOC);
-        return $this->processData($data, $escape);
+        if ($data === false) {
+            return false;
+        }
+
+        if ($escape) {
+            $escaped = array();
+            foreach ($data as $elementKey => $elementData) {
+                foreach ($elementData as $key => $value) {
+                    $escaped[$elementKey][$key] = htmlentities($value);
+                }
+
+            }
+
+            return $escaped;
+        }
+
+        return $data;
     }
 
     public function fetchRowAssoc($escape = true)
     {
         $data = $this->_statement->fetch(\PDO::FETCH_ASSOC);
-        return $this->processData($data, $escape);
+        if ($data === false) {
+            return false;
+        }
+
+        if ($escape) {
+            $escaped = array();
+            foreach ($data as $key => $value) {
+                $escaped[$key] = htmlentities($value);
+            }
+
+            return $escaped;
+        }
+
+        return $data;
     }
 
     public function getLastInsertedId()

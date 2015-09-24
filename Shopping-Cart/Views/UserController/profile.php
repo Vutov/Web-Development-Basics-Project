@@ -12,7 +12,7 @@
         ->initLabel()->setValue("New Password")->setAttribute('for', 'newPassword')->create()
         ->initPasswordBox()->setAttribute('id', 'newPassword')->setName('newPassword')->setAttribute('class', 'form-control input-md')->create()
         ->initLabel()->setValue("Confirm Password")->setAttribute('for', 'conPassword')->create()
-        ->initPasswordBox()->setAttribute('id', 'conPassword')->setName('conPassword')->setAttribute('class', 'form-control input-md')->create()
+        ->initPasswordBox()->setAttribute('id', 'conPassword')->setName('confirm')->setAttribute('class', 'form-control input-md')->create()
         ->initSubmit()->setAttribute('value', 'Change password')->setAttribute('class', 'btn btn-default')->create()
         ->render();
 }

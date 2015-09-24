@@ -1,16 +1,9 @@
-<h1>Admin</h1>
-<h2>Index page</h2>
-<div>Username: <?= $this->_viewBag['body']->getName() ?> </div>
-<?php
-\FTS\FormViewHelper::init()
-    ->initTextBox()->setAttribute('class', 'some')->setName('username')->setAttribute('value','pesho')->create()
-    ->render();
-?>
-<div>Password: <?= $this->_viewBag['body']->getPassword() ?> </div>
-<div>Is Admin: <?= $this->_viewBag['body']->getAdmin() ?> </div>
-<?php
-\FTS\FormViewHelper::init()->initForm('/custom/as/create')->initTextBox()->setAttribute('value',"test")->create()
-    ->initLabel()->setValue('Password')->setAttribute('for', 'password')->create()
-    ->initPasswordBox()->setName("password")->setAttribute('id', 'password')->setName('password')->create()
-    ->initSubmit()->setAttribute('value','Submit')->setName('some')->create()->render();
-?>
+<div class="input-group">
+    <h1>Welcome to the Admin Home</h1>
+    <h2>Here are all admins:</h2>
+    <ul class="list-group">
+        <?php foreach ($this->_viewBag['body']->getAdmins() as $key => $admin) : ?>
+            <li class="list-group-item"><a href="/user/<?= $admin ?>/profile"><?= ucfirst($admin) ?></a></li>
+        <?php endforeach; ?>
+    </ul>
+</div>

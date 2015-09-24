@@ -4,6 +4,7 @@ namespace Controllers;
 
 
 use FTS\BaseController;
+use Models\BindingModels\ChangePasswordBindingModel;
 use Models\BindingModels\LoginBindingModel;
 use Models\BindingModels\RegisterBindingModel;
 use Models\ViewModels\UserController\ProfileViewModel;
@@ -47,6 +48,9 @@ class UserController extends BaseController
      */
     public function register(RegisterBindingModel $model)
     {
+        if ($model->getPassword() !== $model->getConfirm()) {
+            throw new \Exception("Password don't match Confirm Password!", 400);
+        }
         // Check for already registered with the same name
         $this->db->prepare("SELECT id
                                 FROM users
@@ -105,8 +109,32 @@ class UserController extends BaseController
      * @Authorize
      * @Put
      * @Route("user/changePass")
+     * @param ChangePasswordBindingModel $model
+     * @throws \Exception
      */
-    public function changePass(){
-        echo "ok";
+    public function changePass(ChangePasswordBindingModel $model)
+    {
+        if ($model->getNewPassword() !== $model->getConfirm()) {
+            throw new \Exception("Password don't match Confirm Password!", 400);
+        }
+
+        $username = $this->session->_username;
+        $id = $this->session->_login;
+
+        $this->db->prepare("SELECT id
+                            FROM users
+                            WHERE id = ? AND username = ? AND password = ?",
+            array($id, $username, $model->getOldPassword()));
+        $response = $this->db->execute()->fetchRowAssoc();
+        if ($response) {
+            $this->db->prepare("UPDATE users
+                                SET password = ?
+                                WHERE id = ? AND username = ? AND password = ?",
+                array($model->getNewPassword(), $id, $username, $model->getOldPassword()));
+            $this->db->execute();
+            $this->redirect("/");
+        } else {
+            throw new \Exception("No user found matching those credentials!", 400);
+        }
     }
 }

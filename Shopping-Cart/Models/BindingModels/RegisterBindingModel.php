@@ -8,11 +8,13 @@ class RegisterBindingModel
 
     private $username;
     private $password;
+    private $confirm;
 
     function __construct(array $params)
     {
         $this->setPassword($params['password']);
         $this->setUsername($params['username']);
+        $this->setConfirm($params['confirm']);
     }
 
     /**
@@ -46,5 +48,16 @@ class RegisterBindingModel
     {
         //TODO find better hashing function.
         $this->password = crypt($password, PASSWORD_DEFAULT);
+    }
+
+
+    public function getConfirm(){
+        return $this->confirm;
+    }
+
+    private function setConfirm($password)
+    {
+        //TODO find better hashing function.
+        $this->confirm = crypt($password, PASSWORD_DEFAULT);
     }
 }

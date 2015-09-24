@@ -59,7 +59,7 @@ class AjaxViewHelper
 
     public function render()
     {
-        $this->_ajax = "<script>" . $this->_ajax . '</script>';
+       // $this->_ajax = "<script>" . $this->_ajax . '</script>';
 
         echo $this->_ajax;
         $this->_ajax = "";

@@ -27,6 +27,18 @@ class ApiController extends BaseController
         echo json_encode($foundRoutes);
     }
 
+    /**
+     * @Get
+     * @Route("api/ajax")
+     */
+    public function ajax(){
+        $this->view->appendToLayout('body', 'ApiController.ajax');
+        $this->view->appendToLayout('header', 'header');
+        $this->view->appendToLayout('meta', 'meta');
+        $this->view->appendToLayout('footer', 'footer');
+        $this->view->displayLayout('Layouts.Admin.home');
+    }
+
     private function findBindingModels($doc)
     {
         $params = array();

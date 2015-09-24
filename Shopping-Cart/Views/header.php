@@ -30,6 +30,9 @@
                     <li><?php \FTS\FormViewHelper::init()
                             ->initLink()->setAttribute('href', '/api')->setValue('API')->create()
                             ->render(); ?></li>
+                    <li><?php \FTS\FormViewHelper::init()
+                            ->initLink()->setAttribute('href', '/api/ajax')->setValue('Ajax test')->create()
+                            ->render(); ?></li>
                 </ul>
                 <?php if (\FTS\App::getInstance()->isLogged()) : ?>
                     <ul class="nav navbar-nav navbar-right">
@@ -45,7 +48,9 @@
                                         ->setValue('Profile')
                                         ->create()
                                         ->render(); ?></li>
-                                <li><a href="#">Another action</a></li>
+                                <?php if (\FTS\App::getInstance()->isAdmin()) : ?>
+                                    <li><a href="/admin">Admin</a></li>
+                                <?php endif; ?>
                                 <li><a href="#">Something else here</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li>

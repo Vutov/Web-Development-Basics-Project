@@ -2,6 +2,7 @@
 
 namespace FTS;
 
+use FTS\DB\SimpleDB;
 use FTS\Routers\DefaultRouter;
 use FTS\Routers\IRouter;
 use FTS\Sessions\ISession;
@@ -182,5 +183,15 @@ class App
     public function isLogged()
     {
         return $this->_session->escapedUsername !== null;
+    }
+
+    public function isAdmin()
+    {
+        return SimpleDB::isAdmin();
+    }
+
+    public function isEditor()
+    {
+        return SimpleDB::hasRole('editor');
     }
 }
