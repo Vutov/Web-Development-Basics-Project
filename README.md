@@ -19,8 +19,8 @@ Help page that scans all routes  Done <br />
 </p>
 <h2>Project: <br /></h2>
 Required functionalities:
-User registration / login and user profiles. 70% <br />
-User roles (user, administrator todo – give others powers, editor) Done <br />
+User registration / login and user profiles. Done <br />
+User roles (user, administrator editor) Done <br />
 Initial cash for users Done <br />
 Product categories Not started <br />
 Listing products in categories Not started <br />
