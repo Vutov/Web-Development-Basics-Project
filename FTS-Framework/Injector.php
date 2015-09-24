@@ -48,7 +48,9 @@ class Injector
                 if ($dependency !== null) {
                     $property = $reflectionClass->getProperty($property->getName());
                     $property->setAccessible(true);
-                    $property->setValue($class, new $dependency);
+                    $dep = new $dependency;
+                    $this->loadDependencies($dep);
+                    $property->setValue($class, $dep);
                 } else {
                     throw new \Exception("No path found for '$name', check your config. Default is 'inject'.", 500);
                 }
