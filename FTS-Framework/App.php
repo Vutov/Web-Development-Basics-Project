@@ -145,7 +145,8 @@ class App
     }
 
     //TODO go and add proper exceptions - custom and code types!
-    public function _exceptionHandler(\Exception $ex){
+    public function _exceptionHandler(\Exception $ex)
+    {
         if ($this->_config && $this->_config->app['displayExceptions'] == true) {
             echo '<pre>' . print_r($ex, true) . '</pre>';
         } else {
@@ -153,12 +154,13 @@ class App
         }
     }
 
-    public function displayError($error){
-        try{
+    public function displayError($error)
+    {
+        try {
             $view = View::getInstance();
             $view->displayLayout('errors' . $error);
             // TODO proper catch!
-        } catch (\Exception $ex){
+        } catch (\Exception $ex) {
             //TODO header status
             echo '<h1>' . $error . '</h1>';
             exit;
@@ -170,5 +172,15 @@ class App
         if ($this->_session != null) {
             $this->_session->saveSession();
         }
+    }
+
+    public function getUsername()
+    {
+        return $this->_session->escapedUsername;
+    }
+
+    public function isLogged()
+    {
+        return $this->_session->escapedUsername !== null;
     }
 }

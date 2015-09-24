@@ -5,7 +5,7 @@
  * No request method means get
  */
 
-const GOES_TO = 'goesTo';
+const GOES_TO = 'goesTo'; // witch controller it goes to
 const METHODS = 'methods';
 const REQUEST_METHOD = 'requestMethod';
 const NS = 'namespace';
@@ -18,14 +18,16 @@ $cnf['*'][NS] = 'Controllers';
 $cnf['*'][CONTROLLERS]['home'][GOES_TO] = 'index';
 $cnf['*'][CONTROLLERS]['home'][METHODS]['new'] = 'index';
 $cnf['*'][CONTROLLERS]['home'][REQUEST_METHOD]['new'] = 'post';
+
 // Login
-$cnf['*'][CONTROLLERS]['home'][METHODS]['login'] = 'login';
-$cnf['*'][CONTROLLERS]['home'][REQUEST_METHOD]['login'] = 'post';
+$cnf['*'][CONTROLLERS]['user'][GOES_TO] = 'user';
+$cnf['*'][CONTROLLERS]['user'][METHODS]['login'] = 'login';
+$cnf['*'][CONTROLLERS]['user'][REQUEST_METHOD]['login'] = 'post';
 // Register
-$cnf['*'][CONTROLLERS]['home'][METHODS]['register'] = 'register';
-$cnf['*'][CONTROLLERS]['home'][REQUEST_METHOD]['register'] = 'post';
+$cnf['*'][CONTROLLERS]['user'][METHODS]['register'] = 'register';
+$cnf['*'][CONTROLLERS]['user'][REQUEST_METHOD]['register'] = 'post';
 // Logout
-$cnf['*'][CONTROLLERS]['home'][METHODS]['logout'] = 'logout';
+$cnf['*'][CONTROLLERS]['user'][METHODS]['logout'] = 'logout';
 
 // Api
 $cnf['*'][CONTROLLERS]['api'][GOES_TO] = 'api';

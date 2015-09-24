@@ -20,7 +20,8 @@ class ApiController extends BaseController
      * @Route("api/jsonRoutes")
      * @return array
      */
-    public function jsonRoutes(){
+    public function jsonRoutes()
+    {
         $foundRoutes = $this->findAllRoutesInApp();
 
         echo json_encode($foundRoutes);

@@ -130,6 +130,7 @@ class FrontController
         if (array_key_exists($uri, $this->_customRoutes)) {
             $this->_controller = $this->_customRoutes[$uri]['Controller'];
             $this->_method = strtolower($this->_customRoutes[$uri]['Method']);
+            $uri = explode('/', $uri);
             $this->_params = $uri;
             $this->processController();
         }
@@ -146,6 +147,7 @@ class FrontController
                 if (preg_match($pattern, $uri)) {
                     $this->_controller = $this->_customRoutes[$route]['Controller'];
                     $this->_method = strtolower($this->_customRoutes[$route]['Method']);
+                    $uri = explode('/', $uri);
                     $this->_params = $uri;
                     $this->processController();
                 }

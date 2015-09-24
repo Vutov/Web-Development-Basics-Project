@@ -1,3 +1,3 @@
 <footer>
-    <h3 style="color: red">footer</h3>
+    <div>Powered by FTS-Framework &copy;</div>
 </footer>

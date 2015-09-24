@@ -1,13 +1,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Profile</title>
     <?= $this->getLayoutData('meta') ?>
 </head>
 <body>
 <?= $this->getLayoutData('header'); ?>
 <div class="siteContainer">
-    <hr style="color: aqua"/>
+    <?= $this->getLayoutData('body'); ?>
 </div>
 <?= $this->getLayoutData('footer'); ?>
 <?php
