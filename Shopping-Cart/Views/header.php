@@ -28,6 +28,12 @@
                                 ->render(); ?></li>
                     <? endif; ?>
                     <li><?php \FTS\FormViewHelper::init()
+                            ->initLink()->setAttribute('href', '/products/0/3')->setValue('All products')->create()
+                            ->render(); ?></li>
+                    <li><?php \FTS\FormViewHelper::init()
+                            ->initLink()->setAttribute('href', '/categories/0/3')->setValue('All categories')->create()
+                            ->render(); ?></li>
+                    <li><?php \FTS\FormViewHelper::init()
                             ->initLink()->setAttribute('href', '/api')->setValue('API')->create()
                             ->render(); ?></li>
                     <li><?php \FTS\FormViewHelper::init()

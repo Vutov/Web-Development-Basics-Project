@@ -140,8 +140,8 @@ class FrontController
     {
         foreach ($this->_customRoutes as $route => $value) {
             if (preg_match('/[\s\S]*{.+}[\s\S]*/', $route)) {
-                $pattern = preg_replace('/{.+:int}/', '\d+', $route);
-                $pattern = preg_replace('/{.+:string}/', '\w+', $pattern);
+                $pattern = preg_replace('/{.+?:int}/', '\d+', $route);
+                $pattern = preg_replace('/{.+?:string}/', '\w+', $pattern);
                 $pattern = str_replace('/', '\/', $pattern);
                 $pattern = '/' . $pattern . '/';
                 if (preg_match($pattern, $uri)) {

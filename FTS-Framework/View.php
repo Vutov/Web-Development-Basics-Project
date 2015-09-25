@@ -171,7 +171,7 @@ class View
         $tokens = explode('\\', get_class($template));
         unset($tokens[0]);
         unset($tokens[1]);
-        $given = implode($tokens);;
+        $given = implode($tokens);
         if ($expected != $given) {
             throw new \Exception("Controller '" . $callerClass . "' with method '" . $callerMethod .
                 "' cannot call ViewModel '" . $given . "' witch is not belonging to him!", 500);
