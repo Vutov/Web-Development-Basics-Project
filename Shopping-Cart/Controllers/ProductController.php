@@ -54,7 +54,37 @@ class ProductController extends BaseController
      * @Get
      * @Route("product/{id:int}/show")
      */
-    public function show(){
-        echo 't';
+    public function product()
+    {
+        $id = $this->input->get(1);
+        $this->db->prepare("SELECT
+                            p.id, p.name, p.description, p.price, p.quantity, c.name as category
+                            FROM products p
+                            JOIN products_categories pc
+                            ON p.id = pc.productId
+                            JOIN categories c
+                            ON pc.categoryId = c.id
+                            WHERE quantity > 0 AND p.id = ?",
+            array($id));
+        $response = $this->db->execute()->fetchRowAssoc();
+        if (!$response) {
+            throw new \Exception("No product with id '$id'!", 404);
+        }
+
+        $product = new ProductViewModel(
+            Normalizer::normalize($response['id'], 'noescape|int'),
+            $response['name'],
+            $response['description'],
+            Normalizer::normalize($response['price'], 'noescape|double'),
+            Normalizer::normalize($response['quantity'], 'noescape|int'),
+            $response['category']
+        );
+
+
+        $this->view->appendToLayout('header', 'header');
+        $this->view->appendToLayout('meta', 'meta');
+        $this->view->appendToLayout('body', $product);
+        $this->view->appendToLayout('footer', 'footer');
+        $this->view->displayLayout('Layouts.product');
     }
 }
