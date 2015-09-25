@@ -22,17 +22,17 @@ Required functionalities:
 User registration / login and user profiles. Done <br />
 User roles (user, administrator editor) Done <br />
 Initial cash for users Done <br />
-Product categories Not started <br />
-Listing products in categories Not started <br />
-Add to cart functionality Not started <br />
+Product categories Done <br />
+Listing products in categories Done <br />
+Add to cart functionality Done <br />
 Promotions for certain time interval Not started <br />
 Promotions on certain products (% discount) Not started <br />
 Promotions on all products (% discount)  Not started <br />
 Promotions on certain categories (% discount) Not started <br />
 Promotions for certain user criteria (registered more than X days, have more than X cash, etc…) Not started <br />
-Quantity visibility  Not started <br />
+Quantity visibility Done <br />
 Checkout the cart  Not started <br />
-View cart  Not started <br />
+View cart Done <br />
 Users can sell bought products  Not started <br />
 Editors can add/delete product categories  Not started <br />
 Editors can add/delete products  Not started <br />
@@ -41,7 +41,7 @@ Editors can change quantities  Not started <br />
 Editors can reorder products  Not started <br />
 Administrators have full access on products, categories, users and their possessions  Not started <br />
 Bonus functionalities:
-Managing the cart  Not started <br />
+Managing the cart  Done <br />
 Users can sell products and put them promotions  Not started <br />
 Users can make comments on products (review)  Not started <br />
 Administrators: ban users  Not started <br />
