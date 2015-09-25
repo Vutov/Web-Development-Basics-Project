@@ -1,9 +1,8 @@
 <h2 class="form-group">Username: <?= ucfirst($this->_viewBag['body']->getUsername()) ?>
-<?php if ($this->_viewBag['body']->getIsAdmin()) : ?>
-    <span class="label label-danger">Admin</span>
-<?php endif; ?>
+    <?php if ($this->_viewBag['body']->getIsAdmin()) : ?>
+        <span class="label label-danger">Admin</span>
+    <?php endif; ?>
 </h2>
-
 <?php if (strtolower($this->_viewBag['body']->getUsername()) === strtolower(\FTS\App::getInstance()->getUsername())) {
     \FTS\FormViewHelper::init()
         ->initForm('/user/changePass', ['class' => 'form-group'], 'put')
@@ -16,3 +15,4 @@
         ->initSubmit()->setAttribute('value', 'Change password')->setAttribute('class', 'btn btn-default')->create()
         ->render();
 }
+?>

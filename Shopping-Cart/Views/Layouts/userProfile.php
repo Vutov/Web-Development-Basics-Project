@@ -6,7 +6,7 @@
 </head>
 <body>
 <?= $this->getLayoutData('header'); ?>
-<div class="siteContainer">
+<div class="container siteContainer">
     <?= $this->getLayoutData('body'); ?>
 </div>
 <?= $this->getLayoutData('footer'); ?>
