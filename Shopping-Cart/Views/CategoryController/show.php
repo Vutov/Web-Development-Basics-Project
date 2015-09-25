@@ -10,8 +10,8 @@
             </div>
             <div class="panel-body">
                 <div>Description: <?= $product->getDescription() ?></div>
-                <div>Price: <?= $product->getPrice() ?></div>
-                <div>Quantity: <?= $product->getQuantity() ?></div>
+                <div>Price: <?= $product->getPrice() ?> lv.</div>
+                <div>Quantity: <?= $product->getQuantity() ?> remaining</div>
                 <div>
                     <a href="/categories/<?= $product->getCategory() ?>/0/3">Category: <?= $product->getCategory() ?></a>
                 </div>
