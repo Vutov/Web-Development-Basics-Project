@@ -1,3 +1,5 @@
+<div class="alert alert-success" role="alert" id="#" style="display: none"></div>
+
 <?php
 if (!$this->_viewBag['body']->getProducts()) :?>
     <h1 class="alert alert-danger text-center">No Products</h1>
@@ -13,6 +15,10 @@ foreach ($this->_viewBag['body']->getProducts() as $product) :?>
             <div>Quantity: <?= $product->getQuantity() ?> remaining</div>
             <div>
                 <a href="/categories/<?= $product->getCategory() ?>/0/3">Category: <?= $product->getCategory() ?></a>
+            </div>
+            <div id="btn" class="panel panel-primary btn btn-default"
+                 onclick="sentAjax(<?= $product->getId() . ', \'' . $product->getName() . '\'' ?>)"
+                >Add to cart
             </div>
         </div>
     </div>
@@ -43,3 +49,18 @@ foreach ($this->_viewBag['body']->getProducts() as $product) :?>
             ?>"> Next</a></li>
     <?php endif; ?>
 </ul>
+
+<script>
+    function sentAjax(id, name) {
+        $.ajax({
+            method: "GET",
+            url: "/cart/add/" + id,
+            data: {}
+        }).done(
+            function (msg) {
+                document.getElementById("#").style.display = 'block';
+                document.getElementById("#").innerHTML = '"' + name + '" added to cart!';
+            }
+        );
+    }
+</script>

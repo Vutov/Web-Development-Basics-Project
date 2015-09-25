@@ -42,6 +42,10 @@
                 </ul>
                 <?php if (\FTS\App::getInstance()->isLogged()) : ?>
                     <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/cart"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                                <span class="badge"><?= count(\FTS\App::getInstance()->getSession()->cart) ?></span></a>
+                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true"
@@ -57,7 +61,6 @@
                                 <?php if (\FTS\App::getInstance()->isAdmin()) : ?>
                                     <li><a href="/admin">Admin</a></li>
                                 <?php endif; ?>
-                                <li><a href="#">Something else here</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li>
                                     <?php FTS\FormViewHelper::init()

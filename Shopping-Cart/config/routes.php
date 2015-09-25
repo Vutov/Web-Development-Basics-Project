@@ -37,6 +37,9 @@ $cnf['*'][CONTROLLERS]['api'][METHODS]['index'] = 'index';
 $cnf['*'][CONTROLLERS]['categories'][GOES_TO] = 'category';
 $cnf['*'][CONTROLLERS]['categories'][METHODS]['index'] = 'index';
 
+// Cart
+$cnf['*'][CONTROLLERS]['cart'][GOES_TO] = 'cart';
+$cnf['*'][CONTROLLERS]['cart'][METHODS]['index'] = 'index';
 
 // Administration panel
 $cnf['Admin/users'][NS] = 'Controllers\something';

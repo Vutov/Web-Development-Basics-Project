@@ -36,7 +36,7 @@ class ApiController extends BaseController
         $this->view->appendToLayout('header', 'header');
         $this->view->appendToLayout('meta', 'meta');
         $this->view->appendToLayout('footer', 'footer');
-        $this->view->displayLayout('Layouts.Admin.home');
+        $this->view->displayLayout('Layouts.ajax');
     }
 
     private function findBindingModels($doc)
