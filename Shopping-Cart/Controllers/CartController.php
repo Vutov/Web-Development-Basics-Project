@@ -18,8 +18,10 @@ class CartController extends BaseController
         $cart = $this->session->cart;
         $products = array();
         $totalPrice = 0;
-        foreach ($cart as $itemId) {
-            $this->db->prepare("SELECT
+        $money = 0;
+        if ($cart) {
+            foreach ($cart as $itemId) {
+                $this->db->prepare("SELECT
                             p.id, p.name, p.price
                             FROM products p
                             JOIN products_categories pc
@@ -27,20 +29,29 @@ class CartController extends BaseController
                             JOIN categories c
                             ON pc.categoryId = c.id
                             WHERE p.id = ?",
-                array($itemId));
+                    array($itemId));
+                $response = $this->db->execute()->fetchRowAssoc();
+                $price = Normalizer::normalize($response['price'], 'noescape|double');
+                $product = new CartProductViewModel(
+                    Normalizer::normalize($response['id'], 'noescape|int'),
+                    $response['name'],
+                    $price);
+                $products[] = $product;
+                $totalPrice += $price;
+            }
+
+            $this->db->prepare("SELECT
+                            Cash
+                            FROM users
+                            WHERE id = ? AND username = ?",
+                array($this->session->_login, $this->session->_username));
             $response = $this->db->execute()->fetchRowAssoc();
-            $price = Normalizer::normalize($response['price'], 'noescape|double');
-            $product = new CartProductViewModel(
-                Normalizer::normalize($response['id'], 'noescape|int'),
-                $response['name'],
-                $price);
-            $products[] = $product;
-            $totalPrice += $price;
+            $money = Normalizer::normalize($response['Cash'], 'noescape|double');
         }
 
         $this->view->appendToLayout('header', 'header');
         $this->view->appendToLayout('meta', 'meta');
-        $this->view->appendToLayout('body', new IndexViewModel($products, $totalPrice));
+        $this->view->appendToLayout('body', new IndexViewModel($products, $totalPrice, $money));
         $this->view->appendToLayout('footer', 'footer');
         $this->view->displayLayout('Layouts.cart');
     }
@@ -70,20 +81,22 @@ class CartController extends BaseController
      */
     public function remove()
     {
-        // TODO test it
-        die;
         if (!$this->session->cart) {
             throw new \Exception("Cart is empty!", 500);
         }
 
         $id = $this->input->get(2);
         $cart = $this->session->cart;
-        if (($key = array_search($id, $cart)) !== false) {
-            unset($id);
+        foreach ($cart as $k => $itemId) {
+            if ($itemId == $id) {
+                var_dump($k);
+                unset($cart[$k]);
+                break;
+            }
         }
 
         $this->session->cart = $cart;
 
-        $this->index();
+        $this->redirect('/cart');
     }
 }

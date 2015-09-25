@@ -7,11 +7,13 @@ class IndexViewModel
 {
     private $products;
     private $totalSum;
+    private $money;
 
-    public function __construct(array $products, $totalSum)
+    public function __construct(array $products, $totalSum, $money)
     {
         $this->products = $products;
         $this->totalSum = $totalSum;
+        $this->money = $money;
     }
 
     public function getProducts()
@@ -22,5 +24,10 @@ class IndexViewModel
     public function getTotalSum()
     {
         return $this->totalSum;
+    }
+
+    public function getMoney()
+    {
+        return $this->money;
     }
 }

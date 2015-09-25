@@ -7,7 +7,7 @@ if (!$this->_viewBag['body']->getProducts()) :?>
 foreach ($this->_viewBag['body']->getProducts() as $product) :?>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title"><?= $product->getName() ?></h3>
+            <h3 class="panel-title"><a href="/product/<?= $product->getId() ?>/show"><?= $product->getName() ?></a></h3>
         </div>
         <div class="panel-body">
             <div>Description: <?= $product->getDescription() ?></div>
@@ -16,10 +16,14 @@ foreach ($this->_viewBag['body']->getProducts() as $product) :?>
             <div>
                 <a href="/categories/<?= $product->getCategory() ?>/0/3">Category: <?= $product->getCategory() ?></a>
             </div>
-            <div id="btn" class="panel panel-primary btn btn-default"
-                 onclick="sentAjax(<?= $product->getId() . ', \'' . $product->getName() . '\'' ?>)"
-                >Add to cart
-            </div>
+            <?php if (\FTS\App::getInstance()->isLogged()) : ?>
+                <div id="btn" class="panel panel-primary btn btn-default"
+                     onclick="sentAjax(<?= $product->getId() . ', \'' . $product->getName() . '\'' ?>)"
+                    >Add to cart
+                </div>
+            <?php else: ?>
+                <a href="/home/login" class="panel panel-primary btn btn-default">Login to add to cart!</a>
+            <?php endif?>
         </div>
     </div>
 <?php endforeach; ?>

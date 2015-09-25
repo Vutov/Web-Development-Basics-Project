@@ -49,4 +49,12 @@ class ProductController extends BaseController
         $this->view->appendToLayout('footer', 'footer');
         $this->view->displayLayout('Layouts.products');
     }
+
+    /**
+     * @Get
+     * @Route("product/{id:int}/show")
+     */
+    public function show(){
+        echo 't';
+    }
 }
