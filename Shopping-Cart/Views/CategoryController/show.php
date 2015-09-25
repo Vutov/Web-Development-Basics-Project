@@ -1,25 +1,22 @@
-<div class="container">
-    <?php
-    if (!$this->_viewBag['body']->getProducts()) :?>
-        <h1 class="alert alert-danger text-center">No Products</h1>
-    <?php endif;
-    foreach ($this->_viewBag['body']->getProducts() as $product) :?>
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?= $product->getName() ?></h3>
-            </div>
-            <div class="panel-body">
-                <div>Description: <?= $product->getDescription() ?></div>
-                <div>Price: <?= $product->getPrice() ?> lv.</div>
-                <div>Quantity: <?= $product->getQuantity() ?> remaining</div>
-                <div>
-                    <a href="/categories/<?= $product->getCategory() ?>/0/3">Category: <?= $product->getCategory() ?></a>
-                </div>
+<?php
+if (!$this->_viewBag['body']->getProducts()) :?>
+    <h1 class="alert alert-danger text-center">No Products</h1>
+<?php endif;
+foreach ($this->_viewBag['body']->getProducts() as $product) :?>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?= $product->getName() ?></h3>
+        </div>
+        <div class="panel-body">
+            <div>Description: <?= $product->getDescription() ?></div>
+            <div>Price: <?= $product->getPrice() ?> lv.</div>
+            <div>Quantity: <?= $product->getQuantity() ?> remaining</div>
+            <div>
+                <a href="/categories/<?= $product->getCategory() ?>/0/3">Category: <?= $product->getCategory() ?></a>
             </div>
         </div>
-    <?php endforeach; ?>
-</div>
-
+    </div>
+<?php endforeach; ?>
 <ul class="pager">
     <li><a href="/categories/<?= $this->_viewBag['body']->getCategory() ?>/<?php
         $start = $this->_viewBag['body']->getStart();

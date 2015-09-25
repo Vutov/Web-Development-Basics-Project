@@ -34,7 +34,7 @@ $cnf['*'][CONTROLLERS]['api'][GOES_TO] = 'api';
 $cnf['*'][CONTROLLERS]['api'][METHODS]['index'] = 'index';
 
 // Categories
-$cnf['*'][CONTROLLERS]['categories'][GOES_TO] = 'index';
+$cnf['*'][CONTROLLERS]['categories'][GOES_TO] = 'category';
 $cnf['*'][CONTROLLERS]['categories'][METHODS]['index'] = 'index';
 
 

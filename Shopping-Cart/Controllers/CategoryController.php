@@ -5,16 +5,20 @@ namespace Controllers;
 
 use FTS\BaseController;
 use FTS\Normalizer;
+use Models\ViewModels\CategoryController\CategoryViewModel;
+use Models\ViewModels\CategoryController\IndexViewModel;
 use Models\ViewModels\CategoryController\ShowViewModel;
 use Models\ViewModels\ProductController\ProductViewModel;
 
-class CategoryController extends BaseController {
+class CategoryController extends BaseController
+{
 
     /**
      * @Get
      * @Route("Categories/{category:string}/{start:int}/{end:int}")
      */
-    public function show(){
+    public function show()
+    {
         $category = $this->input->getForDb(1);
         $skip = $this->input->get(2);
         $take = $this->input->get(3);
@@ -51,7 +55,24 @@ class CategoryController extends BaseController {
         $this->view->displayLayout('Layouts.products');
     }
 
-    public function index(){
+    public function index()
+    {
+        $this->db->prepare("SELECT
+                            name
+                            FROM categories
+                            ORDER BY name");
+        $response = $this->db->execute()->fetchAllAssoc();
+        $categories = array();
+        foreach ($response as $c) {
+            $category = new CategoryViewModel($c['name']);
+            $categories[] = $category;
+        }
+
+        $this->view->appendToLayout('header', 'header');
+        $this->view->appendToLayout('meta', 'meta');
+        $this->view->appendToLayout('body', new IndexViewModel($categories));
+        $this->view->appendToLayout('footer', 'footer');
+        $this->view->displayLayout('Layouts.categories');
 
     }
 
