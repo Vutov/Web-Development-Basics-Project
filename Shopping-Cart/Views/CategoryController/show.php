@@ -36,11 +36,13 @@
             echo 3;
         }
         ?>">Previous</a></li>
-    <li><a href="/categories/<?= $this->_viewBag['body']->getCategory() ?>/<?php
-        $start = $this->_viewBag['body']->getStart();
-        echo $start += 3;
-        ?>/<?php
-        $end = $this->_viewBag['body']->getEnd();
-        echo $end += 3;
-        ?>"> Next</a></li>
+    <?php if ($this->_viewBag['body']->getProducts()) : ?>
+        <li><a href="/categories/<?= $this->_viewBag['body']->getCategory() ?>/<?php
+            $start = $this->_viewBag['body']->getStart();
+            echo $start += 3;
+            ?>/<?php
+            $end = $this->_viewBag['body']->getEnd();
+            echo $end += 3;
+            ?>"> Next</a></li>
+    <?php endif; ?>
 </ul>

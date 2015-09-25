@@ -34,11 +34,13 @@ foreach ($this->_viewBag['body']->getProducts() as $product) :?>
             echo 3;
         }
         ?>">Previous</a></li>
-    <li><a href="/products/<?php
-        $start = $this->_viewBag['body']->getStart();
-        echo $start += 3;
-        ?>/<?php
-        $end = $this->_viewBag['body']->getEnd();
-        echo $end += 3;
-        ?>"> Next</a></li>
+    <?php if ($this->_viewBag['body']->getProducts()) : ?>
+        <li><a href="/products/<?php
+            $start = $this->_viewBag['body']->getStart();
+            echo $start += 3;
+            ?>/<?php
+            $end = $this->_viewBag['body']->getEnd();
+            echo $end += 3;
+            ?>"> Next</a></li>
+    <?php endif; ?>
 </ul>
