@@ -31,14 +31,14 @@
                             ->initLink()->setAttribute('href', '/products/0/3')->setValue('All products')->create()
                             ->render(); ?></li>
                     <li><?php \FTS\FormViewHelper::init()
-                            ->initLink()->setAttribute('href', '/categories/0/3')->setValue('All categories')->create()
+                            ->initLink()->setAttribute('href', '/categories')->setValue('All categories')->create()
                             ->render(); ?></li>
                     <li><?php \FTS\FormViewHelper::init()
-                            ->initLink()->setAttribute('href', '/api')->setValue('API')->create()
-                            ->render(); ?></li>
-                    <li><?php \FTS\FormViewHelper::init()
-                            ->initLink()->setAttribute('href', '/api/ajax')->setValue('Ajax test')->create()
-                            ->render(); ?></li>
+                            ->initBoostrapDropDown('Api', 'li')
+                            ->setDropDownLi('/api', 'API')
+                            ->setDropDownLi('/api/ajax', 'Ajax test')
+                            ->create()->render();
+                        ?></li>
                 </ul>
                 <?php if (\FTS\App::getInstance()->isLogged()) : ?>
                     <ul class="nav navbar-nav navbar-right">

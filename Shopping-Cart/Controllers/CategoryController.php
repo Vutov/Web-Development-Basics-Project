@@ -51,4 +51,8 @@ class CategoryController extends BaseController {
         $this->view->displayLayout('Layouts.products');
     }
 
+    public function index(){
+
+    }
+
 }

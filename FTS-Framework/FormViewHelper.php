@@ -124,12 +124,12 @@ class FormViewHelper
         return $this;
     }
 
-    public function initBoostrapDropDown($value)
+    public function initBoostrapDropDown($value, $type)
     {
-        $this->_elements[$this->_currentElementId]['opening tag'] = '<div class="dropdown">
-<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">' . $value .
-            '<span class="caret"></span></button><ul class="dropdown-menu">';
-        $this->_elements[$this->_currentElementId]['closing tag'] = ' </ul></div>';
+        $this->_elements[$this->_currentElementId]['opening tag'] = ' <' . $type . ' class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' . $value . ' <span class="caret"></span></a>
+          <ul class="dropdown-menu">';
+        $this->_elements[$this->_currentElementId]['closing tag'] = ' </ul></' . $type . '>';
 
         return $this;
     }

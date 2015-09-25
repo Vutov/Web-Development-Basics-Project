@@ -33,6 +33,10 @@ $cnf['*'][CONTROLLERS]['user'][METHODS]['logout'] = 'logout';
 $cnf['*'][CONTROLLERS]['api'][GOES_TO] = 'api';
 $cnf['*'][CONTROLLERS]['api'][METHODS]['index'] = 'index';
 
+// Categories
+$cnf['*'][CONTROLLERS]['categories'][GOES_TO] = 'index';
+$cnf['*'][CONTROLLERS]['categories'][METHODS]['index'] = 'index';
+
 
 // Administration panel
 $cnf['Admin/users'][NS] = 'Controllers\something';
