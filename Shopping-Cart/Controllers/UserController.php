@@ -51,6 +51,11 @@ class UserController extends BaseController
         if ($model->getPassword() !== $model->getConfirm()) {
             throw new \Exception("Password don't match Confirm Password!", 400);
         }
+
+        if (!preg_match('/^[\w]{3,15}$/', $model->getUsername())) {
+            throw new \Exception("Invalid username format!", 400);
+        }
+
         // Check for already registered with the same name
         $this->db->prepare("SELECT id
                                 FROM users
@@ -86,7 +91,7 @@ class UserController extends BaseController
      */
     public function profile()
     {
-        $username = $this->input->get(1);
+        $username = $this->input->getForDb(1);
         $this->db->prepare("SELECT id, isAdmin
                                 FROM users
                                 WHERE username = ?",
