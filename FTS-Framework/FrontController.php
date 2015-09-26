@@ -359,15 +359,13 @@ class FrontController
             if (!SimpleDB::isAdmin()) {
                 throw new \Exception("Admin access only!", 401);
             }
-
-            return;
         }
 
         $roleRegex = '/@role\s*\("(.+)"\)/';
         preg_match($roleRegex, $doc, $matches);
         if ($matches[1]) {
             $role = $matches[1];
-            if (!SimpleDB::hasRole($role)) {
+            if (!SimpleDB::hasRole($role) && !SimpleDB::isAdmin()) {
                 $role = ucfirst($role);
                 throw new \Exception("$role access only!", 401);
             }
