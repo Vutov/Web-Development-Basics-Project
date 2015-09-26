@@ -26,10 +26,6 @@ Product categories Done <br />
 Listing products in categories Done <br />
 Add to cart functionality Done <br />
 Promotions for certain time interval Not started <br />
-Promotions on certain products (% discount) Not started <br />
-Promotions on all products (% discount)  Not started <br />
-Promotions on certain categories (% discount) Not started <br />
-Promotions for certain user criteria (registered more than X days, have more than X cash, etc…) Not started <br />
 Quantity visibility Done <br />
 Checkout the cart  Done <br />
 View cart Done <br />
@@ -42,7 +38,7 @@ Editors can reorder products  Not started <br />
 Administrators have full access on products, categories, users and their possessions  Done <br />
 Bonus functionalities:
 Managing the cart  Done <br />
-Users can sell products and put them promotions  Not started <br />
-Users can make comments on products (review)  Not started <br />
+Users can sell products and put them promotions  Done <br />
+Users can make comments on products (review)  Done <br />
 Administrators: ban users  Not started <br />
 Administrators: ban IP’s  Not started <br />

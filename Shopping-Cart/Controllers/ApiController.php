@@ -31,7 +31,8 @@ class ApiController extends BaseController
      * @Get
      * @Route("api/ajax")
      */
-    public function ajax(){
+    public function ajax()
+    {
         $this->view->appendToLayout('body', 'ApiController.ajax');
         $this->view->appendToLayout('header', 'header');
         $this->view->appendToLayout('meta', 'meta');
@@ -73,7 +74,13 @@ class ApiController extends BaseController
                 foreach ($namespace['controllers'] as $controller => $methods) {
                     foreach ($methods['methods'] as $newFunctionRoute => $originalFunction) {
                         $file = App::getInstance()->getConfig()->app['namespaces']['Controllers'];
-                        $file = $file . ucfirst($methods['goesTo']) . 'Controller';
+                        if ($area !== '*') {
+                            $file .= $area;
+                            $file = $file . '\\' . ucfirst($methods['goesTo']) . 'Controller';
+                        } else {
+                            $file = $file . ucfirst($methods['goesTo']) . 'Controller';
+                        }
+
                         $file = str_replace('../', '', $file);
                         $file = str_replace('/', '\\', $file);
                         $reflection = new \ReflectionMethod($file, $originalFunction);

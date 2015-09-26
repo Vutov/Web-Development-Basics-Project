@@ -47,7 +47,12 @@ $cnf['Admin/users'][NS] = 'Controllers\something';
 $cnf['Admin'][NS] = 'Controllers\Admin';
 $cnf['Admin'][CONTROLLERS]['index'][GOES_TO] = 'index';
 $cnf['Admin'][CONTROLLERS]['index'][METHODS]['index'] = 'index';
-$cnf['Admin'][CONTROLLERS]['index'][METHODS]['new'] = 'create';
-$cnf['Admin'][CONTROLLERS]['index'][REQUEST_METHOD]['new'] = 'post';
+$cnf['Admin'][CONTROLLERS]['index'][REQUEST_METHOD]['index'] = 'get';
+$cnf['Admin'][CONTROLLERS]['index'][METHODS]['edit'] = 'edit';
+$cnf['Admin'][CONTROLLERS]['index'][REQUEST_METHOD]['edit'] = 'get';
+$cnf['Admin'][CONTROLLERS]['index'][METHODS]['add'] = 'add';
+$cnf['Admin'][CONTROLLERS]['index'][REQUEST_METHOD]['add'] = 'post';
+$cnf['Admin'][CONTROLLERS]['index'][METHODS]['remove'] = 'remove';
+$cnf['Admin'][CONTROLLERS]['index'][REQUEST_METHOD]['remove'] = 'delete';
 
 return $cnf;
