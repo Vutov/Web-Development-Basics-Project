@@ -25,3 +25,15 @@ footer {
 .colorSmoke{
     color: whitesmoke;
 }
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img{
+    width: 70%; /* use this, or not */
+    margin: auto;
+    opacity: 0.8;
+    border-radius: 4px;
+}
+
+.carousel-inner > .carousel-control > .right {
+    background-image: none;
+}
