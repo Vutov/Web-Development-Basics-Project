@@ -7,6 +7,7 @@ use FTS\BaseController;
 use FTS\Normalizer;
 use Models\BindingModels\SellProductBindingModel;
 use Models\ViewModels\ProductController\IndexViewModel;
+use Models\ViewModels\ProductController\ProductMessage;
 use Models\ViewModels\ProductController\ProductViewModel;
 
 class ProductController extends BaseController
@@ -72,13 +73,34 @@ class ProductController extends BaseController
             throw new \Exception("No product with id '$id'!", 404);
         }
 
+        $this->db->prepare("SELECT
+                            u.username, u.isAdmin, u.isEditor, r.message
+                            FROM reviews r
+                            JOIN products p
+                            ON r.productId = p.id
+                            JOIN users u
+                            ON r.userId = u.id
+                            WHERE p.id = ?",
+            array($id));
+        $reviews = $this->db->execute()->fetchAllAssoc();
+        $givenReviews = array();
+        foreach ($reviews as $r) {
+            $givenReviews[] = new ProductMessage(
+                $r['username'],
+                $r['message'],
+                Normalizer::normalize($r['isAdmin'], 'noescape|bool'),
+                Normalizer::normalize($r['isEditor'], 'noescape|bool')
+            );
+        }
+
         $product = new ProductViewModel(
             Normalizer::normalize($response['id'], 'noescape|int'),
             $response['name'],
             $response['description'],
             Normalizer::normalize($response['price'], 'noescape|double'),
             Normalizer::normalize($response['quantity'], 'noescape|int'),
-            $response['category']
+            $response['category'],
+            $givenReviews
         );
 
 
