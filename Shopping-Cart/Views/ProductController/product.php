@@ -30,7 +30,7 @@
                     ['class' => 'form-group', 'style' => 'display: none', 'id' => $this->_viewBag['body']->getId()])
                     ->initLabel()->setAttribute('for', 'message')->setValue('Message')->create()
                     ->initTextArea()->setAttribute('name', 'message')->setAttribute('class', 'form-control input-md')->setAttribute('id', 'message')->create()
-                    ->initSubmit()->setAttribute('value', 'Sent')->setAttribute('class', 'btn btn-primary btn-sm col-sm-1 col-sm-offset-5')->create()
+                    ->initSubmit()->setAttribute('value', 'Send')->setAttribute('class', 'btn btn-primary btn-sm col-sm-1 col-sm-offset-5')->create()
                     ->render(true);
             } else { ?>
                 <div id="btn" class="panel panel-primary btn btn-default"
@@ -42,7 +42,7 @@
                     ['class' => 'form-group', 'style' => 'display: none', 'id' => $this->_viewBag['body']->getId()])
                     ->initLabel()->setAttribute('for', 'message')->setValue('Message')->create()
                     ->initTextArea()->setAttribute('name', 'message')->setAttribute('class', 'form-control input-md')->setAttribute('id', 'message')->create()
-                    ->initSubmit()->setAttribute('value', 'Sent')->setAttribute('class', 'btn btn-primary btn-sm col-sm-1 col-sm-offset-5')->create()
+                    ->initSubmit()->setAttribute('value', 'Send')->setAttribute('class', 'btn btn-primary btn-sm col-sm-1 col-sm-offset-5')->create()
                     ->render(true);
             }
         }

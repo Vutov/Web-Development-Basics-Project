@@ -3,8 +3,8 @@ if (!$this->_viewBag['body']->getProducts()) :?>
     <h1 class="alert alert-danger text-center">Your cart is empty!</h1>
 <?php else: ?>
     <h1 class="row text-center">
-        <div class="col-sm-4">Your balance: <?= $this->_viewBag['body']->getMoney() ?>lv</div>
-        <div class="col-sm-4">Total price: <?= $this->_viewBag['body']->getTotalSum() ?>lv</div>
+        <div class="col-sm-4 colorSmoke">Your balance: <?= $this->_viewBag['body']->getMoney() ?>lv</div>
+        <div class="col-sm-4 colorSmoke">Total price: <?= $this->_viewBag['body']->getTotalSum() ?>lv</div>
         <?php
         \FTS\FormViewHelper::init()->initForm('/cart/checkout')
             ->initSubmit()->setAttribute('value', 'Checkout')->setAttribute('class', 'btn btn-default col-sm-2 col-sm-offset-1')
