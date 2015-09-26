@@ -33,6 +33,11 @@
                     <li><?php \FTS\FormViewHelper::init()
                             ->initLink()->setAttribute('href', '/categories')->setValue('All categories')->create()
                             ->render(); ?></li>
+                    <?php if (\FTS\App::getInstance()->isLogged()) : ?>
+                        <li><?php \FTS\FormViewHelper::init()
+                                ->initLink()->setAttribute('href', '/products/sell')->setValue('Sell product')->create()
+                                ->render() ?></li>
+                    <?php endif; ?>
                     <li><?php \FTS\FormViewHelper::init()
                             ->initBoostrapDropDown('Api', 'li')
                             ->setDropDownLi('/api', 'API')

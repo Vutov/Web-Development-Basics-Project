@@ -5,6 +5,7 @@ namespace Controllers;
 
 use FTS\BaseController;
 use FTS\Normalizer;
+use Models\BindingModels\SellProductBindingModel;
 use Models\ViewModels\ProductController\IndexViewModel;
 use Models\ViewModels\ProductController\ProductViewModel;
 
@@ -86,5 +87,64 @@ class ProductController extends BaseController
         $this->view->appendToLayout('body', $product);
         $this->view->appendToLayout('footer', 'footer');
         $this->view->displayLayout('Layouts.product');
+    }
+
+    /**
+     * @Route("products/sell")
+     * @Authorize
+     */
+    public function sell()
+    {
+        $this->view->appendToLayout('header', 'header');
+        $this->view->appendToLayout('meta', 'meta');
+        $this->view->appendToLayout('body', 'sell');
+        $this->view->appendToLayout('footer', 'footer');
+        $this->view->displayLayout('Layouts.sellProduct');
+    }
+
+    /**
+     * @Route("product/add")
+     * @Post
+     * @Authorize
+     * @param SellProductBindingModel $model
+     * @throws \Exception
+     */
+    public function add(SellProductBindingModel $model)
+    {
+        $this->db->prepare("SELECT
+                            id, name
+                            FROM categories
+                            WHERE name LIKE ?",
+            array($model->getCategory()));
+        $response = $this->db->execute()->fetchRowAssoc();
+        $categoryId = Normalizer::normalize($response['id'], 'noescape|int');
+        if (!$response) {
+            $name = $model->getCategory();
+            throw new \Exception("No category '$name'!", 404);
+        }
+
+        $this->db->prepare("INSERT
+                            INTO products
+                            (name, description, price, quantity)
+                            VALUES (?, ?, ?, ?)",
+            array($model->getName(), $model->getDescription(), $model->getPrice(), 1));
+        $this->db->execute();
+
+        $this->db->prepare("SELECT
+                            id
+                            FROM products
+                            WHERE name = ? AND description = ?",
+            array($model->getName(), $model->getDescription()));
+        $response = $this->db->execute()->fetchRowAssoc();
+        $productId = Normalizer::normalize($response['id'], 'noescape|int');
+
+        $this->db->prepare("INSERT
+                            INTO products_categories
+                            (productId, categoryId)
+                            VALUES (?, ?)",
+            array($productId, $categoryId));
+        $this->db->execute();
+
+        $this->redirect("/product/$productId/show");
     }
 }
