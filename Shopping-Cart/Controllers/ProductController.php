@@ -18,7 +18,7 @@ class ProductController extends BaseController
     public function index()
     {
         $skip = $this->input->get(1);
-        $take = $this->input->get(2);
+        $take = $this->input->get(2) - $skip;
         $this->db->prepare("SELECT
                             p.id, p.name, p.description, p.price, p.quantity, c.name as category
                             FROM products p
@@ -45,7 +45,7 @@ class ProductController extends BaseController
 
         $this->view->appendToLayout('header', 'header');
         $this->view->appendToLayout('meta', 'meta');
-        $this->view->appendToLayout('body', new IndexViewModel($products, $skip, $take));
+        $this->view->appendToLayout('body', new IndexViewModel($products, $skip, $take + $skip));
         $this->view->appendToLayout('footer', 'footer');
         $this->view->displayLayout('Layouts.products');
     }

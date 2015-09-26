@@ -5,7 +5,7 @@ if (!$this->_viewBag['body']->getProducts()) :?>
     <h1 class="row text-center">
         <div class="col-sm-4">Your balance: <?= $this->_viewBag['body']->getMoney() ?>lv</div>
         <div class="col-sm-4">Total price: <?= $this->_viewBag['body']->getTotalSum() ?>lv</div>
-        <div class="col-sm-4">checkout</div>
+        <a href="/cart/checkout" class="btn btn-default col-sm-2 col-sm-offset-1">Checkout</a>
     </h1>
 <?php endif; ?>
 <?php foreach ($this->_viewBag['body']->getProducts() as $product) : ?>

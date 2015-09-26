@@ -99,4 +99,13 @@ class CartController extends BaseController
 
         $this->redirect('/cart');
     }
+
+    /**
+     * @Authorize
+     * @Post
+     * @Route("cart/checkout")
+     */
+    public function checkout(){
+
+    }
 }

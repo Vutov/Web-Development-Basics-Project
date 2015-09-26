@@ -92,7 +92,7 @@ class UserController extends BaseController
     public function profile()
     {
         $username = $this->input->getForDb(1);
-        $this->db->prepare("SELECT id, isAdmin
+        $this->db->prepare("SELECT id, isAdmin, Cash, isEditor
                                 FROM users
                                 WHERE username = ?",
             array($username));
@@ -102,10 +102,12 @@ class UserController extends BaseController
         }
 
         $isAdmin = $response['isAdmin'];
+        $isEditor = $response['isEditor'];
+        $balance = $response['Cash'];
 
         $this->view->appendToLayout('header', 'header');
         $this->view->appendToLayout('meta', 'meta');
-        $this->view->appendToLayout('body', new ProfileViewModel($username, $isAdmin));
+        $this->view->appendToLayout('body', new ProfileViewModel($username, $isAdmin, $balance, $isEditor));
         $this->view->appendToLayout('footer', 'footer');
         $this->view->displayLayout('Layouts.userProfile');
     }

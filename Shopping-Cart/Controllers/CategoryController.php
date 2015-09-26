@@ -21,7 +21,7 @@ class CategoryController extends BaseController
     {
         $category = $this->input->getForDb(1);
         $skip = $this->input->get(2);
-        $take = $this->input->get(3);
+        $take = $this->input->get(3) - $skip;
         $this->db->prepare("SELECT
                             p.id, p.name, p.description, p.price, p.quantity, c.name as category
                             FROM products p
@@ -51,7 +51,7 @@ class CategoryController extends BaseController
 
         $this->view->appendToLayout('header', 'header');
         $this->view->appendToLayout('meta', 'meta');
-        $this->view->appendToLayout('body', new ShowViewModel($products, $skip, $take, $category));
+        $this->view->appendToLayout('body', new ShowViewModel($products, $skip, $take + $skip, $category));
         $this->view->appendToLayout('footer', 'footer');
         $this->view->displayLayout('Layouts.products');
     }
