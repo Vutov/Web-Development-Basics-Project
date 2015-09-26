@@ -359,6 +359,8 @@ class FrontController
             if (!SimpleDB::isAdmin()) {
                 throw new \Exception("Admin access only!", 401);
             }
+
+            return;
         }
 
         $roleRegex = '/@role\s*\("(.+)"\)/';

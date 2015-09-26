@@ -39,7 +39,7 @@ Editors can add/delete products  Not started <br />
 Editors can move products between categories  Not started <br />
 Editors can change quantities  Not started <br />
 Editors can reorder products  Not started <br />
-Administrators have full access on products, categories, users and their possessions  Not started <br />
+Administrators have full access on products, categories, users and their possessions  Done <br />
 Bonus functionalities:
 Managing the cart  Done <br />
 Users can sell products and put them promotions  Not started <br />

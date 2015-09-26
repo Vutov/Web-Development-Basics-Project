@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c50f8de0-f4e1-42b0-847c-dd3427fb428a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shopping-Cart/Controllers/CartController.php" afterPath="$PROJECT_DIR$/Shopping-Cart/Controllers/CartController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FTS-Framework/FrontController.php" afterPath="$PROJECT_DIR$/FTS-Framework/FrontController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FTS-Framework/DB/SimpleDB.php" afterPath="$PROJECT_DIR$/FTS-Framework/DB/SimpleDB.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shopping-Cart/Views/CartController/index.php" afterPath="$PROJECT_DIR$/Shopping-Cart/Views/CartController/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Web-Development-Basics-Project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,8 +37,18 @@
       <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49532712" vertical-offset="230" max-vertical-offset="810">
-              <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.635514" vertical-offset="275" max-vertical-offset="810">
+              <caret line="41" column="91" selection-start-line="41" selection-start-column="91" selection-end-line="41" selection-end-column="91" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FrontController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FTS-Framework/FrontController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-18.583334" vertical-offset="5164" max-vertical-offset="5700">
+              <caret line="375" column="1" selection-start-line="375" selection-start-column="1" selection-end-line="375" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -91,7 +98,6 @@
         <option value="$PROJECT_DIR$/Shopping-Cart/Views/ProductController/index.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Views/Layouts/product.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Views/ProductController/product.php" />
-        <option value="$PROJECT_DIR$/FTS-Framework/FrontController.php" />
         <option value="$PROJECT_DIR$/FTS-Framework/Routers/DefaultRouter.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Controllers/CategoryController.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Controllers/ProductController.php" />
@@ -105,6 +111,7 @@
         <option value="$PROJECT_DIR$/Shopping-Cart/Views/Layouts/checkout.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Views/CartController/checkout.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Controllers/CartController.php" />
+        <option value="$PROJECT_DIR$/FTS-Framework/FrontController.php" />
         <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
@@ -157,6 +164,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Web-Development-Basics-Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Web-Development-Basics-Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Web-Development-Basics-Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FTS-Framework" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -561,14 +582,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FTS-Framework/FrontController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.875" vertical-offset="1020" max-vertical-offset="5670">
-          <caret line="88" column="40" selection-start-line="88" selection-start-column="40" selection-end-line="88" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FTS-Framework/Routers/DefaultRouter.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="405">
@@ -719,10 +732,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/FTS-Framework/FrontController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.583334" vertical-offset="5164" max-vertical-offset="5700">
+          <caret line="375" column="1" selection-start-line="375" selection-start-column="1" selection-end-line="375" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49532712" vertical-offset="230" max-vertical-offset="810">
-          <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.635514" vertical-offset="275" max-vertical-offset="810">
+          <caret line="41" column="91" selection-start-line="41" selection-start-column="91" selection-end-line="41" selection-end-column="91" />
           <folding />
         </state>
       </provider>
