@@ -31,7 +31,7 @@ Promotions on all products (% discount)  Not started <br />
 Promotions on certain categories (% discount) Not started <br />
 Promotions for certain user criteria (registered more than X days, have more than X cash, etc…) Not started <br />
 Quantity visibility Done <br />
-Checkout the cart  Not started <br />
+Checkout the cart  Done <br />
 View cart Done <br />
 Users can sell bought products  Not started <br />
 Editors can add/delete product categories  Not started <br />
