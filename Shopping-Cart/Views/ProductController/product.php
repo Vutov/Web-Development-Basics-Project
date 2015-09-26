@@ -13,7 +13,7 @@
         </div>
         <?php if (\FTS\App::getInstance()->isLogged()) : ?>
             <div id="btn" class="panel panel-primary btn btn-default"
-                 onclick="sentAjax(<?= $this->_viewBag['body']->getId() ?>)"
+                 onclick="sentCart(<?= $this->_viewBag['body']->getId() ?>)"
                 >Add to cart
             </div>
         <?php else: ?>
@@ -21,17 +21,3 @@
         <?php endif ?>
     </div>
 </div>
-
-<script>
-    function sentAjax(id) {
-        $.ajax({
-            method: "GET",
-            url: "/cart/add/" + id,
-            data: {}
-        }).done(
-            function () {
-                window.location.replace('/cart')
-            }
-        );
-    }
-</script>

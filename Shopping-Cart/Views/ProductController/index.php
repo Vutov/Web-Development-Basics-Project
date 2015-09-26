@@ -21,8 +21,25 @@ foreach ($this->_viewBag['body']->getProducts() as $product) :?>
                      onclick="sentAjax(<?= $product->getId() . ', \'' . $product->getName() . '\'' ?>)"
                     >Add to cart
                 </div>
+                <div id="btn" class="panel panel-primary btn btn-default"
+                     onclick="enableReviewForm(<?= $product->getId()?>)"
+                    >Write review
+                </div>
+                <a href="/product/<?= $product->getId() ?>/show" id="btn" class="panel panel-primary btn btn-default">Show
+                    reviews</a>
+                <?php
+                \FTS\FormViewHelper::init()->initForm('/review/add/' . $product->getId(),
+                    ['class' => 'form-group', 'style' => 'display: none', 'id' => $product->getId()])
+                    ->initLabel()->setAttribute('for', 'message')->setValue('Message')->create()
+                    ->initTextArea()->setAttribute('name', 'message')->setAttribute('class', 'form-control input-md')->setAttribute('id', 'message')->create()
+                    ->initSubmit()->setAttribute('value', 'Sent')->setAttribute('class', 'btn btn-primary btn-sm col-sm-1 col-sm-offset-5')->create()
+                    ->render(true);
+                ?>
             <?php else: ?>
                 <a href="/home/login" class="panel panel-primary btn btn-default">Login to add to cart!</a>
+                <a href="/home/login" class="panel panel-primary btn btn-default">Login to write review!</a>
+                <a href="/product/<?= $product->getId() ?>/show" id="btn" class="panel panel-primary btn btn-default">Show
+                    reviews</a>
             <?php endif?>
         </div>
     </div>
@@ -54,18 +71,3 @@ foreach ($this->_viewBag['body']->getProducts() as $product) :?>
             ?>"> Next</a></li>
     <?php endif; ?>
 </ul>
-
-<script>
-    function sentAjax(id, name) {
-        $.ajax({
-            method: "GET",
-            url: "/cart/add/" + id,
-            data: {}
-        }).done(
-            function (msg) {
-                document.getElementById("#").style.display = 'block';
-                document.getElementById("#").innerHTML = '"' + name + '" added to cart!';
-            }
-        );
-    }
-</script>

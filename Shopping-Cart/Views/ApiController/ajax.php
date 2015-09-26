@@ -1,8 +1,8 @@
 <h1>Ajax test</h1>
-<button id="btn" class="btn btn-default" onclick="sentAjax()">Submit Ajax</button>
+<button id="btn" class="btn btn-default" onclick="sent()">Submit Ajax</button>
 <div id="#"></div>
 <script>
-    function sentAjax() {
+    function sent() {
         <?php
         \FTS\AjaxViewHelper::init()->initForm("/api/jsonroutes", "put")->initCallback("function( msg ) {
            document.getElementById(\"#\").innerHTML = msg;
