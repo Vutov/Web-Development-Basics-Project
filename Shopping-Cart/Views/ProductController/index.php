@@ -7,11 +7,8 @@ if (!$this->_viewBag['body']->getProducts()) :?>
 foreach ($this->_viewBag['body']->getProducts() as $product) :?>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title"><a href="/product/<?= $product->getId() ?>/show"><?= $product->getName() ?></a>
-                <?php
-                if (\FTS\App::getInstance()->isAdmin() || \FTS\App::getInstance()->isEditor()) :?>
-                    <a href="/product/<?= $product->getId() ?>/edit" class="btn btn-link">Edit</a>
-                <?php endif;?>
+            <h3 class="panel-title">
+                <a href="/product/<?= $product->getId() ?>/show"><?= $product->getName() ?></a>
             </h3>
         </div>
         <div class="panel-body">
@@ -32,20 +29,30 @@ foreach ($this->_viewBag['body']->getProducts() as $product) :?>
                 </div>
                 <a href="/product/<?= $product->getId() ?>/show" id="btn" class="panel panel-primary btn btn-default">Show
                     reviews</a>
-                <?php
-                \FTS\FormViewHelper::init()->initForm('/review/add/' . $product->getId(),
-                    ['class' => 'form-group', 'style' => 'display: none', 'id' => $product->getId()])
-                    ->initLabel()->setAttribute('for', 'message')->setValue('Message')->create()
-                    ->initTextArea()->setAttribute('name', 'message')->setAttribute('class', 'form-control input-md')->setAttribute('id', 'message')->create()
-                    ->initSubmit()->setAttribute('value', 'Send')->setAttribute('class', 'btn btn-primary btn-sm col-sm-1 col-sm-offset-5')->create()
-                    ->render(true);
-                ?>
             <?php else: ?>
                 <a href="/home/login" class="panel panel-primary btn btn-default">Login to add to cart!</a>
                 <a href="/home/login" class="panel panel-primary btn btn-default">Login to write review!</a>
                 <a href="/product/<?= $product->getId() ?>/show" id="btn" class="panel panel-primary btn btn-default">Show
                     reviews</a>
             <?php endif?>
+            <?php
+            if (\FTS\App::getInstance()->isAdmin() || \FTS\App::getInstance()->isEditor()) :?>
+                <a href="/product/<?= $product->getId() ?>/edit" class="panel panel-primary btn btn-default">Edit</a>
+                <?php
+                \FTS\FormViewHelper::init()
+                    ->initForm('/product/' . $product->getId() . '/delete', ['style' => 'display: inline;'], 'delete')
+                    ->initSubmit()->setAttribute('value', 'Delete')->setAttribute('class', 'panel panel-primary btn btn-default')->create()
+                    ->render(true);
+                ?>
+            <?php endif;?>
+            <?php if (\FTS\App::getInstance()->isLogged()) {
+                \FTS\FormViewHelper::init()->initForm('/review/add/' . $product->getId(),
+                    ['class' => 'form-group', 'style' => 'display: none', 'id' => $product->getId()])
+                    ->initLabel()->setAttribute('for', 'message')->setValue('Message')->create()
+                    ->initTextArea()->setAttribute('name', 'message')->setAttribute('class', 'form-control input-md')->setAttribute('id', 'message')->create()
+                    ->initSubmit()->setAttribute('value', 'Send')->setAttribute('class', 'btn btn-primary btn-sm col-sm-1 col-sm-offset-5')->create()
+                    ->render(true);
+            }?>
         </div>
     </div>
 <?php endforeach; ?>

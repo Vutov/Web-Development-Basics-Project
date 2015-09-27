@@ -270,4 +270,21 @@ class ProductController extends BaseController
         $this->db->execute();
         $this->redirect("/product/$id/show");
     }
+
+    /**
+     * @Delete
+     * @Role("Editor")
+     * @Route("product/{id:int}/delete")
+     * @throws \Exception
+     */
+    public function delete()
+    {
+        $id = $this->input->get(1);
+        $this->db->prepare("DELETE FROM products_categories WHERE productId =?", array($id))->execute();
+        $this->db->prepare("DELETE FROM products
+                                WHERE id = ?",
+            array($id));
+        $this->db->execute();
+        $this->redirect("/");
+    }
 }

@@ -2,10 +2,6 @@
     <div class="panel-heading">
         <h3 class="panel-title"><a
                 href="/product/<?= $this->_viewBag['body']->getId() ?>/show"><?= $this->_viewBag['body']->getName() ?></a>
-            <?php
-            if (\FTS\App::getInstance()->isAdmin() || \FTS\App::getInstance()->isEditor()) :?>
-                <a href="/product/<?= $this->_viewBag['body']->getId()?>/edit" class="btn btn-link">Edit</a>
-            <?php endif;?>
         </h3>
     </div>
     <div class="panel-body">
@@ -49,6 +45,15 @@
                     ->initSubmit()->setAttribute('value', 'Send')->setAttribute('class', 'btn btn-primary btn-sm col-sm-1 col-sm-offset-5')->create()
                     ->render(true);
             }
+            if (\FTS\App::getInstance()->isAdmin() || \FTS\App::getInstance()->isEditor()) :?>
+                <a href="/product/<?= $this->_viewBag['body']->getId() ?>/edit"
+                   class="panel panel-primary btn btn-default">Edit</a>
+                <?php
+                \FTS\FormViewHelper::init()
+                    ->initForm('/product/' . $this->_viewBag['body']->getId() . '/delete', ['style' => 'display: inline;'], 'delete')
+                    ->initSubmit()->setAttribute('value', 'Delete')->setAttribute('class', 'panel panel-primary btn btn-default')->create()
+                    ->render(true);
+            endif;
         }
         foreach ($this->_viewBag['body']->getGivenReviews() as $review) : ?>
             <div class="panel  panel-primary">
