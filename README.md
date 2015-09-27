@@ -18,14 +18,14 @@ Upload files ViewHelper Done <br />
 Help page that scans all routes  Done <br />
 </p>
 <h2>Project: <br /></h2>
-Required functionalities:
+Required functionalities: DONE <br />
 User registration / login and user profiles. Done <br />
 User roles (user, administrator editor) Done <br />
 Initial cash for users Done <br />
 Product categories Done <br />
 Listing products in categories Done <br />
 Add to cart functionality Done <br />
-Promotions for certain time interval Not started <br />
+Promotions for certain time interval Done <br />
 Quantity visibility Done <br />
 Checkout the cart  Done <br />
 View cart Done <br />
