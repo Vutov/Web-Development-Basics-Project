@@ -12,8 +12,9 @@ class ProductViewModel
     private $quantity;
     private $category;
     private $givenReviews;
+    private $promotion;
 
-    public function __construct($id, $name, $description, $price, $quantity, $category, $givenReviews = array())
+    public function __construct($id, $name, $description, $price, $quantity, $category,$promotion = null, $givenReviews = array())
     {
         $this->id = $id;
         $this->name = $name;
@@ -21,6 +22,7 @@ class ProductViewModel
         $this->price = $price;
         $this->quantity = $quantity;
         $this->category = $category;
+        $this->promotion = $promotion;
         $this->givenReviews = $givenReviews;
     }
 
@@ -58,5 +60,13 @@ class ProductViewModel
     public function getGivenReviews()
     {
         return $this->givenReviews;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPromotion()
+    {
+        return $this->promotion;
     }
 }

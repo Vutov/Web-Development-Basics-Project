@@ -39,13 +39,29 @@ class ProductController extends BaseController
         $response = $this->db->execute()->fetchAllAssoc();
         $products = array();
         foreach ($response as $p) {
+            $productId = Normalizer::normalize($p['id'], 'noescape|int');
+            $this->db->prepare("SELECT
+                            percentage
+                            FROM promotions
+                            WHERE productId = ? AND NOW() < endDate",
+                array($productId));
+            $promos = $this->db->execute()->fetchAllAssoc();
+            $bestPromo = 0;
+            foreach ($promos as $promo) {
+                $currentPromo = Normalizer::normalize($promo['percentage'], 'noescape|double');
+                if ($currentPromo > $bestPromo) {
+                    $bestPromo = $currentPromo;
+                };
+            }
+
             $product = new ProductViewModel(
-                Normalizer::normalize($p['id'], 'noescape|int'),
+                $productId,
                 $p['name'],
                 $p['description'],
                 Normalizer::normalize($p['price'], 'noescape|double'),
                 Normalizer::normalize($p['quantity'], 'noescape|int'),
-                $p['category']);
+                $p['category'],
+                $bestPromo);
             $products[] = $product;
         }
 
@@ -106,6 +122,20 @@ class ProductController extends BaseController
             );
         }
 
+        $this->db->prepare("SELECT
+                            percentage
+                            FROM promotions
+                            WHERE productId = ? AND NOW() < endDate",
+            array($id));
+        $promos = $this->db->execute()->fetchAllAssoc();
+        $bestPromo = 0;
+        foreach ($promos as $promo) {
+            $currentPromo = Normalizer::normalize($promo['percentage'], 'noescape|double');
+            if ($currentPromo > $bestPromo) {
+                $bestPromo = $currentPromo;
+            };
+        }
+
         $product = new ProductViewModel(
             Normalizer::normalize($response['id'], 'noescape|int'),
             $response['name'],
@@ -113,6 +143,7 @@ class ProductController extends BaseController
             Normalizer::normalize($response['price'], 'noescape|double'),
             $quantity,
             $response['category'],
+            $bestPromo,
             $givenReviews
         );
 

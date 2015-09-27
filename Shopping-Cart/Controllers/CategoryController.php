@@ -36,13 +36,29 @@ class CategoryController extends BaseController
         $response = $this->db->execute()->fetchAllAssoc();
         $products = array();
         foreach ($response as $p) {
+            $productId = Normalizer::normalize($p['id'], 'noescape|int');
+            $this->db->prepare("SELECT
+                            percentage
+                            FROM promotions
+                            WHERE productId = ? AND NOW() < endDate",
+                array($productId));
+            $promos = $this->db->execute()->fetchAllAssoc();
+            $bestPromo = 0;
+            foreach ($promos as $promo) {
+                $currentPromo = Normalizer::normalize($promo['percentage'], 'noescape|double');
+                if ($currentPromo > $bestPromo) {
+                    $bestPromo = $currentPromo;
+                };
+            }
+
             $product = new ProductViewModel(
                 Normalizer::normalize($p['id'], 'noescape|int'),
                 $p['name'],
                 $p['description'],
                 Normalizer::normalize($p['price'], 'noescape|double'),
                 Normalizer::normalize($p['quantity'], 'noescape|int'),
-                $p['category']);
+                $p['category'],
+                $bestPromo);
             $products[] = $product;
         }
 
