@@ -6,7 +6,13 @@
     </div>
     <div class="panel-body">
         <div>Description: <?= $this->_viewBag['body']->getDescription() ?></div>
-        <div>Price: <?= $this->_viewBag['body']->getPrice() ?> lv.</div>
+        <?php if ($this->_viewBag['body']->getPromotion() !== 0) : ?>
+            <div>Price: <del><?= $this->_viewBag['body']->getPrice() ?>lv</del>: <?= $this->_viewBag['body']->getPrice() * (1 - $this->_viewBag['body']->getPromotion() / 100) ?>lv.
+                <span class="label label-warning">Promotion</span>
+            </div>
+        <?php else: ?>
+            <div>Price: <?= $this->_viewBag['body']->getPrice() ?>lv.</div>
+        <?php endif; ?>
         <div>Quantity: <?= $this->_viewBag['body']->getQuantity() ?> remaining</div>
         <div>
             <a href="/categories/<?= $this->_viewBag['body']->getCategory() ?>/0/3">Category: <?= $this->_viewBag['body']->getCategory() ?></a>

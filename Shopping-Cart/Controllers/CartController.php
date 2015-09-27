@@ -34,6 +34,22 @@ class CartController extends BaseController
                     array($itemId));
                 $response = $this->db->execute()->fetchRowAssoc();
                 $price = Normalizer::normalize($response['price'], 'noescape|double');
+;
+                $this->db->prepare("SELECT
+                            percentage
+                            FROM promotions
+                            WHERE productId = ? AND NOW() < endDate",
+                    array($itemId));
+                $promos = $this->db->execute()->fetchAllAssoc();
+                $bestPromo = 0;
+                foreach ($promos as $promo) {
+                    $currentPromo = Normalizer::normalize($promo['percentage'], 'noescape|double');
+                    if ($currentPromo > $bestPromo) {
+                        $bestPromo = $currentPromo;
+                    };
+                }
+
+                $price = $price * (1 - $bestPromo / 100);
                 $product = new CartProductViewModel(
                     Normalizer::normalize($response['id'], 'noescape|int'),
                     $response['name'],
@@ -91,7 +107,6 @@ class CartController extends BaseController
         $cart = $this->session->cart;
         foreach ($cart as $k => $itemId) {
             if ($itemId == $id) {
-                var_dump($k);
                 unset($cart[$k]);
                 break;
             }
@@ -129,6 +144,22 @@ class CartController extends BaseController
                 array($itemId));
             $response = $this->db->execute()->fetchRowAssoc();
             $price = Normalizer::normalize($response['price'], 'noescape|double');
+
+            $this->db->prepare("SELECT
+                            percentage
+                            FROM promotions
+                            WHERE productId = ? AND NOW() < endDate",
+                array($itemId));
+            $promos = $this->db->execute()->fetchAllAssoc();
+            $bestPromo = 0;
+            foreach ($promos as $promo) {
+                $currentPromo = Normalizer::normalize($promo['percentage'], 'noescape|double');
+                if ($currentPromo > $bestPromo) {
+                    $bestPromo = $currentPromo;
+                };
+            }
+
+            $price = $price * (1 - $bestPromo / 100);
             $products[] = new Product(Normalizer::normalize($response['id'], 'noescape|int'), $response['name'] , $price);
             $totalPrice += $price;
         }

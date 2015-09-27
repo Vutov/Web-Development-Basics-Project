@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c50f8de0-f4e1-42b0-847c-dd3427fb428a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shopping-Cart/Controllers/CategoryController.php" afterPath="$PROJECT_DIR$/Shopping-Cart/Controllers/CategoryController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shopping-Cart/Controllers/ProductController.php" afterPath="$PROJECT_DIR$/Shopping-Cart/Controllers/ProductController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shopping-Cart/Models/ViewModels/ProductController/ProductViewModel.php" afterPath="$PROJECT_DIR$/Shopping-Cart/Models/ViewModels/ProductController/ProductViewModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shopping-Cart/Controllers/CartController.php" afterPath="$PROJECT_DIR$/Shopping-Cart/Controllers/CartController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shopping-Cart/Views/ProductController/index.php" afterPath="$PROJECT_DIR$/Shopping-Cart/Views/ProductController/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shopping-Cart/Views/ProductController/product.php" afterPath="$PROJECT_DIR$/Shopping-Cart/Views/ProductController/product.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shopping-Cart/Views/CategoryController/show.php" afterPath="$PROJECT_DIR$/Shopping-Cart/Views/CategoryController/show.php" />
     </list>
     <ignored path="Web-Development-Basics-Project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,113 +36,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PromotionController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Shopping-Cart/Controllers/Editor/PromotionController.php">
+      <file leaf-file-name="CartController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Shopping-Cart/Controllers/CartController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.041666" vertical-offset="1037" max-vertical-offset="1590">
-              <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.330855" vertical-offset="2672" max-vertical-offset="3210">
+              <caret line="195" column="49" selection-start-line="195" selection-start-column="49" selection-end-line="195" selection-end-column="49" />
               <folding>
-                <element signature="e#39#62#0#PHP" expanded="true" />
-                <marker date="1443387888431" expanded="true" signature="606:737" placeholder="SELECT p.id ..products..." />
-                <marker date="1443387888431" expanded="true" signature="1084:1249" placeholder="INSERT INTO ..." />
-                <marker date="1443387888431" expanded="true" signature="1701:1797" placeholder="DELETE FROM ..." />
-                <marker date="1443387888431" expanded="true" signature="1707:1780" placeholder="INSERT INTO ..." />
-                <marker date="1443387888431" expanded="true" signature="2095:2297" placeholder="SELECT pr.na..promotions..." />
-                <marker date="1443387888431" expanded="true" signature="2155:2199" placeholder="DELETE FROM ..." />
+                <marker date="1443390543147" expanded="true" signature="615:963" placeholder="SELECT p.id,..products..." />
+                <marker date="1443390543147" expanded="true" signature="1195:1352" placeholder="SELECT perce..promotions..." />
+                <marker date="1443390543147" expanded="true" signature="2164:2300" placeholder="SELECT Cash ..users..." />
+                <marker date="1443390543147" expanded="true" signature="4123:4471" placeholder="SELECT p.pri..products..." />
+                <marker date="1443390543147" expanded="true" signature="4686:4843" placeholder="SELECT perce..promotions..." />
+                <marker date="1443390543147" expanded="true" signature="5489:5625" placeholder="SELECT Cash ..users..." />
+                <marker date="1443390543147" expanded="true" signature="6192:6329" placeholder="UPDATE produ..." />
+                <marker date="1443390543147" expanded="true" signature="6502:6636" placeholder="UPDATE users..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="all.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Shopping-Cart/Views/Editor/PromotionController/all.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="360">
-              <caret line="13" column="68" selection-start-line="13" selection-start-column="68" selection-end-line="13" selection-end-column="68" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProductController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Shopping-Cart/Controllers/ProductController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.25" vertical-offset="540" max-vertical-offset="4920">
-              <caret line="54" column="13" selection-start-line="41" selection-start-column="12" selection-end-line="54" selection-end-column="13" />
-              <folding>
-                <element signature="e#32#44#0#PHP" expanded="true" />
-                <marker date="1443389136835" expanded="true" signature="732:1251" placeholder="SELECT p.id,..products..." />
-                <marker date="1443389136835" expanded="true" signature="1492:1649" placeholder="SELECT perce..promotions..." />
-                <marker date="1443389136835" expanded="true" signature="2928:3323" placeholder="SELECT p.id,..products..." />
-                <marker date="1443389136835" expanded="true" signature="3837:4205" placeholder="SELECT u.use..reviews..." />
-                <marker date="1443389136835" expanded="true" signature="4808:4965" placeholder="SELECT perce..promotions..." />
-                <marker date="1443389136835" expanded="true" signature="6598:6731" placeholder="SELECT id, n..categories..." />
-                <marker date="1443389136835" expanded="true" signature="7085:7246" placeholder="INSERT INTO ..." />
-                <marker date="1443389136835" expanded="true" signature="7396:7538" placeholder="SELECT id FR..products..." />
-                <marker date="1443389136835" expanded="true" signature="7771:7924" placeholder="INSERT INTO ..." />
-                <marker date="1443389136835" expanded="true" signature="8245:8370" placeholder="SELECT id FR..products..." />
-                <marker date="1443389136835" expanded="true" signature="8895:9290" placeholder="SELECT p.id,..products..." />
-                <marker date="1443389136835" expanded="true" signature="10398:10525" placeholder="SELECT id FR..categories..." />
-                <marker date="1443389136835" expanded="true" signature="10916:10980" placeholder="UPDATE produ..." />
-                <marker date="1443389136835" expanded="true" signature="11048:11195" placeholder="UPDATE produ..." />
-                <marker date="1443389136835" expanded="true" signature="11614:11664" placeholder="DELETE FROM ..." />
-                <marker date="1443389136835" expanded="true" signature="11719:11784" placeholder="DELETE FROM ..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CategoryController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Shopping-Cart/Controllers/CategoryController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.024163568" vertical-offset="917" max-vertical-offset="1515">
-              <caret line="62" column="9" selection-start-line="62" selection-start-column="9" selection-end-line="62" selection-end-column="9" />
-              <folding>
-                <marker date="1443389182863" expanded="true" signature="32:306" placeholder="..." />
-                <marker date="1443389182863" expanded="true" signature="647:1184" placeholder="SELECT p.id,..products..." />
-                <marker date="1443389182863" expanded="true" signature="1443:1600" placeholder="SELECT perce..promotions..." />
-                <marker date="1443389182863" expanded="true" signature="2887:3012" placeholder="SELECT name ..categories..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProductViewModel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Shopping-Cart/Models/ViewModels/ProductController/ProductViewModel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.0" vertical-offset="630" max-vertical-offset="1155">
-              <caret line="66" column="7" selection-start-line="66" selection-start-column="7" selection-end-line="66" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PromotionViewModel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Shopping-Cart/Models/ViewModels/Editor/PromotionController/PromotionViewModel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.125" vertical-offset="90" max-vertical-offset="1335">
-              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AllViewModel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Shopping-Cart/Models/ViewModels/Editor/PromotionController/AllViewModel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="405">
-              <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Shopping-Cart/Views/Editor/IndexController/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.375" vertical-offset="405" max-vertical-offset="1005">
-              <caret line="58" column="27" selection-start-line="53" selection-start-column="8" selection-end-line="58" selection-end-column="27" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -155,7 +63,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Shopping-Cart/Public/js/unility.js" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Views/meta.php" />
         <option value="$PROJECT_DIR$/FTS-Framework/Routers/DefaultRouter.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Views/footer.php" />
@@ -177,8 +84,6 @@
         <option value="$PROJECT_DIR$/Shopping-Cart/Views/ProductController/edit.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Models/BindingModels/ChangeProductBindingModel.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Views/home.php" />
-        <option value="$PROJECT_DIR$/Shopping-Cart/Views/CategoryController/show.php" />
-        <option value="$PROJECT_DIR$/Shopping-Cart/Views/ProductController/index.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/config/routes.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Models/BindingModels/RenameBindingModel.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Controllers/Editor/CategoryController.php" />
@@ -193,7 +98,6 @@
         <option value="$PROJECT_DIR$/Shopping-Cart/Models/ViewModels/ProductController/ProductMessage.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Public/js/utility.js" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Controllers/UserController.php" />
-        <option value="$PROJECT_DIR$/Shopping-Cart/Views/ProductController/product.php" />
         <option value="$PROJECT_DIR$/FTS-Framework/App.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Controllers/ReviewController.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Views/ApiController/index.php" />
@@ -206,6 +110,10 @@
         <option value="$PROJECT_DIR$/Shopping-Cart/Models/ViewModels/ProductController/ProductViewModel.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Controllers/ProductController.php" />
         <option value="$PROJECT_DIR$/Shopping-Cart/Controllers/CategoryController.php" />
+        <option value="$PROJECT_DIR$/Shopping-Cart/Views/CategoryController/show.php" />
+        <option value="$PROJECT_DIR$/Shopping-Cart/Views/ProductController/index.php" />
+        <option value="$PROJECT_DIR$/Shopping-Cart/Views/ProductController/product.php" />
+        <option value="$PROJECT_DIR$/Shopping-Cart/Controllers/CartController.php" />
       </list>
     </option>
   </component>
@@ -371,6 +279,50 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="IndexController" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Web-Development-Basics-Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Web-Development-Basics-Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Shopping-Cart" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CategoryController" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Web-Development-Basics-Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Web-Development-Basics-Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Shopping-Cart" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CartController" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -738,13 +690,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Shopping-Cart/Public/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="560">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Shopping-Cart/Views/Layouts/Editor/home.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36380598" vertical-offset="0" max-vertical-offset="536">
@@ -909,13 +854,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Shopping-Cart/Views/CategoryController/show.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11089866" vertical-offset="812" max-vertical-offset="1335">
-          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="83" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Shopping-Cart/Views/UserController/profile.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.057361376" vertical-offset="0" max-vertical-offset="523">
@@ -942,20 +880,6 @@
         <state vertical-scroll-proportion="0.4340344" vertical-offset="748" max-vertical-offset="3690">
           <caret line="65" column="76" selection-start-line="65" selection-start-column="76" selection-end-line="65" selection-end-column="76" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Shopping-Cart/Views/ProductController/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7456979" vertical-offset="405" max-vertical-offset="1350">
-          <caret line="53" column="35" selection-start-line="48" selection-start-column="16" selection-end-line="53" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Shopping-Cart/Views/ProductController/product.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56978965" vertical-offset="752" max-vertical-offset="1500">
-          <caret line="70" column="104" selection-start-line="70" selection-start-column="104" selection-end-line="70" selection-end-column="104" />
         </state>
       </provider>
     </entry>
@@ -1059,33 +983,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Shopping-Cart/Controllers/CartController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8364312" vertical-offset="0" max-vertical-offset="2745">
-          <caret line="35" column="86" selection-start-line="25" selection-start-column="16" selection-end-line="35" selection-end-column="86" />
-          <folding>
-            <marker date="1443283591552" expanded="true" signature="-1:-1" placeholder="SELECT p.id,..products..." />
-            <marker date="1443283591552" expanded="true" signature="-1:-1" placeholder="SELECT Cash ..users..." />
-            <marker date="1443283591552" expanded="true" signature="-1:-1" placeholder="SELECT p.pri..products..." />
-            <marker date="1443283591552" expanded="true" signature="-1:-1" placeholder="SELECT Cash ..users..." />
-            <marker date="1443283591552" expanded="true" signature="-1:-1" placeholder="UPDATE produ..." />
-            <marker date="1443283591552" expanded="true" signature="-1:-1" placeholder="UPDATE users..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Shopping-Cart/Models/BindingModels/PromotionBindingModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8643123" vertical-offset="765" max-vertical-offset="1335">
           <caret line="82" column="5" selection-start-line="8" selection-start-column="4" selection-end-line="82" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Shopping-Cart/Models/ViewModels/Editor/PromotionController/PromotionViewModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.125" vertical-offset="90" max-vertical-offset="1335">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1098,27 +999,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Shopping-Cart/Views/Editor/IndexController/index.php">
+    <entry file="file://$PROJECT_DIR$/Shopping-Cart/Views/Editor/PromotionController/all.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.375" vertical-offset="405" max-vertical-offset="1005">
-          <caret line="58" column="27" selection-start-line="53" selection-start-column="8" selection-end-line="58" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.37142858" vertical-offset="0" max-vertical-offset="525">
+          <caret line="13" column="68" selection-start-line="13" selection-start-column="68" selection-end-line="13" selection-end-column="68" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Shopping-Cart/Controllers/Editor/PromotionController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.041666" vertical-offset="1037" max-vertical-offset="1590">
+        <state vertical-scroll-proportion="0.8048327" vertical-offset="1037" max-vertical-offset="1590">
           <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
           <folding>
             <element signature="e#39#62#0#PHP" expanded="true" />
-            <marker date="1443387888431" expanded="true" signature="606:737" placeholder="SELECT p.id ..products..." />
-            <marker date="1443387888431" expanded="true" signature="1084:1249" placeholder="INSERT INTO ..." />
-            <marker date="1443387888431" expanded="true" signature="1701:1797" placeholder="DELETE FROM ..." />
-            <marker date="1443387888431" expanded="true" signature="1707:1780" placeholder="INSERT INTO ..." />
-            <marker date="1443387888431" expanded="true" signature="2095:2297" placeholder="SELECT pr.na..promotions..." />
-            <marker date="1443387888431" expanded="true" signature="2155:2199" placeholder="DELETE FROM ..." />
+            <marker date="1443387888431" expanded="true" signature="-1:-1" placeholder="SELECT p.id ..products..." />
+            <marker date="1443387888431" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1443387888431" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1443387888431" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1443387888431" expanded="true" signature="-1:-1" placeholder="SELECT pr.na..promotions..." />
+            <marker date="1443387888431" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shopping-Cart/Models/ViewModels/ProductController/ProductViewModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6857143" vertical-offset="630" max-vertical-offset="1155">
+          <caret line="66" column="7" selection-start-line="66" selection-start-column="7" selection-end-line="66" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1130,57 +1039,106 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Shopping-Cart/Views/Editor/PromotionController/all.php">
+    <entry file="file://$PROJECT_DIR$/Shopping-Cart/Views/Editor/IndexController/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="360">
-          <caret line="13" column="68" selection-start-line="13" selection-start-column="68" selection-end-line="13" selection-end-column="68" />
+        <state vertical-scroll-proportion="0.8857143" vertical-offset="405" max-vertical-offset="1005">
+          <caret line="58" column="27" selection-start-line="53" selection-start-column="8" selection-end-line="58" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Shopping-Cart/Models/ViewModels/ProductController/ProductViewModel.php">
+    <entry file="file://$PROJECT_DIR$/Shopping-Cart/Models/ViewModels/Editor/PromotionController/PromotionViewModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.0" vertical-offset="630" max-vertical-offset="1155">
-          <caret line="66" column="7" selection-start-line="66" selection-start-column="7" selection-end-line="66" selection-end-column="7" />
+        <state vertical-scroll-proportion="0.36245352" vertical-offset="90" max-vertical-offset="1335">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Shopping-Cart/Controllers/ProductController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.25" vertical-offset="540" max-vertical-offset="4920">
-          <caret line="54" column="13" selection-start-line="41" selection-start-column="12" selection-end-line="54" selection-end-column="13" />
-          <folding>
-            <element signature="e#32#44#0#PHP" expanded="true" />
-            <marker date="1443389136835" expanded="true" signature="732:1251" placeholder="SELECT p.id,..products..." />
-            <marker date="1443389136835" expanded="true" signature="1492:1649" placeholder="SELECT perce..promotions..." />
-            <marker date="1443389136835" expanded="true" signature="2928:3323" placeholder="SELECT p.id,..products..." />
-            <marker date="1443389136835" expanded="true" signature="3837:4205" placeholder="SELECT u.use..reviews..." />
-            <marker date="1443389136835" expanded="true" signature="4808:4965" placeholder="SELECT perce..promotions..." />
-            <marker date="1443389136835" expanded="true" signature="6598:6731" placeholder="SELECT id, n..categories..." />
-            <marker date="1443389136835" expanded="true" signature="7085:7246" placeholder="INSERT INTO ..." />
-            <marker date="1443389136835" expanded="true" signature="7396:7538" placeholder="SELECT id FR..products..." />
-            <marker date="1443389136835" expanded="true" signature="7771:7924" placeholder="INSERT INTO ..." />
-            <marker date="1443389136835" expanded="true" signature="8245:8370" placeholder="SELECT id FR..products..." />
-            <marker date="1443389136835" expanded="true" signature="8895:9290" placeholder="SELECT p.id,..products..." />
-            <marker date="1443389136835" expanded="true" signature="10398:10525" placeholder="SELECT id FR..categories..." />
-            <marker date="1443389136835" expanded="true" signature="10916:10980" placeholder="UPDATE produ..." />
-            <marker date="1443389136835" expanded="true" signature="11048:11195" placeholder="UPDATE produ..." />
-            <marker date="1443389136835" expanded="true" signature="11614:11664" placeholder="DELETE FROM ..." />
-            <marker date="1443389136835" expanded="true" signature="11719:11784" placeholder="DELETE FROM ..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Shopping-Cart/Controllers/CategoryController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.024163568" vertical-offset="917" max-vertical-offset="1515">
-          <caret line="62" column="9" selection-start-line="62" selection-start-column="9" selection-end-line="62" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.74907064" vertical-offset="332" max-vertical-offset="1515">
+          <caret line="49" column="30" selection-start-line="38" selection-start-column="12" selection-end-line="51" selection-end-column="13" />
           <folding>
-            <marker date="1443389182863" expanded="true" signature="32:306" placeholder="..." />
-            <marker date="1443389182863" expanded="true" signature="647:1184" placeholder="SELECT p.id,..products..." />
-            <marker date="1443389182863" expanded="true" signature="1443:1600" placeholder="SELECT perce..promotions..." />
-            <marker date="1443389182863" expanded="true" signature="2887:3012" placeholder="SELECT name ..categories..." />
+            <element signature="e#32#55#0#PHP" expanded="true" />
+            <marker date="1443389182863" expanded="true" signature="-1:-1" placeholder="SELECT p.id,..products..." />
+            <marker date="1443389182863" expanded="true" signature="-1:-1" placeholder="SELECT perce..promotions..." />
+            <marker date="1443389182863" expanded="true" signature="-1:-1" placeholder="SELECT name ..categories..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shopping-Cart/Controllers/ProductController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5018587" vertical-offset="540" max-vertical-offset="4920">
+          <caret line="54" column="13" selection-start-line="41" selection-start-column="12" selection-end-line="54" selection-end-column="13" />
+          <folding>
+            <element signature="e#32#44#0#PHP" expanded="true" />
+            <marker date="1443389136835" expanded="true" signature="-1:-1" placeholder="SELECT p.id,..products..." />
+            <marker date="1443389136835" expanded="true" signature="-1:-1" placeholder="SELECT perce..promotions..." />
+            <marker date="1443389136835" expanded="true" signature="-1:-1" placeholder="SELECT p.id,..products..." />
+            <marker date="1443389136835" expanded="true" signature="-1:-1" placeholder="SELECT u.use..reviews..." />
+            <marker date="1443389136835" expanded="true" signature="-1:-1" placeholder="SELECT perce..promotions..." />
+            <marker date="1443389136835" expanded="true" signature="-1:-1" placeholder="SELECT id, n..categories..." />
+            <marker date="1443389136835" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1443389136835" expanded="true" signature="-1:-1" placeholder="SELECT id FR..products..." />
+            <marker date="1443389136835" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1443389136835" expanded="true" signature="-1:-1" placeholder="SELECT id FR..products..." />
+            <marker date="1443389136835" expanded="true" signature="-1:-1" placeholder="SELECT p.id,..products..." />
+            <marker date="1443389136835" expanded="true" signature="-1:-1" placeholder="SELECT id FR..categories..." />
+            <marker date="1443389136835" expanded="true" signature="-1:-1" placeholder="UPDATE produ..." />
+            <marker date="1443389136835" expanded="true" signature="-1:-1" placeholder="UPDATE produ..." />
+            <marker date="1443389136835" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1443389136835" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shopping-Cart/Views/ProductController/product.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25714287" vertical-offset="0" max-vertical-offset="1590">
+          <caret line="9" column="165" selection-start-line="9" selection-start-column="165" selection-end-line="9" selection-end-column="165" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shopping-Cart/Views/ProductController/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42857143" vertical-offset="0" max-vertical-offset="1440">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="21" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shopping-Cart/Views/CategoryController/show.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21714285" vertical-offset="111" max-vertical-offset="1425">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="21" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shopping-Cart/Views/CartController/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shopping-Cart/Controllers/CartController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.330855" vertical-offset="2672" max-vertical-offset="3210">
+          <caret line="195" column="49" selection-start-line="195" selection-start-column="49" selection-end-line="195" selection-end-column="49" />
+          <folding>
+            <marker date="1443390543147" expanded="true" signature="615:963" placeholder="SELECT p.id,..products..." />
+            <marker date="1443390543147" expanded="true" signature="1195:1352" placeholder="SELECT perce..promotions..." />
+            <marker date="1443390543147" expanded="true" signature="2164:2300" placeholder="SELECT Cash ..users..." />
+            <marker date="1443390543147" expanded="true" signature="4123:4471" placeholder="SELECT p.pri..products..." />
+            <marker date="1443390543147" expanded="true" signature="4686:4843" placeholder="SELECT perce..promotions..." />
+            <marker date="1443390543147" expanded="true" signature="5489:5625" placeholder="SELECT Cash ..users..." />
+            <marker date="1443390543147" expanded="true" signature="6192:6329" placeholder="UPDATE produ..." />
+            <marker date="1443390543147" expanded="true" signature="6502:6636" placeholder="UPDATE users..." />
           </folding>
         </state>
       </provider>
