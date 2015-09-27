@@ -236,5 +236,6 @@ class FormViewHelper
         $this->_currentElementId = 0;
         $this->_isInForm = false;
         $this->_assembledElements = array();
+        $this->_additionalTokens = array();
     }
 }

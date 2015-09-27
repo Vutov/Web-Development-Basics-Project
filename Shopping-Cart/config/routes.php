@@ -16,8 +16,8 @@ $cnf['*'][NS] = 'Controllers';
 
 // Home
 $cnf['*'][CONTROLLERS]['home'][GOES_TO] = 'index';
-$cnf['*'][CONTROLLERS]['home'][METHODS]['new'] = 'index';
-$cnf['*'][CONTROLLERS]['home'][REQUEST_METHOD]['new'] = 'post';
+$cnf['*'][CONTROLLERS]['home'][METHODS]['index'] = 'index';
+$cnf['*'][CONTROLLERS]['home'][REQUEST_METHOD]['index'] = 'get';
 
 // Login
 $cnf['*'][CONTROLLERS]['user'][GOES_TO] = 'user';
@@ -42,8 +42,6 @@ $cnf['*'][CONTROLLERS]['cart'][GOES_TO] = 'cart';
 $cnf['*'][CONTROLLERS]['cart'][METHODS]['index'] = 'index';
 
 // Administration panel
-$cnf['Admin/users'][NS] = 'Controllers\something';
-
 $cnf['Admin'][NS] = 'Controllers\Admin';
 $cnf['Admin'][CONTROLLERS]['index'][GOES_TO] = 'index';
 $cnf['Admin'][CONTROLLERS]['index'][METHODS]['index'] = 'index';
@@ -54,5 +52,11 @@ $cnf['Admin'][CONTROLLERS]['index'][METHODS]['add'] = 'add';
 $cnf['Admin'][CONTROLLERS]['index'][REQUEST_METHOD]['add'] = 'post';
 $cnf['Admin'][CONTROLLERS]['index'][METHODS]['remove'] = 'remove';
 $cnf['Admin'][CONTROLLERS]['index'][REQUEST_METHOD]['remove'] = 'delete';
+
+// Editor panel
+$cnf['Editor'][NS] = 'Controllers\Editor';
+$cnf['Editor'][CONTROLLERS]['index'][GOES_TO] = 'index';
+$cnf['Editor'][CONTROLLERS]['index'][METHODS]['index'] = 'index';
+$cnf['Editor'][CONTROLLERS]['index'][REQUEST_METHOD]['index'] = 'get';
 
 return $cnf;

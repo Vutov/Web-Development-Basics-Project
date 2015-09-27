@@ -2,6 +2,10 @@
     <div class="panel-heading">
         <h3 class="panel-title"><a
                 href="/product/<?= $this->_viewBag['body']->getId() ?>/show"><?= $this->_viewBag['body']->getName() ?></a>
+            <?php
+            if (\FTS\App::getInstance()->isAdmin() || \FTS\App::getInstance()->isEditor()) :?>
+                <a href="/product/<?= $this->_viewBag['body']->getId()?>/edit" class="btn btn-link">Edit</a>
+            <?php endif;?>
         </h3>
     </div>
     <div class="panel-body">

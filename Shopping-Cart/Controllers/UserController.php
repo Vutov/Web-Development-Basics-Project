@@ -144,4 +144,13 @@ class UserController extends BaseController
             throw new \Exception("No user found matching those credentials!", 400);
         }
     }
+
+    /**
+     * TODO show all users with paging ordered alphabetically
+     * @Route("/user/all/{start:int}/{end:int}")
+     * @Get
+     */
+    public function all(){
+
+    }
 }

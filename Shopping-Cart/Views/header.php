@@ -66,6 +66,9 @@
                                 <?php if (\FTS\App::getInstance()->isAdmin()) : ?>
                                     <li><a href="/admin">Admin</a></li>
                                 <?php endif; ?>
+                                <?php if (\FTS\App::getInstance()->isAdmin() || \FTS\App::getInstance()->isEditor()) : ?>
+                                    <li><a href="/editor">Editor</a></li>
+                                <?php endif; ?>
                                 <li role="separator" class="divider"></li>
                                 <li>
                                     <?php FTS\FormViewHelper::init()
