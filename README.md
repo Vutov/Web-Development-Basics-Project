@@ -29,16 +29,16 @@ Promotions for certain time interval Not started <br />
 Quantity visibility Done <br />
 Checkout the cart  Done <br />
 View cart Done <br />
-Users can sell bought products  Not started <br />
-Editors can add/delete product categories  Not started <br />
-Editors can add/delete products  Not started <br />
-Editors can move products between categories  Not started <br />
-Editors can change quantities  Not started <br />
-Editors can reorder products  Not started <br />
+Users can sell bought products Done <br />
+Editors can add/delete product categories  Done <br />
+Editors can add/delete products Done <br />
+Editors can move products between categories Done <br />
+Editors can change quantities Done <br />
+Editors can reorder products Done <br />
 Administrators have full access on products, categories, users and their possessions  Done <br />
 Bonus functionalities:
 Managing the cart  Done <br />
-Users can sell products and put them promotions  Done <br />
+Users can sell products Done <br />
 Users can make comments on products (review)  Done <br />
 Administrators: ban users  Not started <br />
 Administrators: ban IP’s  Not started <br />
