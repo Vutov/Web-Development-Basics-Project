@@ -47,4 +47,50 @@ class ReviewController extends BaseController
 
         $this->redirect("/product/$productId/show");
     }
+
+    /**
+     * @Put
+     * @Route("review/{id:int}/edit")
+     * @Role("Moderator")
+     * @param ReviewBindingModel $model
+     */
+    public function edit(ReviewBindingModel $model)
+    {
+        $id = $this->input->get(1);
+        $this->db->prepare("SELECT productId
+                            FROM reviews
+                            WHERE id = ?",
+            array($id));
+        $response = $this->db->execute()->fetchRowAssoc();
+        $productId = Normalizer::normalize($response['productId'], 'noescape|int');
+
+        $this->db->prepare("UPDATE reviews
+                            SET message = ?
+                            WHERE id = ?",
+            array($model->getMessage(), $id))->execute();
+
+        $this->redirect("/product/$productId/show");
+    }
+
+    /**
+     * @Delete
+     * @Route("review/{id:int}/delete")
+     * @Role("Moderator")
+     */
+    public function remove()
+    {
+        $id = $this->input->get(1);
+        $this->db->prepare("SELECT productId
+                            FROM reviews
+                            WHERE id = ?",
+            array($id));
+        $response = $this->db->execute()->fetchRowAssoc();
+        $productId = Normalizer::normalize($response['productId'], 'noescape|int');
+
+        $this->db->prepare("DELETE FROM reviews
+                            WHERE id = ?",
+            array($id))->execute();
+
+        $this->redirect("/product/$productId/show");
+    }
 }

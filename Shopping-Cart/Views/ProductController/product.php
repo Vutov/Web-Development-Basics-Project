@@ -68,7 +68,7 @@
                             <span class="label label-success">Moderator</span>
                         <?php endif; ?>
                     </div>
-                    <?php if (\FTS\App::getInstance()->isAdmin() || \FTS\App::getInstance()->isEditor()) : ?>
+                    <?php if (\FTS\App::getInstance()->isAdmin() || \FTS\App::getInstance()->isModerator()) : ?>
                         <div class="col-sm-2 text-right">
                             <button class="btn btn-sm btn-default" onclick="enableReviewForm('<?= $review->getId() . 'r'?>')">Edit</button>
                             <?php
@@ -79,7 +79,7 @@
                         </div>
                         <?php
                         \FTS\FormViewHelper::init()->initForm('/review/' . $review->getId() . '/edit',
-                            ['class' => 'form-group', 'style' => 'display: none', 'id' => $review->getId() . 'r'])
+                            ['class' => 'form-group', 'style' => 'display: none', 'id' => $review->getId() . 'r'], 'put')
                             ->initLabel()->setAttribute('for', 'message')->setValue('Edit Message')->create()
                             ->initTextArea($review->getMessage())->setAttribute('name', 'message')->setAttribute('class', 'form-control input-md')
                                 ->setAttribute('id', 'message')->create()

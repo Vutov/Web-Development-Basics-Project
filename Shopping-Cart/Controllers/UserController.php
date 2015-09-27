@@ -26,6 +26,9 @@ class UserController extends BaseController
                                 WHERE username = ? AND password = ?",
             array($model->getUsername(), $model->getPassword()));
         $response = $this->db->execute()->fetchRowAssoc();
+        if (!$response) {
+            throw new \Exception('No user matching provided username and password!', 400);
+        }
         $id = $response['id'];
         $username = $response['username'];
         $this->session->_login = $id;
