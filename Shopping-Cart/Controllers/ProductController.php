@@ -85,7 +85,7 @@ class ProductController extends BaseController
         }
 
         $this->db->prepare("SELECT
-                            u.username, u.isAdmin, u.isEditor, u.isModerator, r.message
+                            u.username, u.isAdmin, u.isEditor, u.isModerator, r.message, r.id
                             FROM reviews r
                             JOIN products p
                             ON r.productId = p.id
@@ -97,6 +97,7 @@ class ProductController extends BaseController
         $givenReviews = array();
         foreach ($reviews as $r) {
             $givenReviews[] = new ProductMessage(
+                Normalizer::normalize($r['id'], 'noescape|int'),
                 $r['username'],
                 $r['message'],
                 Normalizer::normalize($r['isAdmin'], 'noescape|bool'),

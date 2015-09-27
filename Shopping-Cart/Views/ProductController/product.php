@@ -54,16 +54,38 @@
         foreach ($this->_viewBag['body']->getGivenReviews() as $review) : ?>
             <div class="panel  panel-primary">
                 <div class="panel panel-body"><?= $review->getMessage() ?></div>
-                <div class="panel panel-footer">Written by <a
-                        href="/user/<?= $review->getUsername() ?>/profile"><?= ucfirst($review->getUsername()) ?></a>
-                    <?php if ($review->getIsAdmin()) : ?>
-                        <span class="label label-danger">Admin</span>
-                    <?php endif; ?>
-                    <?php if ($review->getIsEditor()) : ?>
-                        <span class="label label-info">Editor</span>
-                    <?php endif; ?>
-                    <?php if ($review->getIsModerator()) : ?>
-                        <span class="label label-success">Moderator</span>
+                <div class="panel panel-footer">
+                    <div class="col-sm-10">
+                        Written by <a
+                            href="/user/<?= $review->getUsername() ?>/profile"><?= ucfirst($review->getUsername()) ?></a>
+                        <?php if ($review->getIsAdmin()) : ?>
+                            <span class="label label-danger">Admin</span>
+                        <?php endif; ?>
+                        <?php if ($review->getIsEditor()) : ?>
+                            <span class="label label-info">Editor</span>
+                        <?php endif; ?>
+                        <?php if ($review->getIsModerator()) : ?>
+                            <span class="label label-success">Moderator</span>
+                        <?php endif; ?>
+                    </div>
+                    <?php if (\FTS\App::getInstance()->isAdmin() || \FTS\App::getInstance()->isEditor()) : ?>
+                        <div class="col-sm-2 text-right">
+                            <button class="btn btn-sm btn-default" onclick="enableReviewForm('<?= $review->getId() . 'r'?>')">Edit</button>
+                            <?php
+                            \FTS\FormViewHelper::init()
+                                ->initForm('/review/' . $review->getId() . '/delete', ['style' => 'display: inline;'], 'delete')
+                                ->initSubmit()->setAttribute('value', 'Delete')->setAttribute('class', 'btn btn-sm btn-default')->create()
+                                ->render(true); ?>
+                        </div>
+                        <?php
+                        \FTS\FormViewHelper::init()->initForm('/review/' . $review->getId() . '/edit',
+                            ['class' => 'form-group', 'style' => 'display: none', 'id' => $review->getId() . 'r'])
+                            ->initLabel()->setAttribute('for', 'message')->setValue('Edit Message')->create()
+                            ->initTextArea($review->getMessage())->setAttribute('name', 'message')->setAttribute('class', 'form-control input-md')
+                                ->setAttribute('id', 'message')->create()
+                            ->initSubmit()->setAttribute('value', 'Edit')->setAttribute('class', 'btn btn-primary btn-sm col-sm-1 col-sm-offset-5')->create()
+                            ->render(true);
+                        ?>
                     <?php endif; ?>
                 </div>
             </div>

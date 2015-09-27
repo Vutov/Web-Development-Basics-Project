@@ -60,10 +60,10 @@ class FormViewHelper
         return $this;
     }
 
-    public function initTextArea()
+    public function initTextArea($value = '')
     {
         $this->_elements[$this->_currentElementId]['opening tag'] = '<textarea';
-        $this->_elements[$this->_currentElementId]['closing tag'] = '></textarea>';
+        $this->_elements[$this->_currentElementId]['closing tag'] = ">$value</textarea>";
 
         return $this;
     }
