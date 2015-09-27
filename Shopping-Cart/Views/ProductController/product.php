@@ -25,25 +25,13 @@
                      onclick="enableReviewForm(<?= $this->_viewBag['body']->getId() ?>)"
                     >There are no reviews! Write the first review
                 </div>
-                <?php
-                \FTS\FormViewHelper::init()->initForm('/review/add/' . $this->_viewBag['body']->getId(),
-                    ['class' => 'form-group', 'style' => 'display: none', 'id' => $this->_viewBag['body']->getId()])
-                    ->initLabel()->setAttribute('for', 'message')->setValue('Message')->create()
-                    ->initTextArea()->setAttribute('name', 'message')->setAttribute('class', 'form-control input-md')->setAttribute('id', 'message')->create()
-                    ->initSubmit()->setAttribute('value', 'Send')->setAttribute('class', 'btn btn-primary btn-sm col-sm-1 col-sm-offset-5')->create()
-                    ->render(true);
+            <?php
             } else { ?>
                 <div id="btn" class="panel panel-primary btn btn-default"
                      onclick="enableReviewForm(<?= $this->_viewBag['body']->getId() ?>)"
                     >Write review
                 </div>
-                <?php
-                \FTS\FormViewHelper::init()->initForm('/review/add/' . $this->_viewBag['body']->getId(),
-                    ['class' => 'form-group', 'style' => 'display: none', 'id' => $this->_viewBag['body']->getId()])
-                    ->initLabel()->setAttribute('for', 'message')->setValue('Message')->create()
-                    ->initTextArea()->setAttribute('name', 'message')->setAttribute('class', 'form-control input-md')->setAttribute('id', 'message')->create()
-                    ->initSubmit()->setAttribute('value', 'Send')->setAttribute('class', 'btn btn-primary btn-sm col-sm-1 col-sm-offset-5')->create()
-                    ->render(true);
+            <?php
             }
             if (\FTS\App::getInstance()->isAdmin() || \FTS\App::getInstance()->isEditor()) :?>
                 <a href="/product/<?= $this->_viewBag['body']->getId() ?>/edit"
@@ -54,6 +42,14 @@
                     ->initSubmit()->setAttribute('value', 'Delete')->setAttribute('class', 'panel panel-primary btn btn-default')->create()
                     ->render(true);
             endif;
+            if (\FTS\App::getInstance()->isLogged()) {
+                \FTS\FormViewHelper::init()->initForm('/review/add/' . $this->_viewBag['body']->getId(),
+                    ['class' => 'form-group', 'style' => 'display: none', 'id' => $this->_viewBag['body']->getId()])
+                    ->initLabel()->setAttribute('for', 'message')->setValue('Message')->create()
+                    ->initTextArea()->setAttribute('name', 'message')->setAttribute('class', 'form-control input-md')->setAttribute('id', 'message')->create()
+                    ->initSubmit()->setAttribute('value', 'Send')->setAttribute('class', 'btn btn-primary btn-sm col-sm-1 col-sm-offset-5')->create()
+                    ->render(true);
+            }
         }
         foreach ($this->_viewBag['body']->getGivenReviews() as $review) : ?>
             <div class="panel  panel-primary">
