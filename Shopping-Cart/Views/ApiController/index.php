@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="/js/utility.js"></script>
 </head>
 <body>
 <div class="container">
@@ -14,20 +15,22 @@
     </div>
     <?php
     $routes = $this->_viewBag->getRoutes();
-    foreach ($routes as $route => $bindingModel) {
-        \FTS\FormViewHelper::init()
-            ->initDiv()->setValue($route)->setAttribute("class", "text-primary")->create()->render();
-        if ($bindingModel) {
-            \FTS\FormViewHelper::init()
-                ->initDiv()->setValue("Binding model params:")->create()->render();
-            foreach ($bindingModel as $param) {
-                \FTS\FormViewHelper::init()
-                    ->initDiv()->setValue("*$param")->create()->render();
-            }
-        }
-        echo "<hr>";
-    }
-    ?>
+    $id = 0;
+    foreach ($routes as $route => $bindingModel) :?>
+        <div>
+            <div class="text-primary" style="font-size: 1.8em"><?= $route ?></div>
+            <?php if ($bindingModel) : ?>
+                <button onclick="enableReviewForm(<?= $id ?>)" class="btn btn-primary btn-xs">Show binding model</button>
+                <div id="<?= $id++ ?>" style="display: none">
+                    <?php foreach ($bindingModel as $param) :
+                        \FTS\FormViewHelper::init()
+                            ->initDiv()->setValue("*$param")->create()->render();
+                    endforeach; ?>
+                </div>
+            <?php endif; ?>
+        </div>
+        <hr/>
+    <?php endforeach; ?>
 </div>
 </body>
 </html>
