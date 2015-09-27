@@ -58,5 +58,13 @@ $cnf['Editor'][NS] = 'Controllers\Editor';
 $cnf['Editor'][CONTROLLERS]['index'][GOES_TO] = 'index';
 $cnf['Editor'][CONTROLLERS]['index'][METHODS]['index'] = 'index';
 $cnf['Editor'][CONTROLLERS]['index'][REQUEST_METHOD]['index'] = 'get';
+$cnf['Editor'][CONTROLLERS]['category'][GOES_TO] = 'category';
+$cnf['Editor'][CONTROLLERS]['category'][METHODS]['add'] = 'add';
+$cnf['Editor'][CONTROLLERS]['category'][REQUEST_METHOD]['index'] = 'post';
+$cnf['Editor'][CONTROLLERS]['category'][METHODS]['remove'] = 'remove';
+$cnf['Editor'][CONTROLLERS]['category'][REQUEST_METHOD]['remove'] = 'delete';
+$cnf['Editor'][CONTROLLERS]['category'][METHODS]['rename'] = 'rename';
+$cnf['Editor'][CONTROLLERS]['category'][REQUEST_METHOD]['rename'] = 'put';
+
 
 return $cnf;

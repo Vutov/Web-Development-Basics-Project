@@ -58,10 +58,16 @@
                                aria-expanded="false"><?= \FTS\App::getInstance()->getUsername() ?><span
                                     class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><?= \FTS\FormViewHelper::init()
+                                <li><?php \FTS\FormViewHelper::init()
                                         ->initLink()
                                         ->setAttribute('href', "/user/" . \FTS\App::getInstance()->getUsername() . "/profile")
                                         ->setValue('Profile')
+                                        ->create()
+                                        ->render(); ?></li>
+                                <li><?php \FTS\FormViewHelper::init()
+                                        ->initLink()
+                                        ->setAttribute('href', "/users/all/0/10")
+                                        ->setValue('All users')
                                         ->create()
                                         ->render(); ?></li>
                                 <?php if (\FTS\App::getInstance()->isAdmin()) : ?>

@@ -62,6 +62,9 @@
                     <?php if ($review->getIsEditor()) : ?>
                         <span class="label label-info">Editor</span>
                     <?php endif; ?>
+                    <?php if ($review->getIsModerator()) : ?>
+                        <span class="label label-success">Moderator</span>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endforeach; ?>

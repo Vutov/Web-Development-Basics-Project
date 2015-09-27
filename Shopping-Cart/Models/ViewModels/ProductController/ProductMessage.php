@@ -8,13 +8,15 @@ class ProductMessage {
     private $message;
     private $isAdmin;
     private $isEditor;
+    private $isModerator;
 
-    function __construct($username, $message, $isAdmin, $isEditor)
+    function __construct($username, $message, $isAdmin, $isEditor, $isModerator)
     {
         $this->username = $username;
         $this->message = $message;
         $this->isAdmin = $isAdmin;
         $this->isEditor = $isEditor;
+        $this->isModerator = $isModerator;
     }
 
     /**
@@ -47,5 +49,13 @@ class ProductMessage {
     public function getIsEditor()
     {
         return $this->isEditor;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsModerator()
+    {
+        return $this->isModerator;
     }
 }

@@ -85,7 +85,7 @@ class ProductController extends BaseController
         }
 
         $this->db->prepare("SELECT
-                            u.username, u.isAdmin, u.isEditor, r.message
+                            u.username, u.isAdmin, u.isEditor, u.isModerator, r.message
                             FROM reviews r
                             JOIN products p
                             ON r.productId = p.id
@@ -100,7 +100,8 @@ class ProductController extends BaseController
                 $r['username'],
                 $r['message'],
                 Normalizer::normalize($r['isAdmin'], 'noescape|bool'),
-                Normalizer::normalize($r['isEditor'], 'noescape|bool')
+                Normalizer::normalize($r['isEditor'], 'noescape|bool'),
+                Normalizer::normalize($r['isModerator'], 'noescape|bool')
             );
         }
 
