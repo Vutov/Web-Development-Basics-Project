@@ -19,14 +19,6 @@
                     <li><?php FTS\FormViewHelper::init()
                             ->initLink()->setAttribute('href', '/')->setValue('Home')->create()
                             ->render(); ?></li>
-                    <?php if (!\FTS\App::getInstance()->isLogged()) : ?>
-                        <li><?php \FTS\FormViewHelper::init()
-                                ->initLink()->setAttribute('href', '/home/login')->setValue('Login')->create()
-                                ->render(); ?></li>
-                        <li><?php \FTS\FormViewHelper::init()
-                                ->initLink()->setAttribute('href', '/home/login')->setValue('Register')->create()
-                                ->render(); ?></li>
-                    <? endif; ?>
                     <li><?php \FTS\FormViewHelper::init()
                             ->initLink()->setAttribute('href', '/products/0/3')->setValue('All products')->create()
                             ->render(); ?></li>
@@ -45,7 +37,16 @@
                             ->create()->render();
                         ?></li>
                 </ul>
-                <?php if (\FTS\App::getInstance()->isLogged()) : ?>
+                <?php if (!\FTS\App::getInstance()->isLogged()) : ?>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><?php \FTS\FormViewHelper::init()
+                                ->initLink()->setAttribute('href', '/home/login')->setValue('Login')->create()
+                                ->render(); ?></li>
+                        <li><?php \FTS\FormViewHelper::init()
+                                ->initLink()->setAttribute('href', '/home/login')->setValue('Register')->create()
+                                ->render(); ?></li>
+                    </ul>
+                <?php else : ?>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="/cart"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
