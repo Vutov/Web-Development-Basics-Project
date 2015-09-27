@@ -10,7 +10,7 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img src="/resources/slider1.jpg" alt="Slider1" >
+            <img src="/resources/slider3.jpg" alt="Slider1" >
         </div>
 
         <div class="item">
@@ -18,7 +18,7 @@
         </div>
 
         <div class="item">
-            <img src="/resources/slider3.jpg" alt="Slider3">
+            <img src="/resources/slider1.jpg" alt="Slider3">
         </div>
 
     </div>

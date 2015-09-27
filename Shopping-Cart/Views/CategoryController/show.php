@@ -7,7 +7,12 @@ if (!$this->_viewBag['body']->getProducts()) :?>
 foreach ($this->_viewBag['body']->getProducts() as $product) :?>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title"><a href="/product/<?= $product->getId() ?>/show"><?= $product->getName() ?></a></h3>
+            <h3 class="panel-title"><a href="/product/<?= $product->getId() ?>/show"><?= $product->getName() ?></a>
+                <?php
+                if (\FTS\App::getInstance()->isAdmin() || \FTS\App::getInstance()->isEditor()) :?>
+                    <a href="/product/<?= $product->getId() ?>/edit" class="btn btn-link">Edit</a>
+                <?php endif;?>
+            </h3>
         </div>
         <div class="panel-body">
             <div>Description: <?= $product->getDescription() ?></div>
@@ -22,7 +27,7 @@ foreach ($this->_viewBag['body']->getProducts() as $product) :?>
                     >Add to cart
                 </div>
                 <div id="btn" class="panel panel-primary btn btn-default"
-                     onclick="enableReviewForm(<?= $product->getId()?>)"
+                     onclick="enableReviewForm(<?= $product->getId() ?>)"
                     >Write review
                 </div>
                 <a href="/product/<?= $product->getId() ?>/show" id="btn" class="panel panel-primary btn btn-default">Show
