@@ -43,7 +43,7 @@ class Injector
             $doc = $property->getDocComment();
             preg_match($regex, $doc, $matches);
             if ($matches[1]) {
-                $name = $matches[1];
+                $name = trim($matches[1]);
                 $dependency = self::$_config[$name];
                 if ($dependency !== null) {
                     $property = $reflectionClass->getProperty($property->getName());

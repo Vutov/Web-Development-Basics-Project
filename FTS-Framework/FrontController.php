@@ -248,7 +248,6 @@ class FrontController
 
                     // Validate accessibility
                     $this->ValidateAuthorization($doc);
-
                     if (preg_match('/@param\s+\\\?([\s\S]+BindingModel)\s+\$/', $doc, $match)) {
                         $bindingModelName = $match[1];
                         $bindingModelsNamespace = App::getInstance()->getConfig()->app['namespaces']['Models'] . 'BindingModels/';

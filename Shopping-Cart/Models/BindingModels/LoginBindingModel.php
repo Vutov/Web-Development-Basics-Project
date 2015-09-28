@@ -42,7 +42,7 @@ class LoginBindingModel
      */
     private function setPassword($password)
     {
-        $this->password = crypt($password, PASSWORD_DEFAULT);
+        $this->password = hash('ripemd160', $password);
     }
 
     /**

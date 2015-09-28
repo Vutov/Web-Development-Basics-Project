@@ -6,7 +6,7 @@ $cnf['namespaces']['Controllers'] = '../Controllers/';
 $cnf['namespaces']['Routers'] = '../Routers/';
 $cnf['namespaces']['Models'] = '../Models/';
 
-$cnf['displayExceptions'] = true;
+$cnf['displayExceptions'] = false;
 
 $cnf['session']['auto_start'] = true;
 $cnf['session']['type'] = 'native';

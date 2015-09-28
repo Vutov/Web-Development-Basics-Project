@@ -46,7 +46,7 @@ class RegisterBindingModel
      */
     private function setPassword($password)
     {
-        $this->password = crypt($password, PASSWORD_DEFAULT);
+        $this->password = hash('ripemd160', $password);
     }
 
 
@@ -56,6 +56,6 @@ class RegisterBindingModel
 
     private function setConfirm($password)
     {
-        $this->confirm = crypt($password, PASSWORD_DEFAULT);
+        $this->confirm = hash('ripemd160', $password);
     }
 }

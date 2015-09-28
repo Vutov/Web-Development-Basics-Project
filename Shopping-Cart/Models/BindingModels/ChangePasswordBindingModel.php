@@ -36,7 +36,7 @@ class ChangePasswordBindingModel
      */
     public function setOldPassword($oldPassword)
     {
-        $this->oldPassword = crypt($oldPassword, PASSWORD_DEFAULT);
+        $this->oldPassword = hash('ripemd160', $oldPassword);
     }
 
     /**
@@ -52,7 +52,7 @@ class ChangePasswordBindingModel
      */
     public function setNewPassword($newPassword)
     {
-        $this->newPassword = crypt($newPassword, PASSWORD_DEFAULT);
+        $this->newPassword = hash('ripemd160', $newPassword);
     }
 
     /**
@@ -68,7 +68,7 @@ class ChangePasswordBindingModel
      */
     public function setConfirm($confirm)
     {
-        $this->confirm = crypt($confirm, PASSWORD_DEFAULT);
+        $this->confirm = hash('ripemd160', $confirm);
     }
 
 
