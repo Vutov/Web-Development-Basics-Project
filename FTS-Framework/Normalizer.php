@@ -17,7 +17,6 @@ class Normalizer
      */
     public static function normalize($data, $types)
     {
-        //TODO check if working properly
         if ($types == null) {
             return htmlentities($data);
         }

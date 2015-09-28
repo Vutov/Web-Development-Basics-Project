@@ -2,7 +2,6 @@
 
 namespace Models\BindingModels;
 
-//TODO Add @ for validation
 class LoginBindingModel
 {
     private $username;
@@ -43,7 +42,6 @@ class LoginBindingModel
      */
     private function setPassword($password)
     {
-        //TODO find better hashing function.
         $this->password = crypt($password, PASSWORD_DEFAULT);
     }
 

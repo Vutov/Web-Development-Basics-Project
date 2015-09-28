@@ -78,8 +78,7 @@ class FrontController
         if ($this->_requestMethod != 'get') {
             $token = $this->_router->getPost()['_token'];
             if (!Token::validates($token)) {
-                //TODO Redirect
-                throw new \Exception('Invalid token!', 500);
+                throw new \Exception('Invalid token!', 400);
             }
             if ($this->_router->getPost()['_method']) {
                 $this->_requestMethod = strtolower($this->_router->getPost()['_method']);

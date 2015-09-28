@@ -59,7 +59,6 @@ final class Loader
                 throw new \Exception('Namespace directory read error in:' . $path);
             }
         } else {
-            //TODO exception handler
             throw new \Exception('Invalid namespace: ' . $namespace);
         }
     }
