@@ -145,27 +145,34 @@ class App
         $this->_frontController->dispatch();
     }
 
-    //TODO go and add proper exceptions - custom and code types!
     public function _exceptionHandler(\Exception $ex)
     {
         if ($this->_config && $this->_config->app['displayExceptions'] == true) {
             echo '<pre>' . print_r($ex, true) . '</pre>';
         } else {
-            $this->displayError($ex->getCode());
+            $this->displayError($ex->getCode(), $ex->getMessage());
         }
     }
 
-    public function displayError($error)
+    public function displayError($error, $message)
     {
-        try {
-            $view = View::getInstance();
-            $view->displayLayout('errors' . $error);
-            // TODO proper catch!
-        } catch (\Exception $ex) {
-            //TODO header status
-            echo '<h1>' . $error . '</h1>';
-            exit;
+        echo '<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">';
+        echo '<div class="text-center">';
+        FormViewHelper::init()->initLink()->setValue('Home')->setAttribute('href', '/')->create()->render();
+        $confError = $this->_config->errors[$error];
+        if ($confError) {
+            if ($confError == 'message') {
+                echo '<h1>' . $message . '</h1>';
+            } else {
+                echo "<h1> $confError </h1>";
+            }
+        } else {
+            echo '<h1>Oooops, something went wrong ;(. Error  ' . $error . '</h1>';
+            echo '<img class="decoded shrinkToFit" alt="http://media.topito.com/wp-content/uploads/2011/09/lama_bizarre012.jpg" src="http://media.topito.com/wp-content/uploads/2011/09/lama_bizarre012.jpg" height="340" width="453">';
         }
+
+        echo '</div>';
+        exit;
     }
 
     public function __destruct()
